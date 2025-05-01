@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+    <title>Apel - Top Financial Service Company</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="author" content="bslthemes" />
+
+    <!-- switzer font css -->
+    <link rel="stylesheet" href="fonts/css/switzer.css" type="text/css" media="all">
+    <!-- font awesome css -->
+    <link rel="stylesheet" href="fonts/css/font-awesome.min.css" type="text/css" media="all">
+    <!-- bootstrap grid css -->
+    <link rel="stylesheet" href="css/plugins/bootstrap-grid.css" type="text/css" media="all">
+    <!-- swiper css -->
+    <link rel="stylesheet" href="css/plugins/swiper.min.css" type="text/css" media="all">
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="css/plugins/magnific-popup.css" type="text/css" media="all">
+    <!-- Apel css -->
+     <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+   
+    <link rel="stylesheet" href="css/footer.css " type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+
+</head>
+<body>
+    <style>
+        .company-link h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.2em;
+            transition: opacity 0.3s;
+        }
+    
+        .company-link:hover h3 {
+            opacity: 0.8;
+        }
+    
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin: 0 5px;
+            color: white;
+            transition: all 0.3s;
+        }
+    
+        .social-icon:hover {
+            background-color: white;
+            color: #107b5f;
+        }
+    
+        .mil-footer-list li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+    
+        .mil-footer-list a {
+            color: white;
+            text-decoration: none;
+        }
+    
+        .mil-input {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+        }
+    
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .company-section {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .mil-footer-list {
+                padding-left: 0;
+            }
+            
+            .right-content > div {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+        </style>
+<style>
+    
+
+
+
+
+
+
+
+
+
+/* Default state: white text */
+.mil-top-menu ul {
+  display: flex;
+  
+}
+.mil-top-menu ul li {
+  list-style-type: none;
+  margin-right: 15px;
+  position: relative;
+}
+.mil-top-menu ul li:last-child {
+  margin-right: 0;
+}
+.mil-top-menu ul li a {
+  border-radius: 10px;
+  height: 48px;
+  padding: 0 15px;
+  color: #8abf42;
+  font-family: "Switzer-Variable";
+  font-weight: 600;
+  letter-spacing: -2%;
+  z-index: 1;
+  white-space: nowrap;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.2s cubic-bezier(0, 0, 0.3642, 1);
+}
+.mil-top-menu ul li a:before {
+  content: "";
+  opacity: 0;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  right: 15px;
+  background: #8abf42;
+}
+.mil-top-menu ul li a:hover {
+  color: #8abf42;
+}
+.mil-top-menu ul li.mil-has-children > a {
+  padding-right: 24px;
+ 
+}
+.mil-top-menu ul li.mil-has-children > a:before {
+  right: 24px;
+ 
+}
+.mil-top-menu ul li.mil-has-children > a:after {
+  content: url('data:image/svg+xml,<svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.5 1.25C0.5 1.25 2.63316 3.38316 4 4.75C4 4.75 6.13316 2.61683 7.5 1.25" stroke="%23898D96" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  position: absolute;
+  right: 8px;
+  margin-top: -1px;
+ 
+}
+.mil-top-menu ul li.mil-active > a {
+  color: #8abf42;
+}
+.mil-top-menu ul li.mil-active > a:before {
+  opacity: 1;
+}
+.mil-top-menu ul li ul {
+  pointer-events: none;
+  min-width: 160px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  padding: 15px;
+  position: absolute;
+  top: 48px;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(10px);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
+}
+.mil-top-menu ul li ul li {
+  margin-bottom: 5px;
+  margin-right: 0;
+}
+.mil-top-menu ul li ul li:last-child {
+  margin-bottom: 0;
+}
+.mil-top-menu ul li ul li a {
+  justify-content: flex-start;
+  height: 38px;
+}
+.mil-top-menu ul li ul li a:before {
+  display: none;
+}
+.mil-top-menu ul li ul li a:hover {
+  background-color: rgb(13, 81, 82);
+}
+.mil-top-menu ul li:hover ul {
+  pointer-events: all;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mil-top-panel.mil-active .mil-top-menu ul li:hover ul {
+  border-radius: 0 0 10px 10px;
+
+}
+
+.mil-dark-1 .mil-top-menu ul li a {
+  background-color: transparent;
+}
+.mil-dark-1 .mil-top-menu ul li.mil-active a {
+  color: rgb(13, 81, 82);
+}
+.mil-dark-1 .mil-top-menu ul li ul {
+  background-color: rgb(3, 166, 166);
+}
+.mil-dark-1 .mil-top-menu ul li ul li a {
+  background-color: transparent;
+  color: rgb(13, 81, 82);
+}
+.mil-dark-1 .mil-top-menu ul li ul li:hover a {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(255, 255, 255);
+
+}
+.mil-dark-1 .mil-top-menu ul li:hover > a {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(255, 255, 255);
+}
+.mil-dark-1 .mil-top-menu ul li:hover ul {
+  pointer-events: all;
+  opacity: 1;
+  transform: translateY(0);
+}
+.mil-dark-1.mil-active {
+  background-color: rgb(13, 81, 82);
+}
+.mil-dark-1.mil-active .mil-top-menu ul li ul {
+  background-color: rgb(13, 81, 82);
+}
+
+.mil-dark-2 .mil-top-menu ul li a {
+  background-color: transparent;
+
+  color: rgb(137, 141, 150);
+  opacity: 0.7;
+
+}
+
+
+
+
+
+.mil-dark-2 .mil-top-menu ul li.mil-active a {
+  color: #8abf42;
+  opacity: 1;
+}
+.mil-dark-2 .mil-top-menu ul li ul {
+  background-color: #fff;
+}
+.mil-dark-2 .mil-top-menu ul li ul li a {
+  background-color: transparent;
+  color: rgb(13, 81, 82);
+}
+.mil-dark-2 .mil-top-menu ul li ul li:hover a {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #8abf42
+}
+
+.mil-dark-2 .mil-top-menu ul li:hover > a {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #8abf42;
+  opacity: 1;
+}
+.mil-dark-2 .mil-top-menu ul li:hover ul {
+  pointer-events: all;
+  opacity: 1;
+  transform: translateY(0);
+}
+.mil-dark-2.mil-active {
+  background-color:  #FFF ;
+
+}
+.mil-dark-2.mil-active .mil-top-menu ul li ul {
+  background-color:  #FFF ;
+}
+
+@media (max-width: 1200px) {
+  .mil-top-menu {
+    position: absolute;
+    pointer-events: none;
+    top: 80px;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    opacity: 0;
+    transform: translateY(10px);
+    box-shadow: 0 5px 5px rgba(13, 81, 82, 0.1);
+    padding: 0 0 15px 0;
+    transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
+
+  }
+  .mil-top-menu.mil-active {
+    pointer-events: all;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .mil-top-menu ul {
+    padding: 10px;
+    flex-direction: column;
+  }
+  .mil-top-menu ul li {
+    width: 100%;
+  }
+  .mil-top-menu ul li ul {
+    border-radius: 10px !important;
+    transform: none !important;
+    box-shadow: none;
+    position: static;
+    opacity: 1;
+    max-height: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(13, 81, 82);
+  }
+  .mil-top-menu ul li ul li {
+    opacity: 0;
+    transition: 0.4s cubic-bezier(0, 0, 0.3642, 1);
+  }
+  .mil-top-menu ul li:hover a {
+    background-color: rgb(255, 255, 255);
+  }
+  .mil-top-menu ul li:hover ul {
+    padding: 5px 0;
+    max-height: 400px;
+  }
+  .mil-top-menu ul li:hover ul li {
+    opacity: 1;
+  }
+  .mil-top-menu ul li:hover ul li a {
+    background-color: inherit;
+  }
+  .mil-top-menu ul li:last-child:hover ul {
+    margin-bottom: 0;
+  }
+  .mil-top-menu ul li.mil-active > a {
+    box-shadow: none;
+    color: #8abf42;
+  }
+}
+@media (max-width: 1200px) {
+  .mil-dark-1 {
+    background-color: rgb(13, 81, 82);
+  }
+  .mil-dark-1 .mil-top-menu {
+    background-color: rgb(13, 81, 82);
+  }
+  
+  .mil-dark-2 .mil-top-menu {
+    background-color:  #fff;
+  }
+}
+
+
+</style>
+  
+
+    <!-- wrapper -->
+    <div id="smooth-wrapper" class="mil-wrapper" style="background-color:#fff">
+
+        <!-- preloader -->
+        <div class="mil-preloader">
+            <div class="mil-load"></div>
+            <p class="h2 mil-mb-30"><span class="mil-lightpreloader mil-counter" data-number="100">100</span><span class="mil-lightpreloader">%</span></p>
+        </div>
+        <!-- preloader end -->
+
+        <!-- scroll progress -->
+      
+        <!-- scroll progress end -->
+
+        <!-- back to top -->
+        <div class="progress-wrap active-progress"></div>
+
+
+        
+        
+        <!-- top panel end -->
+        <div class="mil-top-panel mil-dark-2">
+            <div class="container">
+                <a href="index.html" class="mil-logo">
+                    <img src="img/favicon.png" alt="Apel" width="20%">
+                </a>
+                <nav class="mil-top-menu-index " >
+                    <ul>
+                        <li class="mil-active" >
+                            <a href="index.html" >Home</a>
+                            
+                        </li>
+                        <li class="mil-has-children">
+                            <a>About Us</a>
+
+                            <ul >
+								<li><a href="about.html">About Apel</a></li>
+				       			
+								 
+								
+				       			<li><a href="our_team.html" >Our Team</a></li>
+
+
+
+					
+				       			
+				       			
+				       			<li class="dropdown"><a  href="about.html#ourCompanies">Our Companies</a>
+				       			
+				       			
+				       			</li>
+				       			
+								   
+				       		</ul> 
+
+                           
+                        </li>
+                        <li class="mil-has-children">
+                            <a >Our Business</a>
+
+                            <ul>
+                                <li><a href="https://main.dgpdt2zjocoln.amplifyapp.com/">Equities Trading</a></li>
+                                <li><a href="https://main.dgpdt2zjocoln.amplifyapp.com/">Corporate Finance</a></li>
+                                <li><a href="https://main.d3jeduuxvr862a.amplifyapp.com/">Trusteeship</a></li>
+                                <li><a href="wealth.html">Fund Management</a></li>
+                                <li><a href="https://main.d1ni3jh7vnzup8.amplifyapp.com/">Registrarship</a></li>
+                                
+                            </ul>
+                        </li>
+                        <li class="mil-has-children">
+                            <a>Resources</a>
+                            <ul>
+								<!-- <li><a href="blog-details.html">News</a></li> -->
+								<li><a href="gallery.html">Photo Gallery</a></li>
+				       			<!-- <li><a href="blog-default.html">Default</a></li> -->
+				       			<li><a href="blog.html">Blog</a></li>
+				       			<!-- <li><a href="blog-grid-sidebar.html">Grid With Sidebar</a></li> -->
+				       			
+								    <li><a href="market-activities.html">Market Activities</a></li>
+				       		
+				       		</ul>
+                        </li>
+
+
+
+                        <li>
+                            <a href="products.html">Products</a>
+                            <!-- <ul>
+                                <li><a href="career.html">Career</a></li>
+                                <li><a href="career-details.html">Career details</a></li>
+                                <li><a href="price.html">Pricing</a></li>
+                                <li><a href="register.html">Register</a></li>
+                                <li><a href="coming-soon.html">Coming soon</a></li>
+                            </ul> -->
+                        </li>
+                        <li>
+                            <a href="contact.html">Contact Us</a>
+                        </li>
+                      
+                    </ul>
+                </nav>
+                <div class="mil-menu-buttons">
+                    <!-- <a href="register.html" class="mil-btn mil-sm">Sign up</a> -->
+                    <div class="mil-menu-btn">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- top panel end -->
+
+        <!-- content -->
+        <div id="smooth-content">
+
+            <!-- banner -->
+       
+            <div class="mil-bannerindex">
+                <!-- Slide 1 -->
+                
+                <div class="mil-slide active" style="background-image: url('img/backgroung.jpg');">
+                    
+                    <div class="mil-overlay "></div>
+                    <div class="mil-bannerindex-text ">
+                        <div class="mil-slide-content">
+                        <h1>Secure Your Future</h1>
+                        <p >Plan ahead with smart investments designed to help you achieve financial freedom and long-term security. Your future starts now.</p>
+                        <div class="mil-buttons-frame">
+                            <a href="https://myapel.com" target="_blank" class="mil-btn mil-md mil-add-arrow">Get Started</a>
+                            <br>
+                            <!-- <a href="https://youtu.be/suOk-c2_Il4?si=lUIgHW-AjYDIS25o" target="_blank" class="mil-btn mil-md2 mil-add-arrow" style="background-color: #8abf42;">Explore</a> -->
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Slide 2 -->
+                <div class="mil-slide" style="background-image: url('img/background3.jpg');">
+                    <div class="mil-overlay"></div>
+                    <div class="mil-bannerindex-text">
+                    <div class="mil-slide-content">
+                        <h1>Build Wealth with Confidence
+                        </h1>
+                        <p>Invest wisely and grow your wealth with expert-managed solutions tailored to your financial goals. Start your journey today</p>
+                        <div class="mil-buttons-frame">
+                            <a href="https://myapel.com" target="_blank" class="mil-btn mil-md mil-add-arrow" >Get Started</a>
+                            <br>
+                            <!-- <a href="https://youtu.be/suOk-c2_Il4?si=lUIgHW-AjYDIS25o" target="_blank" class="mil-btn mil-md mil-add-arrow" style="background-color: #8abf42;">Explore</a> -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+            
+                <!-- Slide 3 -->
+                <div class="mil-slide" style="background-image: url('img/background4.jpg');">
+                
+                    <div class="mil-overlay"></div>
+                    <div class="mil-bannerindex-text">
+                    <div class="mil-slide-content">
+                        <h1>Invest with Ease</h1>
+                        <p>Seamless, transparent, and secure investment options at your fingertips. Whether you're a beginner or a seasoned investor, we’ve got you covered.</p>
+                        <div class="mil-buttons-frame">
+                            <a href="https://myapel.com" target="_blank" class="mil-btn mil-md mil-add-arrow" >Get Started</a>
+                            <br>
+                            <!-- <a href="https://youtu.be/suOk-c2_Il4?si=lUIgHW-AjYDIS25o" target="_blank" class="mil-btn mil-md mil-add-arrow" style="background-color: #8abf42;">Explore</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- Navigation -->
+                <div class="mil-navigation">
+                    <button class="active"></button>
+                    <button></button>
+                    <button></button>
+                </div>
+            </div>
+            
+
+
+            <!-- banner end -->
+
+
+
+            <!-- about -->
+            <!-- <div class="mil-cta">
+                <div class="container">
+                    <div class="mil-out-frame mil-out-top mil-visible">
+                        <div class="row flex-sm-row-reverse justify-content-between align-items-center">
+                            <div class="col-xl-5 mil-mb-60">
+                                <h2 class="mil-mb-30 mil-light mil-up">Simplified Financial Operations</h2>
+                                <p class="mil-text-l mil-pale-2 mil-up mil-mb-60">We have designed our online banking platform so that you can carry out your operations easily and safely. From checking balances to making payments and transfers, everything is at your fingertips.</p>
+                                <div class="mil-up"><a href="register.html" class="mil-btn mil-m mil-add-arrow">Watch tutorial</a></div>
+                            </div>
+                            <div class="col-xl-6">
+                                <img src="img/home-5/2.png" alt="img" style="width: 100%" class="mil-up">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- about end -->
+<!-- 
+quick nav -->
+
+<div class="navigation-bar">
+
+    <a href="https://main.dgpdt2zjocoln.amplifyapp.com/apelalpha.html" target="_blank">
+    <div class="nav-item" data-title="Trade Stocks">
+      
+        <img src="img/company_icons/Trade.svg" style="width: 30%; border-bottom: 10px;">
+        
+            <span>Trade Stocks</span>
+       
+    </div>
+</a>
+
+<a href=" https://sites.google.com/apelasset.com/dividendsearch/home" target="_blank">
+    <div class="nav-item" data-title="Claim Dividend">
+
+        <img src="img/company_icons/Div.svg" style="width: 30%; border-bottom: 10px;">
+       
+       
+        <span>Claim Dividend</span>
+   
+    </div>
+</a>
+    <div class="nav-item" data-title="Invest">
+        <img src="img/company_icons/03.svg" style="width: 30%; border-bottom: 10px;">
+        <span>Invest</span>
+    </div>
+    <div class="nav-item" data-title="Create Will">
+        <img src="img/company_icons/will.svg" style="width: 30%; border-bottom: 10px;">
+        <span>Create Will</span>
+    </div>
+    <div class="nav-item" data-title="Chat Us">
+        <img src="img/company_icons/Call.svg" style="width: 30%; border-bottom: 10px;">
+        <span>Chat Us</span>
+    </div>
+</div>
+
+
+
+
+<!-- quick nav end -->
+
+
+
+
+
+            <!-- icon boxes -->
+            <div class="mil-cta mil-up" style="margin-bottom: -100px;">
+                <div class="container">
+                   
+            
+                        <div class="row align-items-end">
+                            <div class="col-xl-8 mil-mb-80-adaptive-30">
+                                <h2 class="mil-up mil-light">Our Companies</h2>
+                            </div>
+                        </div>
+            
+                        <div class="row">
+                   
+                            <div class="col-xl-3 col-lg-3 col-md-6 mil-mb-30" >
+                                <a href="https://main.dgpdt2zjocoln.amplifyapp.com/" target="_blank" class="mil-icon-box mil-center mil-hover zoom-effect">
+                                    <img src="img/company_icons/04.svg" alt="icon" class="mil-mb-30 mil-up animated-icon">
+                                    <p class="mil-mb-20 mil-light mil-up" style="font-size: 13px; color: #8abf42;;">Securities Trading & <br>Corporate Finance</p> 
+                                    <h5 class="mil-mb-20 mil-light mil-up"><strong>Apel Asset <br>Limited</strong></h5>
+                                 
+                                </a>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-3 col-md-6 mil-mb-30">
+                                <a href="https://main.d3jeduuxvr862a.amplifyapp.com/" target="_blank" class="mil-icon-box mil-center mil-hover zoom-effect">
+                                    <img src="img/company_icons/02.svg" alt="icon" class="mil-mb-30 mil-up  animated-icon">
+                                    <p class="mil-mb-20 mil-light mil-up" style="font-size: 13px; color: #8abf42;;">Trust <br> Services</p>
+                                    <h5 class="mil-mb-20 mil-light mil-up"><strong>Apel Capital & Trust Limited</strong></h5>
+                                    
+                                </a>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 mil-mb-30">
+                                <a href="https://main.d1ni3jh7vnzup8.amplifyapp.com/" target="_blank" class="mil-icon-box mil-center mil-hover zoom-effect">
+                                    <img src="img/company_icons/Reg.svg" alt="icon" class="mil-mb-30 mil-up  animated-icon">
+                                    <p class="mil-mb-20 mil-light mil-up" style="font-size: 13px; color: #8abf42;;">Registrars & <br>Investor Services</p> 
+                                    <h5 class="mil-mb-20 mil-light mil-up"><strong>Apel Capital Registrars Limited</strong></h5>
+                                   
+                                </a>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 mil-mb-30">
+                                <a href="#." class="mil-icon-box mil-center mil-hover zoom-effect">
+                                    <img src="img/company_icons/03.svg" alt="icon" class="mil-mb-30 mil-up  animated-icon">
+                                    <p class="mil-mb-20 mil-light mil-up" style="font-size: 13px; color: #8abf42;;">Wealth <br> Management</p>
+                                    <h5 class="mil-mb-20 mil-light mil-up"><strong>Apel Wealth Management Limited</strong><h5>
+                                
+                                </a>
+                            </div>
+                      
+            
+                    </div>
+                </div>
+            </div>
+            
+            <!-- icon boxes end -->
+
+            <!-- facts -->
+            <div class="mil-p-0-80">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-5 mil-mb-80">
+                            <h2 class="mil-light mil-mb-30b mil-up">Why Choose US</h2>
+                            <p class="mil-text-l mil-pale-2 mil-mb-60 mil-up">Dive into the facts that make Apel the smart choice for your financial needs</p>
+                            <ul class="mil-list-2 mil-type-2 mil-accent mil-mb-60">
+                                <li>
+                                    <div class="mil-up">
+                                        <h5 class="mil-light mil-mb-15">Global Solutions</h5>
+                                        <p class="mil-text-m mil-pale-2">We present you the various topics of business consultations</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="mil-up">
+                                        <h5 class="mil-light mil-mb-15">
+                                            Exclusive Partnerships</h5>
+                                        <p class="mil-text-m mil-pale-2">We have over 20 years experience providing expert financial advice.
+
+                                        </p>
+                                    </div>
+<li>
+                                    <div class="mil-up">
+                                        <h5 class="mil-light mil-mb-15">
+                                            20 years of Experience</h5>
+                                        <p class="mil-text-m mil-pale-2">We have over 20 years experience providing expert financial advice.
+
+                                        </p>
+                                    </div>
+                                </li>
+                                </li>
+                            </ul>
+                            <!-- <div class="mil-up"><a href="about.html" class="mil-btn mil-m mil-add-arrow">Learn more</a></div> -->
+                        </div>
+                        <div class="col-xl-6 mil-mb-80">
+                            <div class="row">
+                                <div class="col-xl-6 mil-mb-30">
+                                    <p class="h1 mil-display mil-mb-15b"><span class="mil-accent mil-counter" data-number="2.1">2,1</span><span class="mil-accent">M</span></p>
+                                    <h5 class="mil-light">Satisfied Customers:</h5>
+                                </div>
+                                <div class="col-xl-6 mil-mb-30">
+                                    <p class="h1 mil-display mil-mb-15b"><span class="mil-accent">+</span><span class="mil-accent mil-counter" data-number="800">800</span></p>
+                                    <h5 class="mil-light">Corporate Clients:</h5>
+                                </div>
+                                <div class="col-xl-6 mil-mb-30">
+                                    <p class="h1 mil-display mil-mb-15"><span class="mil-accent">+</span><span class="mil-accent mil-counter" data-number="50">50</span><span class="mil-accent"></span></p>
+                                    <h5 class="mil-light">Dedicated Employees:</h5>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- facts end -->
+
+            <!-- call to action -->
+            <!-- <div class="mil-cta mil-p-0-160 mil-up">
+                <div class="container">
+                    <div class="mil-out-frame mil-bg-2">
+                        <div class="row justify-content-center align-items-center mil-p-160-160">
+                            <div class="col-xl-7 mil-text-center">
+                                <h2 class="mil-light mil-mb-30 mil-up">Explore the Possibilities of Our Online Banking</h2>
+                                <p class="mil-text-l mil-light mil-mb-60 mil-up">Bank quickly and securely from the comfort of your home or office. From checking balances to making payments, discover all the features</p>
+                                <div class="mil-up"><a href="career.html" class="mil-btn mil-md mil-add-arrow">Explore now</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- call to action end -->
+
+            <!-- features -->
+            <!-- <div class="mil-features mil-p-0-80">
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-xl-6 mil-mb-80">
+                            <h2 class="mil-mb-30 mil-light mil-up">Simplicity in Every Payment</h2>
+                            <p class="mil-text-l mil-pale-2 mil-mb-60 mil-up">From utilities to credit cards, we simplify the process so you can focus on what really matters.</p>
+                            <ul class="mil-list-1 mil-accent">
+                                <li>
+                                    <div class="mil-up">
+                                        <a href="#." class="mil-up">
+                                            <h5 class="mil-mb-15 mil-light mil-up">Payment for Services</h5>
+                                            <p class="mil-text-m mil-pale-2 mil-up">Make utility payments, bills and more with just a few <br>clicks, without hassle or delays.</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="mil-up">
+                                        <a href="#." class="mil-up">
+                                            <h5 class="mil-mb-15 mil-light mil-up">Efficient Credit Card Management</h5>
+                                            <p class="mil-text-m mil-pale-2 mil-up">Control your credit cards, make minimum or full <br>payments, and keep track of your transactions efficiently.</p>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="mil-up">
+                                        <a href="#." class="mil-up">
+                                            <h5 class="mil-mb-15 mil-light mil-up">Automatic Payments Program:</h5>
+                                            <p class="mil-text-m mil-pale-2 mil-up">Forget about deadlines. Set up automatic payments <br>so your bills are paid on time, without worry.</p>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xl-5 mil-mb-80">
+                            <div class="mil-image-frame mil-up">
+                                <img src="img/home-5/3.png" alt="image" class="mil-scale-img" data-value-1="1" data-value-2="1.2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- features end -->
+
+            <!-- features -->
+            <!-- <div class="mil-features mil-p-0-80">
+                <div class="container">
+                    <div class="row flex-sm-row-reverse justify-content-between align-items-center">
+                        <div class="col-xl-6 mil-mb-80">
+                            <h2 class="mil-mb-30 mil-light mil-up">Ease and Security in Every Transaction</h2>
+                            <p class="mil-text-l mil-pale-2 mil-mb-60 mil-up">With Apel, transferring funds has never been so simple and secure. From local transfers to international payments, our platform gives you peace of mind knowing your transactions are protected. Discover a new era in bank transfers.</p>
+                            <div class="mil-up"><a href="about.html" class="mil-btn mil-m mil-add-arrow">Learn more</a></div>
+                        </div>
+                        <div class="col-xl-5 mil-mb-80">
+                            <div class="mil-image-frame mil-up">
+                                <img src="img/home-5/4.png" alt="image" class="mil-scale-img" data-value-1="1" data-value-2="1.2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- features end -->
+            <!-- <section class="ourBusiness">
+                <div class="businessHeader">
+                
+              
+             
+                </div>
+                    
+                
+                <div class="ourBusinessContent">
+                
+                    <div class="businessCard">
+                    <div><span><i class="bi bi-graph-up"></i></span>
+                    <div class="iconLine">
+                
+                
+                    </div>
+                    </div>
+                
+                        <p>Equities Trading</p>
+                
+                    </div>
+                
+                    <div class="businessCard">
+                        <div><span><i class="bi bi-bank"></i></span>
+                        <div class="iconLine">
+                    
+                    
+                        </div>
+                        </div>
+                    
+                            <p>Corporate Finance</p>
+                    
+                        </div>
+                        <div class="businessCard">
+                            <div><span><i class="bi bi-shield"></i></span>
+                            <div class="iconLine">
+                        
+                        
+                            </div>
+                            </div>
+                        
+                                <p>Trusteeship</p>
+                        
+                            </div>
+                            <div class="businessCard">
+                                <div><span><i class="bi bi-cash-stack"></i></span>
+                                <div class="iconLine">
+                            
+                            
+                                </div>
+                                </div>
+                            
+                                    <p>Fund Management</p>
+                            
+                                </div>
+                                <div class="businessCard">
+                                    <div><span><i class="bi bi-journal"></i>
+                                    </span>
+                                    <div class="iconLine">
+                                
+                                
+                                    </div>
+                                    </div>
+                                
+                                        <p>Registrarship</p>
+                                
+                                    </div>
+                
+                
+                </div>
+                
+                </section> -->
+            <!-- testimonials -->
+
+
+ <!-- Our businesses -->
+<h2 style="margin-left: 120px;"> Our Businesses</h2>
+ <div class="grid-container">
+    <!-- Equities Trading -->
+    <div class="section-box" style="background-image: url('img/background1.jpg')">
+        <div class="image-overlay"></div>
+        <div class="content">
+            <h2>Equities Trading</h2>
+            <p>Professional equity trading services with real-time market analysis and execution.</p>
+            <button class="learn-more"> <a href="">Learn More</a></button>
+        </div>
+    </div>
+
+    <!-- Corporate Finance -->
+    <div class="section-box" style="background-image: url('img/background2.jpg')">
+        <div class="image-overlay"></div>
+        <div class="content">
+            <h2>Corporate Finance</h2>
+            <p>Comprehensive financial solutions for corporate growth and strategic development.</p>
+            <button class="learn-more">Learn More</button>
+        </div>
+    </div>
+
+    <!-- Trusteeship -->
+    <div class="section-box" style="background-image: url('img/background3.jpg')">
+        <div class="image-overlay"></div>
+        <div class="content">
+            <h2>Trusteeship</h2>
+            <p>Expert trust management services to protect and grow your assets.</p>
+            <button class="learn-more">Learn More</button>
+        </div>
+    </div>
+
+    <!-- Fund Management -->
+    <div class="section-box" style="background-image: url('img/background4.jpg')">
+        <div class="image-overlay"></div>
+        <div class="content">
+            <h2>Fund Management</h2>
+            <p>Professional investment strategies tailored to your goals.</p>
+            <button class="learn-more">Learn More</button>
+        </div>
+    </div>
+
+    <!-- Registrarship -->
+    <div class="section-box" style="background-image: url('img/backgroung.jpg')">
+        <div class="image-overlay"></div>
+        <div class="content">
+            <h2>Registrarship</h2>
+            <p>Comprehensive shareholder registration and record-keeping services.</p>
+            <button class="learn-more">Learn More</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Our Businesses Close -->
+
+
+
+
+            <div class="mil-cta mil-up">
+                <div class="container">
+                    
+                    <div class="mil-out-frame mil-bg-4 mil-p-160-160">
+                        <h2 class="mil-light mil-mb-30c mil-up" style="margin-bottom: 10px; text-align: center;">Testimonials</h2>
+                        <div class="row justify-content-center">
+                            <div class="col-xl-7 mil-relative">
+                                <div class="swiper-container mil-testimonials-1 mil-up">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                      
+                                           
+                                            <blockquote class="mil-center" data-swiper-parallax="-400" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.8">
+                                                <svg width="50" height="32" viewBox="0 0 50 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="mil-mb-30 mil-up mil-accent">
+                                                    <path d="M13.0425 9.59881C13.734 7.27646 15.0099 5.16456 16.7515 3.45982C17.0962 3.11455 17.2958 2.65336 17.31 2.16891C17.3243 1.68445 17.1523 1.2126 16.8285 0.848135L16.6225 0.619235C16.3552 0.313531 15.9908 0.106228 15.5887 0.0311485C15.1866 -0.0439312 14.7706 0.0176452 14.4085 0.205827C-0.299477 8.01918 -0.116489 18.6169 0.0295105 20.4165C0.0195105 20.6139 -0.000488281 20.8112 -0.000488281 21.0085C0.0518962 23.1543 0.724816 25.2405 1.93898 27.0214C3.15314 28.8023 4.85796 30.2037 6.85252 31.0604C8.84709 31.9171 11.0483 32.1935 13.1967 31.8569C15.3452 31.5203 17.3514 30.5848 18.9788 29.1606C20.6063 27.7364 21.7873 25.8829 22.3826 23.8185C22.9779 21.7541 22.9627 19.5648 22.3389 17.5086C21.715 15.4524 20.5085 13.615 18.8614 12.2129C17.2144 10.8108 15.1954 9.90246 13.0425 9.59487V9.59881Z" fill="#F27457" />
+                                                    <path d="M40.2255 9.59881C40.9171 7.27648 42.193 5.16459 43.9345 3.45982C44.2793 3.11455 44.4788 2.65336 44.4931 2.16891C44.5074 1.68445 44.3353 1.2126 44.0115 0.848135L43.8055 0.619235C43.5382 0.313531 43.1738 0.106228 42.7717 0.0311485C42.3696 -0.0439312 41.9536 0.0176452 41.5915 0.205827C26.8835 8.01918 27.0665 18.6169 27.2115 20.4165C27.2015 20.6139 27.1815 20.8112 27.1815 21.0085C27.2332 23.1544 27.9055 25.241 29.1191 27.0224C30.3328 28.8038 32.0373 30.2057 34.0318 31.063C36.0262 31.9203 38.2274 32.1972 40.3761 31.8611C42.5248 31.525 44.5313 30.5899 46.1591 29.166C47.787 27.742 48.9684 25.8887 49.5641 23.8242C50.1599 21.7598 50.1451 19.5704 49.5215 17.514C48.8979 15.4576 47.6915 13.6199 46.0445 12.2176C44.3975 10.8152 42.3785 9.90659 40.2255 9.59881Z" fill="#F27457" />
+                                                </svg>
+                                                <p class="mil-text-l mil-mb-60 mil-up mil-light">Apel Capital & Trust Limited is a fast growing financial service organisation, licensed by the Securities and Exchange Commission (S.E.C) to provide Trusteeship and Fund Management services.</p>
+                                                <img src="img/faces/2.jpg" alt="Customer" class="mil-mb-15 mil-up">
+                                                <h5 class="mil-up mil-light">Adebowale Favour</h5>
+                                            </blockquote>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <blockquote class="mil-center" data-swiper-parallax="-400" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.8">
+                                                <svg width="50" height="32" viewBox="0 0 50 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="mil-mb-30 mil-up mil-accent">
+                                                    <path d="M13.0425 9.59881C13.734 7.27646 15.0099 5.16456 16.7515 3.45982C17.0962 3.11455 17.2958 2.65336 17.31 2.16891C17.3243 1.68445 17.1523 1.2126 16.8285 0.848135L16.6225 0.619235C16.3552 0.313531 15.9908 0.106228 15.5887 0.0311485C15.1866 -0.0439312 14.7706 0.0176452 14.4085 0.205827C-0.299477 8.01918 -0.116489 18.6169 0.0295105 20.4165C0.0195105 20.6139 -0.000488281 20.8112 -0.000488281 21.0085C0.0518962 23.1543 0.724816 25.2405 1.93898 27.0214C3.15314 28.8023 4.85796 30.2037 6.85252 31.0604C8.84709 31.9171 11.0483 32.1935 13.1967 31.8569C15.3452 31.5203 17.3514 30.5848 18.9788 29.1606C20.6063 27.7364 21.7873 25.8829 22.3826 23.8185C22.9779 21.7541 22.9627 19.5648 22.3389 17.5086C21.715 15.4524 20.5085 13.615 18.8614 12.2129C17.2144 10.8108 15.1954 9.90246 13.0425 9.59487V9.59881Z" fill="#03A6A6" />
+                                                    <path d="M40.2255 9.59881C40.9171 7.27648 42.193 5.16459 43.9345 3.45982C44.2793 3.11455 44.4788 2.65336 44.4931 2.16891C44.5074 1.68445 44.3353 1.2126 44.0115 0.848135L43.8055 0.619235C43.5382 0.313531 43.1738 0.106228 42.7717 0.0311485C42.3696 -0.0439312 41.9536 0.0176452 41.5915 0.205827C26.8835 8.01918 27.0665 18.6169 27.2115 20.4165C27.2015 20.6139 27.1815 20.8112 27.1815 21.0085C27.2332 23.1544 27.9055 25.241 29.1191 27.0224C30.3328 28.8038 32.0373 30.2057 34.0318 31.063C36.0262 31.9203 38.2274 32.1972 40.3761 31.8611C42.5248 31.525 44.5313 30.5899 46.1591 29.166C47.787 27.742 48.9684 25.8887 49.5641 23.8242C50.1599 21.7598 50.1451 19.5704 49.5215 17.514C48.8979 15.4576 47.6915 13.6199 46.0445 12.2176C44.3975 10.8152 42.3785 9.90659 40.2255 9.59881Z" fill="#03A6A6" />
+                                                </svg>
+                                                <p class="mil-text-l mil-mb-60 mil-up mil-light">Apel Capital & Trust Limited is a fast growing financial service organisation, licensed by the Securities and Exchange Commission (S.E.C) to provide Trusteeship and Fund Management services.</p>
+                                                <img src="img/faces/1.jpg" alt="Customer" class="mil-mb-15 mil-up">
+                                                <h5 class="mil-up mil-light">Abiodun Eniola</h5>
+                                            </blockquote>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <blockquote class="mil-center" data-swiper-parallax="-400" data-swiper-parallax-opacity="0" data-swiper-parallax-scale="0.8">
+                                                <svg width="50" height="32" viewBox="0 0 50 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="mil-mb-30 mil-up mil-accent">
+                                                    <path d="M13.0425 9.59881C13.734 7.27646 15.0099 5.16456 16.7515 3.45982C17.0962 3.11455 17.2958 2.65336 17.31 2.16891C17.3243 1.68445 17.1523 1.2126 16.8285 0.848135L16.6225 0.619235C16.3552 0.313531 15.9908 0.106228 15.5887 0.0311485C15.1866 -0.0439312 14.7706 0.0176452 14.4085 0.205827C-0.299477 8.01918 -0.116489 18.6169 0.0295105 20.4165C0.0195105 20.6139 -0.000488281 20.8112 -0.000488281 21.0085C0.0518962 23.1543 0.724816 25.2405 1.93898 27.0214C3.15314 28.8023 4.85796 30.2037 6.85252 31.0604C8.84709 31.9171 11.0483 32.1935 13.1967 31.8569C15.3452 31.5203 17.3514 30.5848 18.9788 29.1606C20.6063 27.7364 21.7873 25.8829 22.3826 23.8185C22.9779 21.7541 22.9627 19.5648 22.3389 17.5086C21.715 15.4524 20.5085 13.615 18.8614 12.2129C17.2144 10.8108 15.1954 9.90246 13.0425 9.59487V9.59881Z" fill="#03A6A6" />
+                                                    <path d="M40.2255 9.59881C40.9171 7.27648 42.193 5.16459 43.9345 3.45982C44.2793 3.11455 44.4788 2.65336 44.4931 2.16891C44.5074 1.68445 44.3353 1.2126 44.0115 0.848135L43.8055 0.619235C43.5382 0.313531 43.1738 0.106228 42.7717 0.0311485C42.3696 -0.0439312 41.9536 0.0176452 41.5915 0.205827C26.8835 8.01918 27.0665 18.6169 27.2115 20.4165C27.2015 20.6139 27.1815 20.8112 27.1815 21.0085C27.2332 23.1544 27.9055 25.241 29.1191 27.0224C30.3328 28.8038 32.0373 30.2057 34.0318 31.063C36.0262 31.9203 38.2274 32.1972 40.3761 31.8611C42.5248 31.525 44.5313 30.5899 46.1591 29.166C47.787 27.742 48.9684 25.8887 49.5641 23.8242C50.1599 21.7598 50.1451 19.5704 49.5215 17.514C48.8979 15.4576 47.6915 13.6199 46.0445 12.2176C44.3975 10.8152 42.3785 9.90659 40.2255 9.59881Z" fill="#03A6A6" />
+                                                </svg>
+                                                <p class="mil-text-l mil-mb-60 mil-up mil-light">Apel Capital & Trust Limited is a fast growing financial service organisation, licensed by the Securities and Exchange Commission (S.E.C) to provide Trusteeship and Fund Management services..</p>
+                                                <img src="img/faces/3.jpg" alt="Customer" class="mil-mb-15 mil-up">
+                                                <h5 class="mil-up mil-light">Success Samuel</h5>
+                                            </blockquote>
+                                        </div>
+                                    </div>
+                                    <div class="mil-slider-nav-1">
+                                        <div class="mil-testi-prev"></div>
+                                        <div class="mil-testi-next"></div>
+                                    </div>
+                                </div>
+                                <div class="mil-testi-pagination mil-up"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- testimonials end -->
+
+            <!-- brands -->
+            <!-- <div class="mil-p-160-130">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-6 mil-mb-60">
+                            <h2 class="mil-light mil-mb-30 mil-up">Unlimited Mobile Connectivity: Mobile Wallet Integrations</h2>
+                            <p class="mil-text-l mil-pale-2 mil-up mil-mb-60">Explore how our key integrations with leading <br>mobile wallet apps can make your transactions <br>faster and more convenient than ever.</p>
+                            <div class="mil-up"><a href="about.html" class="mil-btn mil-m mil-add-arrow">Learn More</a></div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="mil-brand-card mil-mb-30 mil-up">
+                                <img src="img/brands/1.svg" alt="brand" class="mil-mb-30">
+                                <h5 class="mil-light mil-light mil-mb-20">Amper Pay</h5>
+                                <p class="mil-text-s mil-pale-2">Make fast and secure payments directly from your Amper device with the seamless integration of Apel and Amper Pay.</p>
+                            </div>
+                            <div class="mil-brand-card mil-mb-30 mil-up">
+                                <img src="img/brands/2.svg" alt="brand" class="mil-mb-30">
+                                <h5 class="mil-light mil-light mil-mb-20">Yelii Pay</h5>
+                                <p class="mil-text-s mil-pale-2">Pay with a touch using Yeli Pay and maintain full control of your transactions by integrating your Apel account.</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="mil-brand-card mil-mb-30 mil-up">
+                                <img src="img/brands/3.svg" alt="brand" class="mil-mb-30">
+                                <h5 class="mil-light mil-light mil-mb-20">Booster</h5>
+                                <p class="mil-text-s mil-pale-2">Send money instantly and securely through Booster, integrating your Apel account for a frictionless financial experience.</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="mil-brand-card mil-mb-30 mil-up">
+                                <img src="img/brands/4.svg" alt="brand" class="mil-mb-30">
+                                <h5 class="mil-light mil-light mil-mb-20">Amerill</h5>
+                                <p class="mil-text-s mil-pale-2">Connect your Apel account with Amerill to simplify splitting expenses and quickly make payments between friends.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!-- brands end -->
+
+            <!-- call to action -->
+            <div class="mil-cta mil-up" style="margin-bottom: 70px;">
+                <div class="container">
+                    <div class="mil-out-frame mil-p-160-160" style="background-image: url(img/footerapp.jpg)">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-xl-7 mil-sm-text-center">
+                                <h2 class="mil-light2 mil-mb-30 mil-up">Discover the freedom <br>of Total Financial Control</h2>
+                                <p class="mil-text-m mil-mb-60 mil-dark-soft mil-up">Download the Apel Smart Invest App and take the first step towards a <br>more <br> balanced and hassle-free financial life.</p>
+                                <div class="mil-buttons-frame mil-up">
+                                    <a href="https://apps.apple.com/us/app/apel-investsmart/id6737058712" class="mil-btn mil-md2">App Store</a>
+                                    <a href="https://play.google.com/store/apps/details?id=com.apel.app" class="mil-btn mil-border mil-md2">Google Play</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- call to action end -->
+
+            <!-- footer -->
+           
+
+            <footer class="footer">
+                <div class="footer-content">
+                    <!-- Company Section -->
+                    <div class="footer-company-section">
+                        <table class="footer-company-table">
+                            <tr>
+                                <td>
+                                    <a href="https://main.d1fwsqa4sfyuc3.amplifyapp.com/" class="footer-company-link">
+                                        <h3>Apel Group</h3>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="https://main.dgpdt2zjocoln.amplifyapp.com/" class="footer-company-link">
+                                        <h3>Apel Asset Limited</h3>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="https://main.d3jeduuxvr862a.amplifyapp.com/" class="footer-company-link">
+                                        <h3>Apel Capital & Trust</h3>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="https://main.d1ni3jh7vnzup8.amplifyapp.com/" class="footer-company-link">
+                                        <h3>Apel Capital Registrars</h3>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="https://main.d1ni3jh7vnzup8.amplifyapp.com/" class="footer-company-link">
+                                        <h3>Apel Wealth Management Limited</h3>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div >
+                    <!-- Right Content Section -->
+                  
+                        <!-- Links Section -->
+                        <div class="footer-links-section">
+                            <div class="footer-links-column">
+                                <h6>Quick links</h6>
+                                <ul class="footer-links-list">
+                                    
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="gallery.html">Gallery</a></li>
+                                    <li><a href="products.html">Products</a></li>
+                                    <li><a href="faq.html">FAQ</a></li>
+                                </ul>
+                            </div>
+                            
+                            <div class="footer-links-column">
+                                <h6>Useful links</h6>
+                                <ul class="footer-links-list">
+                                    <li><a href="#services">Careers-Join Us</a></li>
+                                    <li><a href="faq.html">Kyc Update</a></li>
+                                    <li><a href="#support">Downloads</a></li>
+                                    <li><a href="#support">Privacy Policy</a></li>
+                                    <li><a href="https://drive.google.com/file/d/1MB7yzk0uLT63p_KtKqhGj1qz4MaTXui_/view?usp=sharing">Best Excecution Policy</a></li>
+                                    <li><a href="https://drive.google.com/drive/folders/1iHrXlh4F5W28h7HX2YEsFOowrmS0RPU">Customer Complaint Management </a></li>
+                                    <li><a href="#support">Disclaimer</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="footer-right-column">
+                        <!-- Contact Section -->
+                        <div class="footer-contact-section">
+                            <h6>Contact</h6>
+                            <ul class="footer-contact-list">
+                                <li>6 Alhaji Bashorun Street,<br> 
+                                    off Norman Williams Crescent<br> 
+                                    South-West Ikoyi, Lagos</li>
+                                <li>Phone: +234 90 4884 4011</li>
+                                <li>Email: info@apel.com.ng</li>
+                            </ul>
+                        </div>
+            
+                        <!-- Newsletter Section -->
+                        <div class="footer-newsletter-section">
+                            <h6>Newsletter</h6>
+                            <form class="footer-newsletter-form">
+                                <!-- <p class="mil-text-xs mil-soft mil-mb-15" style="color: #FFF;">Subscribe to get the latest news form us</p> -->
+                                <input type="email" class="footer-newsletter-input" placeholder="Enter your email">
+
+
+                                <div class="mil-checkbox-frame mil-mt-15">
+                                    <div class="mil-checkbox">
+                                        <input type="checkbox" id="checkbox" checked>
+                                        <label for="checkbox"></label>
+                                    </div>
+                                    <p class="mil-text-xs mil-soft" style="color: #FFF;">Subscribe to get the latest news</p>
+                                </div>
+
+                                <div></div>
+                                <button type="submit" class="footer-newsletter-button">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+
+                  
+                    <!-- Social Icons -->
+                    <div class="footer-social-section">
+                        <a href="https://facebook.com/Apelng" class="footer-social-icon" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://youtube.com/@Apelng" class="footer-social-icon" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="https://instagram.com/Apelng" class="footer-social-icon" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com/@Apelng" class="footer-social-icon" target="_blank">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/Apelng" class="footer-social-icon" target="_blank">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com/Apelng" class="footer-social-icon" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+            
+                    <!-- Footer Bottom -->
+                    <div class="footer-bottom">
+                        <p>© 2025 All rights reserved | Apel Group | Member of NASD | Trading License Holder of The Nigerian Exchange</p>
+                    </div>
+                </div>
+        
+
+                  
+               
+            
+             
+                </div>
+            </footer>
+
+            <!-- footer end -->
+
+      
+        <!-- content end -->
+   
+    <!-- wrapper end -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    let navbar = document.querySelector(".mil-top-menu-index"); // Select the nav
+
+    window.addEventListener("scroll", function () {
+        if (window.scrollY > 50) {
+            navbar.classList.add("mil-top-menu"); // Add the new class
+            navbar.classList.remove("mil-top-menu-index"); // Remove the old class
+        } else {
+            navbar.classList.add("mil-top-menu-index"); // Restore the original class
+            navbar.classList.remove("mil-top-menu"); // Remove the scroll class
+        }
+    });
+});
+
+
+
+
+
+
+    </script>
+
+    <script>
+
+
+
+    </script>
+    
+    
+    <script>
+        const slides = document.querySelectorAll('.mil-slide');
+        const navButtons = document.querySelectorAll('.mil-navigation button');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active', 'animate-in', 'animate-out');
+                navButtons[i].classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active', 'animate-in');
+                } else if (i === currentSlide) {
+                    slide.classList.add('animate-out');
+                }
+            });
+            navButtons[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        navButtons.forEach((button, index) => {
+            button.addEventListener('click', () => showSlide(index));
+        });
+
+        setInterval(() => {
+            const nextSlide = (currentSlide + 1) % slides.length;
+            showSlide(nextSlide);
+        }, 8000);
+    </script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5c34b81b361b3372892f058b/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+
+
+<script>
+
+
+// Add horizontal scroll with mouse wheel
+const container = document.querySelector('.scroll-container');
+let isDown = false;
+let startX;
+let scrollLeft;
+
+container.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    container.scrollLeft += e.deltaY;
+});
+    </script>
+
+    <!--End of Tawk.to Script-->
+    <!-- jquery js -->
+    <script src="js/plugins/jquery.min.js"></script>
+    <!-- swiper css -->
+    <script src="js/plugins/swiper.min.js"></script>
+    <!-- gsap js -->
+    <script src="js/plugins/gsap.min.js"></script>
+    <!-- scroll smoother -->
+    <script src="js/plugins/ScrollSmoother.min.js"></script>
+    <!-- scroll trigger js -->
+    <script src="js/plugins/ScrollTrigger.min.js"></script>
+    <!-- scroll to js -->
+    <script src="js/plugins/ScrollTo.min.js"></script>
+    <!-- magnific -->
+    <script src="js/plugins/magnific-popup.js"></script>
+    <!-- Apel js -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
