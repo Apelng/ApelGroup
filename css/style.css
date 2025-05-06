@@ -3489,7 +3489,7 @@ border: 0.3px solid;
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(0, 0, 0, 0.527); /* Black overlay with 50% opacity */
+          background: rgba(0, 0, 0, 0.274); /* Black overlay with 50% opacity */
           z-index: 1;
       }
       
@@ -3498,6 +3498,7 @@ border: 0.3px solid;
           transform: translateX(0);
           opacity: 1;
           left: 0;
+          
       }
       
       /* Slide Content */
@@ -3515,6 +3516,7 @@ border: 0.3px solid;
           width: 100%;
           margin-left: -25vh;
           margin-right: auto;
+          
       }
       
       /* Optional: Add responsive behavior */
@@ -3583,7 +3585,7 @@ border: 0.3px solid;
 }
 .mil-bannerindex-text p {
 
-color:#8abf42;
+color:#43f0c2;
 }
 
 
