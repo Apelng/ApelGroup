@@ -1335,6 +1335,19 @@ container.addEventListener('wheel', (e) => {
 });
     </script>
 
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
     <!--End of Tawk.to Script-->
     <!-- jquery js -->
     <script src="js/plugins/jquery.min.js"></script>
@@ -1352,7 +1365,30 @@ container.addEventListener('wheel', (e) => {
     <script src="js/plugins/magnific-popup.js"></script>
     <!-- Apel js -->
     <script src="js/main.js"></script>
-
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 </body>
 
 </html>
