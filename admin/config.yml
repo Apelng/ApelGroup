@@ -2,9 +2,12 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "assets/uploads" # Where uploaded images will be stored
-public_folder: "/assets/uploads" # Path used in your HTML
+# Media storage
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
 
+# Editor preview
+display_url: "https://apelng.github.io/ApelGroup"
 collections:
   - name: "pages"
     label: "Pages"
@@ -12,40 +15,48 @@ collections:
       - name: "home"
         label: "Home Page"
         file: "index.html"
+        editor:
+          preview: true  # Enable live preview
         fields:
-          - {name: "site_title", label: "Site Title (Browser Tab)", widget: "string"}
-          - {name: "hero_title", label: "Hero Main Title", widget: "string"}
-          - {name: "hero_subtitle", label: "Hero Subtitle", widget: "string"}
-          - {name: "hero_button", label: "Hero Button Text", widget: "string"}
-          - {name: "hero_image", label: "Hero Background Image", widget: "image"}
+          # Basic meta
+          - {name: "title", label: "Page Title", widget: "string"}
           
-          - name: "services"
-            label: "Services Section"
+          # Hero Section
+          - name: "hero"
+            label: "Hero Section"
             widget: "object"
             fields:
-              - {name: "section_title", label: "Section Title", widget: "string"}
-              - name: "service_items"
-                label: "Service Boxes"
+              - {name: "title", label: "Main Title", widget: "string"}
+              - {name: "subtitle", label: "Subtitle", widget: "string"}
+              - {name: "button_text", label: "Button Text", widget: "string"}
+              - {name: "background", label: "Background Image", widget: "image"}
+          
+          # Services Section
+          - name: "services"
+            label: "Services"
+            widget: "object"
+            fields:
+              - {name: "heading", label: "Section Heading", widget: "string"}
+              - name: "items"
+                label: "Service Items"
                 widget: "list"
                 fields:
-                  - {name: "icon", label: "Icon Class (e.g., fas fa-code)", widget: "string"}
+                  - {name: "icon", label: "Icon Class", widget: "string"}
                   - {name: "title", label: "Service Title", widget: "string"}
                   - {name: "description", label: "Description", widget: "text"}
-
+          
+          # About Section
           - name: "about"
             label: "About Section"
             widget: "object"
             fields:
-              - {name: "title", label: "Section Title", widget: "string"}
-              - {name: "content", label: "Description", widget: "markdown"}
+              - {name: "heading", label: "Section Heading", widget: "string"}
+              - {name: "content", label: "Content", widget: "markdown"}
               - {name: "image", label: "About Image", widget: "image"}
-
-          - name: "contact"
-            label: "Contact Section"
-            widget: "object"
-            fields:
-              - {name: "title", label: "Section Title", widget: "string"}
-              - {name: "address", label: "Address", widget: "text"}
-              - {name: "phone", label: "Phone Number", widget: "string"}
-              - {name: "email", label: "Email Address", widget: "string"}
-              - {name: "form_title", label: "Form Title", widget: "string"}
+          
+          # Raw HTML Access (hidden by default)
+          - name: "raw_html"
+            label: "Advanced HTML Editor"
+            widget: "hidden"
+            default: ""
+            required: false
