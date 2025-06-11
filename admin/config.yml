@@ -2,10 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-publish_mode: editorial_workflow  # Optional: adds draft/published states
-
-media_folder: "static/img/uploads"
-public_folder: "/img/uploads"  # Path used in your HTML src attributes
+media_folder: "assets/uploads" # Where uploaded images will be stored
+public_folder: "/assets/uploads" # Path used in your HTML
 
 collections:
   - name: "pages"
@@ -15,12 +13,39 @@ collections:
         label: "Home Page"
         file: "index.html"
         fields:
-          - {name: "title", label: "Title", widget: "string", required: true}
-          - {name: "body", label: "Content", widget: "markdown"}
-          - name: "sections"
-            label: "Page Sections"
-            widget: "list"
+          - {name: "site_title", label: "Site Title (Browser Tab)", widget: "string"}
+          - {name: "hero_title", label: "Hero Main Title", widget: "string"}
+          - {name: "hero_subtitle", label: "Hero Subtitle", widget: "string"}
+          - {name: "hero_button", label: "Hero Button Text", widget: "string"}
+          - {name: "hero_image", label: "Hero Background Image", widget: "image"}
+          
+          - name: "services"
+            label: "Services Section"
+            widget: "object"
             fields:
-              - {name: "heading", label: "Heading", widget: "string"}
-              - {name: "content", label: "Content", widget: "markdown"}
-              - {name: "image", label: "Image", widget: "image"}
+              - {name: "section_title", label: "Section Title", widget: "string"}
+              - name: "service_items"
+                label: "Service Boxes"
+                widget: "list"
+                fields:
+                  - {name: "icon", label: "Icon Class (e.g., fas fa-code)", widget: "string"}
+                  - {name: "title", label: "Service Title", widget: "string"}
+                  - {name: "description", label: "Description", widget: "text"}
+
+          - name: "about"
+            label: "About Section"
+            widget: "object"
+            fields:
+              - {name: "title", label: "Section Title", widget: "string"}
+              - {name: "content", label: "Description", widget: "markdown"}
+              - {name: "image", label: "About Image", widget: "image"}
+
+          - name: "contact"
+            label: "Contact Section"
+            widget: "object"
+            fields:
+              - {name: "title", label: "Section Title", widget: "string"}
+              - {name: "address", label: "Address", widget: "text"}
+              - {name: "phone", label: "Phone Number", widget: "string"}
+              - {name: "email", label: "Email Address", widget: "string"}
+              - {name: "form_title", label: "Form Title", widget: "string"}
