@@ -1,13 +1,16 @@
 backend:
   name: git-gateway
   branch: main
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "[skip ci] Upload “{{path}}”"
+    deleteMedia: "[skip ci] Delete “{{path}}”"
 
-# Media storage
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
-# Editor preview
-display_url: "https://apelng.github.io/ApelGroup"
 collections:
   - name: "pages"
     label: "Pages"
@@ -16,44 +19,132 @@ collections:
         label: "Home Page"
         file: "index.html"
         editor:
-          preview: true  # Enable live preview
+          preview: true
         fields:
-          # Basic meta
-          - {name: "title", label: "Page Title", widget: "string"}
-          
+          # SEO/Meta Fields
+          - { name: "title", label: "Page Title", widget: "string" }
+          - { name: "meta_description", label: "Meta Description", widget: "text" }
+
           # Hero Section
-          - name: "hero"
-            label: "Hero Section"
+          - label: "Hero Section"
+            name: "hero"
             widget: "object"
             fields:
-              - {name: "title", label: "Main Title", widget: "string"}
-              - {name: "subtitle", label: "Subtitle", widget: "string"}
-              - {name: "button_text", label: "Button Text", widget: "string"}
-              - {name: "background", label: "Background Image", widget: "image"}
-          
-          # Services Section
-          - name: "services"
-            label: "Services"
+              - { name: "title", label: "Main Title", widget: "string" }
+              - { name: "subtitle", label: "Subtitle", widget: "text" }
+              - { name: "button_text", label: "Button Text", widget: "string" }
+              - { name: "button_link", label: "Button Link", widget: "string" }
+              - { name: "background_video", label: "Background Video", widget: "file" }
+              - { name: "background_image", label: "Fallback Background Image", widget: "image" }
+
+          # Slides
+          - label: "Slides"
+            name: "slides"
+            widget: "list"
+            fields:
+              - { name: "title", label: "Slide Title", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+              - { name: "button_text", label: "Button Text", widget: "string" }
+              - { name: "button_link", label: "Button Link", widget: "string" }
+              - { name: "background_image", label: "Background Image", widget: "image" }
+
+          # Quick Navigation
+          - label: "Quick Navigation"
+            name: "quick_nav"
+            widget: "list"
+            fields:
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "icon", label: "Icon (SVG code)", widget: "string" }
+              - { name: "link", label: "Link URL", widget: "string" }
+
+          # Our Companies
+          - label: "Our Companies"
+            name: "companies"
+            widget: "list"
+            fields:
+              - { name: "name", label: "Company Name", widget: "string" }
+              - { name: "description", label: "Short Description", widget: "text" }
+              - { name: "link", label: "Link URL", widget: "string" }
+              - { name: "icon", label: "Icon Image", widget: "image" }
+
+          # Why Choose Us
+          - label: "Why Choose Us"
+            name: "why_choose_us"
             widget: "object"
             fields:
-              - {name: "heading", label: "Section Heading", widget: "string"}
-              - name: "items"
-                label: "Service Items"
+              - { name: "title", label: "Section Title", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+              - label: "Features"
+                name: "features"
                 widget: "list"
                 fields:
-                  - {name: "icon", label: "Icon Class", widget: "string"}
-                  - {name: "title", label: "Service Title", widget: "string"}
-                  - {name: "description", label: "Description", widget: "text"}
-          
-          # About Section
-          - name: "about"
-            label: "About Section"
+                  - { name: "title", label: "Feature Title", widget: "string" }
+                  - { name: "description", label: "Description", widget: "text" }
+              - label: "Stats"
+                name: "stats"
+                widget: "list"
+                fields:
+                  - { name: "value", label: "Value", widget: "string" }
+                  - { name: "label", label: "Label", widget: "string" }
+
+          # Testimonials
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
+            fields:
+              - { name: "quote", label: "Testimonial Text", widget: "text" }
+              - { name: "author", label: "Author Name", widget: "string" }
+              - { name: "image", label: "Author Photo", widget: "image" }
+
+          # App Download CTA
+          - label: "App Download Section"
+            name: "app_cta"
             widget: "object"
             fields:
-              - {name: "heading", label: "Section Heading", widget: "string"}
-              - {name: "content", label: "Content", widget: "markdown"}
-              - {name: "image", label: "About Image", widget: "image"}
-          
+              - { name: "title", label: "Title", widget: "string" }
+              - { name: "description", label: "Description", widget: "text" }
+              - { name: "app_store_link", label: "App Store Link", widget: "string" }
+              - { name: "play_store_link", label: "Play Store Link", widget: "string" }
+              - { name: "background_image", label: "Background Image", widget: "image" }
+
+          # Footer
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - label: "Company Links"
+                name: "company_links"
+                widget: "list"
+                fields:
+                  - { name: "name", label: "Company Name", widget: "string" }
+                  - { name: "url", label: "Company URL", widget: "string" }
+              - label: "Quick Links"
+                name: "quick_links"
+                widget: "list"
+                fields:
+                  - { name: "text", label: "Link Text", widget: "string" }
+                  - { name: "url", label: "Link URL", widget: "string" }
+              - label: "Useful Links"
+                name: "useful_links"
+                widget: "list"
+                fields:
+                  - { name: "text", label: "Link Text", widget: "string" }
+                  - { name: "url", label: "Link URL", widget: "string" }
+              - label: "Contact Info"
+                name: "contact"
+                widget: "object"
+                fields:
+                  - { name: "address", label: "Address", widget: "text" }
+                  - { name: "phone", label: "Phone", widget: "string" }
+                  - { name: "email", label: "Email", widget: "string" }
+              - label: "Social Media"
+                name: "social"
+                widget: "list"
+                fields:
+                  - { name: "platform", label: "Platform", widget: "string" }
+                  - { name: "url", label: "URL", widget: "string" }
+                  - { name: "icon_class", label: "Icon Class", widget: "string" }
+
           # Raw HTML Access (hidden by default)
           - name: "raw_html"
             label: "Advanced HTML Editor"
