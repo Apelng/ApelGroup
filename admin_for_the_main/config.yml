@@ -1,0 +1,26 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: editorial_workflow  # Optional: adds draft/published states
+
+media_folder: "static/img/uploads"
+public_folder: "/img/uploads"  # Path used in your HTML src attributes
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "index.html"
+        fields:
+          - {name: "title", label: "Title", widget: "string", required: true}
+          - {name: "body", label: "Content", widget: "markdown"}
+          - name: "sections"
+            label: "Page Sections"
+            widget: "list"
+            fields:
+              - {name: "heading", label: "Heading", widget: "string"}
+              - {name: "content", label: "Content", widget: "markdown"}
+              - {name: "image", label: "Image", widget: "image"}
