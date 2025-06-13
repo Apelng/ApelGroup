@@ -2,7 +2,5 @@
   publish = ""
   command = "echo 'No build needed'"
 
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"
+[functions]
+  directory = "netlify/functions"

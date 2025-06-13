@@ -3183,8 +3183,8 @@ Second Apel Group */
   align-items: center;
   justify-content: center;
   padding: 15px 10px;
-  background-color: #fff;
-border: 0.3px solid;
+  background-color: #e6e6e652;
+
   border-radius: 6px;
   width: 150px;
   cursor: pointer;
@@ -3267,35 +3267,35 @@ border: 0.3px solid;
 /* Make Each Section Circular in Mobile View */
 @media (max-width: 768px) {
   .navigation-bar {
-    display: flex;
-    flex-wrap: wrap;
+   
+    
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
   }
 
   .nav-item {
-    width: 120px; /* Circular width */
-    height: 120px; /* Circular height */
-    border-radius: 50%; /* Makes it fully round */
+    width: 20px; /* Circular width */
+    height: 20px; /* Circular height */
+ 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds depth */
+ background-color: white;
+
     text-align: center;
-    padding: 10px;
+    padding: 2px;
     overflow: hidden;
   }
 
   .nav-item img {
-    width: 40px; /* Adjust icon size */
-    height: 40px;
+    width: 20px; /* Adjust icon size */
+    height: 20px;
     margin-bottom: 5px;
   }
 
   .nav-item span {
-    font-size: 12px; /* Adjust text size */
+    font-size: 8px; /* Adjust text size */
     font-weight: bold;
     color: #333;
     text-align: center;
