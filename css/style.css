@@ -2072,8 +2072,9 @@ icon box
 .mil-icon-box {
   display: flex;
   border-radius: 40px;
-  
+  border: solid rgba(0, 0, 0, 0.151);
   flex-direction: column;
+  margin-bottom: 150px;
 }
 
 
@@ -2121,6 +2122,7 @@ icon box
   .mil-icon-box {
     width: 100%;
     height: auto;
+    margin-bottom: 50px;
   }
   .mil-icon-box.mil-hover {
     background-color: white;
