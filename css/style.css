@@ -5161,13 +5161,13 @@ GROUP NAV */
     position: relative;
     display: block;
     height: 100%;
-    min-height: 300px;
+    min-height: 350px;
     border-radius: 8px;
     overflow: hidden;
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    
+    color: white;
   
 }
 
@@ -5180,7 +5180,7 @@ GROUP NAV */
     background-size: cover;
     background-position: center;
     transition: transform 0.5s ease;
-     
+     color:white;
 }
 
 .apel-card-overlay {
@@ -5189,7 +5189,7 @@ GROUP NAV */
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.185);
+    background: rgba(0, 0, 0, 0.74);
     transition: background 0.3s ease;
 }
 
@@ -5203,8 +5203,23 @@ GROUP NAV */
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: white;
+    
 }
 
+.apel-card-content h5,
+.apel-card-content strong{
+ color: rgba(255, 255, 255, 0.719);
+ font-size: 1.3rem;
+
+}
+
+.apel-card-content p
+{
+ color: rgba(255, 255, 255, 0.733);
+ font-size: 1rem;
+
+}
 .apel-subtitle {
     color: #8abf42 !important;
     font-size: 13px;
@@ -5228,6 +5243,7 @@ GROUP NAV */
 /* Spacing */
 .apel-mb-20 {
     margin-bottom: 20px !important;
+    color: white;
 }
 
 .apel-mb-30 {
@@ -5242,6 +5258,7 @@ GROUP NAV */
 .apel-up {
     transform: translateY(0);
     transition: transform 0.3s ease;
+    color: white;
 }
 
 .apel-hover-card:hover .apel-up {
