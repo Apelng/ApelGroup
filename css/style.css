@@ -5154,3 +5154,103 @@ GROUP NAV */
   
   
 }
+
+
+/* Card Styles */
+.apel-card-box {
+    position: relative;
+    display: block;
+    height: 100%;
+    min-height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    
+  
+}
+
+.apel-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+     
+}
+
+.apel-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.185);
+    transition: background 0.3s ease;
+}
+
+.apel-card-content {
+    position: relative;
+    z-index: 2;
+    padding: 30px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.apel-subtitle {
+    color: #8abf42 !important;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Hover Effects */
+.apel-hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.apel-hover-card:hover .apel-card-bg {
+    transform: scale(1.05);
+}
+
+.apel-hover-card:hover .apel-card-overlay {
+    background: rgba(0,0,0,0.4);
+}
+
+/* Spacing */
+.apel-mb-20 {
+    margin-bottom: 20px !important;
+}
+
+.apel-mb-30 {
+    margin-bottom: 30px !important;
+}
+
+/* Text Styles */
+.apel-light {
+    color: #ffffff !important;
+}
+
+.apel-up {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.apel-hover-card:hover .apel-up {
+    transform: translateY(-5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .apel-card-box {
+        min-height: 250px;
+    }
+}
