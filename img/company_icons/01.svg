@@ -3,7 +3,7 @@
   <defs>
     <style>
       .cls-1 {
-        fill: url(#linear-gradient);
+        fill: #fff;
       }
     </style>
     <linearGradient id="linear-gradient" x1="4.87" y1="29.06" x2="53.11" y2="29.06" gradientUnits="userSpaceOnUse">

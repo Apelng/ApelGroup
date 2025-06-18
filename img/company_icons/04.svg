@@ -3,23 +3,23 @@
   <defs>
     <style>
       .cls-1 {
-        fill: url(#linear-gradient-2);
+        fill: rgba(255, 255, 255, 0.733);
       }
 
       .cls-2 {
-        fill: #107b5f;
+        fill: rgba(255, 255, 255, 0.733);
       }
 
       .cls-3 {
-        fill: url(#linear-gradient-3);
+        fill: rgba(255, 255, 255, 0.733);
       }
 
       .cls-4 {
-        fill: url(#linear-gradient);
+        fill:rgba(255, 255, 255, 0.733);
       }
 
       .cls-5 {
-        fill: url(#linear-gradient-4);
+        fill: rgba(255, 255, 255, 0.733);
       }
     </style>
     <linearGradient id="linear-gradient" x1="14.92" y1="36.65" x2="18.95" y2="36.65" gradientUnits="userSpaceOnUse">

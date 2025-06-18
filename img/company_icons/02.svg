@@ -3,27 +3,27 @@
   <defs>
     <style>
       .cls-1 {
-        fill: url(#linear-gradient-2);
+        fill: rgba(255, 255, 255, 0.733);
       }
 
       .cls-2 {
-        fill: #107b5f;
+        fill: rgba(255, 255, 255, 0.733);
       }
 
       .cls-3 {
-        fill: url(#linear-gradient-3);
+        fill: rgba(255, 255, 255, 0.733);
       }
 
       .cls-4 {
-        fill: url(#linear-gradient);
+        fill: rgba(255, 255, 255, 0.733);
       }
 
       .cls-5 {
-        fill: #03a6a6;
+        fill: rgba(255, 255, 255, 0.733);
       }
 
       .cls-6 {
-        fill: url(#linear-gradient-4);
+        fill: rgba(255, 255, 255, 0.733);
       }
     </style>
     <linearGradient id="linear-gradient" x1="43.59" y1="28.94" x2="43.59" y2=".96" gradientTransform="translate(0 58.55) scale(1 -1)" gradientUnits="userSpaceOnUse">
