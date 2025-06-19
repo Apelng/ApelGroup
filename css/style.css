@@ -5290,6 +5290,6 @@ GROUP NAV */
 /* Responsive adjustments */
 @media (max-width: 991px) {
     .apel-card-box {
-        min-height: 400px;
+        min-height: 350px;
     }
 }
