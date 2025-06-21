@@ -4252,6 +4252,10 @@ box-shadow: none;
   font-weight: 400;
 }
 
+.profile-content p {
+text-align: justify;
+}
+
 .content-description p {
   color: #7f8c8d;
   line-height: 1.6;
