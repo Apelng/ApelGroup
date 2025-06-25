@@ -132,7 +132,7 @@
                             </ul> -->
                         </li>
                         <li class="mil-active">
-                            <a href="contact.html">Contact Us</a>
+                            <a href="contact">Contact Us</a>
                         </li>
                       
                     </ul>
@@ -160,7 +160,7 @@
                                 <h1 class="mil-mb-60">Connect with Us</h1>
                                 <ul class="mil-breadcrumbs mil-center">
                                     <li><a href="index.html">Home</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="contact">Contact</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -303,7 +303,7 @@
                                     <li><a href="our_team.html">Management</a></li>
                                     <li><a href="our_team.html">Board of Directors</a></li>                              
                                     <li><a href="about.html">About Us</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    <li><a href="contact">Contact Us</a></li>
                                     <li><a href="gallery.html">Gallery</a></li>
                                     <li><a href="products.html">Products</a></li>
                                 </ul>
@@ -440,319 +440,56 @@
 
 
 <script>
-
-
-        // Close modal
-        document.querySelector('.mil-modal-close').addEventListener('click', () => {
-            document.querySelector('.mil-modal').classList.remove('active');
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target.classList.contains('mil-modal')) {
-                document.querySelector('.mil-modal').classList.remove('active');
-            }
-        });
+document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
     
-
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Sample content structure - You should replace this with your actual content
-        const contentDatabase = {
-            "Apel Target Trust Scheme(ATTS)": {
-                category: "",
-                heading: "Apel Target Trust Scheme(ATTS)",
-                image: "img/products/atts.jpg",
-                content: [
-                    {
-                        type: "paragraph",
-                        text: "This is a Trust product dedicated towards Clients who desire a target Trust Account, by setting aside a daily/weekly/monthly fund, to meet a particular objective or set goal over a period of time"
-                    },
-                    {
-                        type: "subheading",
-                        text: "Benefits"
-                    },
-                 
-
-                    { 
-                        type: "list", 
-                    
-                    items: ["Trust duration of 1,3,5,7, and 10 years.", "e-notifications", "Flexible contribution plan","Transferable trust account to beneficiar(y)ies"]
-                 },
-                {
-                    type: "button",
-                    text: "Get Started",
-                    action: "https://apelapp.com/",
-                    style: "filled", // or "outline"
-                  
-                },
-                
-                ],
+    const form = e.target;
+    const submitButton = form.querySelector('button[type="submit"]');
+    const successAlert = document.querySelector('.alert-success');
     
-
-
-
-            },
-
-
-
-            "Apel Retirement Trust (ART)": {
-                category: "",
-                heading: "Apel Retirement Trust (ART)",
-                image: "img/products/art.png",
-                content: [
-                    {
-                        type: "paragraph",
-                        text: "This is a Trust which affords the Client the opportunity to plan for retirement alongside the statutorily required pension plan. It offers the choice and flexibility of building a portfolio of large investible funds that will be optimized through effective proactive management."
-                    },
-                    {
-                        type: "subheading",
-                        text: "Benefits"
-                    },
-                 
-
-                    { 
-                        type: "list", 
-                    
-                    items: ["Regular and flexible withdrawal at retirement to meet needs", "Professional management", "Permits beneficiaries substitution and/or addition is allowed in the Trust arrangement.","High return on investment.","Fund is inaccessible to Probate or Creditors."]
-                 },
-              
-            ]},
-
-            "Apel Child Education Trust(ACET)": {
-                category: "",
-                heading: "Apel Child Education Trust(ACET)",
-                image: "img/products/acet.png",
-                content: [
-                    {
-                        type: "paragraph",
-                        text: "This is a tailored towards parents or intending parents who have decided to set aside funds in a trust strictly for the education of his/her children or wards (Beneficiaries)."
-                    },
-                    {
-                        type: "subheading",
-                        text: "Features"
-                    },
-                    {
-                        type: "paragraph",
-                        text: "It enables you to have concrete plans towards your child's education. The fund is separate from your personal estate and is therefore inaccessible to Probate or Creditors. High return on investment. Fund Management by qualified professionals."
-                    },
-
-                    {
-                        type: "subheading",
-                        text: "Benefits"
-                    },
-
-                    { 
-                        type: "list", 
-                    
-                    items: ["In the event of eventualities, the Trust will take over payment of the child/ward’s fees.", "The fund is separate from Client’s personal estate and is therefore inaccessible to Probate or Creditors.", "Any excess in the Client’s account after meeting the objective shall be transferred to a named beneficiary."]
-                 },
-              
-            ]},
-
-            "Nigerian Treasury Bill(NTB)": {
-                category: "",
-                heading: "Nigerian Treasury Bill(NTB)",
-                image: "img/products/tbills.png",
-                content: [
-                    {
-                        type: "paragraph",
-                        text: " Treasury bills (T-Bills) are short-term debt instruments issued by the Central Bank of Nigeria (CBN) and backed by the Federal Government. They are considered risk-free as they carry no risk of default."
-                    },
-                   
-                    {
-                        type: "paragraph",
-                        text: "Investment Mechanism: Investors lend money to the government by purchasing T-Bills at a discounted price. Upon maturity, they receive the face value, with the difference representing the interest earned."
-                    },
-                    {
-                        type: "paragraph",
-                        text: "Example: An investor buys a 182-day T-Bill with a face value of ₦100,000 for ₦96,000. At maturity, the investor receives ₦100,000, earning ₦4,000 as interest."
-                    },
-                    {
-                        type: "subheading",
-                        text: "Issuance"
-                    },
-                    { 
-                        type: "list", 
-                    
-                    items: ["Auction Basis: T-Bills are issued through auctions on a regular cycle with specific maturities of 91 days, 182 days, and 364 days."]
-                 },
-
-
-                    {
-                        type: "subheading",
-                        text: "Purchase Methods:"
-                    },
-
-
-                    { 
-                        type: "list", 
-                    
-                    items: ["Primary Market: T-Bills can be purchased through primary market dealers."," Secondary Market: Existing T-Bills can be bought through banks, brokers, and dealers."]
-                 },
-                    
-                 {
-                        type: "subheading",
-                        text: "Advantages:"
-                    },
-
-                    { 
-                        type: "list", 
-                    
-                    items: [" Security: T-Bills are highly secure as they are backed by the government’s assurance of repayment","Liquidity: They mature within a year, providing liquidity to investors. They can also be easily exchanged in primary and secondary markets."]
-                 },
-
-                 {
-                        type: "subheading",
-                        text: "Disadvantages:"
-                    },
-                    { 
-                        type: "list", 
-                    
-                    items: ["Low Returns: The risk-free nature of T-Bills results in lower returns compared to potential higher returns from the stock market."]
-                 },
-              
-
-
-                 {
-                        type: "subheading",
-                        text: "Target Investors:"
-                    },
-                    { 
-                        type: "list", 
-                    
-                    items: [" Low-Risk Appetite: Ideal for investors who prefer low-risk investments and are looking to invest funds for a short period."]
-                 },
-            ]},
-
-            
-            "Shareholder Portal (My Apel)": {
-                category: "",
-                heading: "Shareholder Portal (My Apel)",
-                image: "img/products/myapel.jpg",
-                content: [
-                    {
-                        type: "paragraph",
-                        text: "MyApel is an online Shareholder’s portal powered by APEL CAPITAL REGISTRARS."
-                    },
-                 
-                    {
-                        type: "paragraph",
-                        text: "APEL SHAREHOLDER’s PORTAL is designed to allow clients to check their outstanding dividend, Total holding, Transactions. This tool will bring in more flexibility, it will greatly enhance our ability to satisfy our clients."
-                    },
-
-                
-
-                    {
-                        type: "paragraph",
-                        text: "The introduction of the Apel Shareholder's Portal is aimed at bringing more flexibility to the client experience. By offering a centralized and easily accessible platform for shareholders to manage and monitor their investments. It is an online portal that empowers shareholders by providing them with real-time access to key financial information, including outstanding dividends, total holdings, change of name , address, dematerialization, mandate and transaction history without having a physical meeting with the office."
-                    },
-                   
-            ]},
-
- 
-            "Apel Alpha": {
-                category: "",
-                heading: "Apel Alpha",
-                image: "img/products/apelaplpha.png",
-                content: [
-                    {
-                        type: "paragraph",
-                        text: "Online Placement/Execution of purchase and sale mandates"
-                    },
-                 
-                    {
-                        type: "paragraph",
-                        text: "Trade at a reduced brokerage commission of .50%"
-                    },
-
-                
-
-                    {
-                        type: "subheading",
-                        text: "How to Trade Stocks"
-                    },
-            
-                    { 
-                        type: "list", 
-                    items: ["Sign in to your account using your User ID and password.","From the home page, Navigate to theWeb Trading Terminal to access the Trading Portal","On the landing page, you see all trades in the market Select Stock and Click on BUY/SELL","Enter Price, Unit and Submit Select Stock and Click on BUY/SELL"]
-                 },
-
-                 {
-                        type: "subheading",
-                        text: "Features/Benefits"
-                    },
-                 { 
-                        type: "list", 
-                    items: ["Online Placement/Execution of purchase and sale mandates","Trade at a reduced brokerage commission of 0.50%","3.	Online cancellation of outstanding mandates during trading hours",
-                        "Access to monitor / review orders online ","Access to generate statements and contract notes.","Access to view market trades ",
-                        "Ability to monitor status of certificate submitted for verification.","Access to generate detailed Portfolio Valuation","Access to capital market news and research reports",
-                        "Access to create a simulated portfolio to aid trading techniques."
-                    ]
-                 },
-            ]},
-
-       
+    // Disable button to prevent multiple submissions
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    
+    try {
+        const formData = {
+            name: form.name.value,
+            email: form.email.value,
+            phone: form.phone.value,
+            message: form.message.value
         };
 
-        document.querySelectorAll('.mil-overlay').forEach(overlay => {
-            overlay.addEventListener('click', function(e) {
-                e.preventDefault();
-                const card = this.closest('.mil-blog-card');
-                const title = card.querySelector('h4').innerText;
-                const content = contentDatabase[title];
-
-                const modalBody = document.querySelector('.mil-modal-body');
-                modalBody.querySelector('.mil-modal-category').innerHTML = content.category;
-                modalBody.querySelector('.mil-modal-heading').innerHTML = content.heading;
-                modalBody.querySelector('.mil-modal-main-image').innerHTML = 
-                    `<img src="${content.image}" alt="Main Image" style="width:100%; margin-bottom:30px; height:400px; border-radius:40px;">`;
-
-
-                const contentContainer = modalBody.querySelector('.mil-modal-content-container');
-                contentContainer.innerHTML = '';
-                
-                content.content.forEach(section => {
-                    if(section.type === "paragraph") {
-                        contentContainer.innerHTML += `
-                            <p class="mil-modal-paragraph">${section.text}</p>
-                        `;
-                    } else if(section.type === "subheading") {
-                        contentContainer.innerHTML += `
-                            <h3 class="mil-modal-subheading">${section.text}</h3>
-                        `;
-                    }
-                    else if(section.type === "list") {
-    contentContainer.innerHTML += `
-        <ul class="mil-modal-list">
-            ${section.items.map(item => `<li>${item}</li>`).join('')}
-        </ul>
-    `;
-}
-
-
-
-else if(section.type === "button") {
-            contentContainer.innerHTML += `
-                <div class="mil-text-center">
-                    <a href="${section.action}" 
-                       class="mil-modal-button${section.style === 'outline' ? ' mil-modal-button-outline' : ''}">
-                        ${section.text}
-                    </a>
-                </div>
-            `;
-        }
-                });
-
-                document.querySelector('.mil-modal').classList.add('active');
-            });
+        // Adjust the endpoint URL based on your Netlify function name
+        const response = await fetch('/.netlify/functions/send-email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
         });
 
-        // Rest of the previous JavaScript remains the same
-    });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        // Show success message
+        successAlert.style.display = 'block';
+        form.reset();
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            successAlert.style.display = 'none';
+        }, 5000);
+        
+    } catch (error) {
+        console.error('Error:', error);
+        alert('There was an error sending your message. Please try again.');
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Message';
+    }
+});
 </script>
-
-
     <!-- jquery js -->
     <script src="js/plugins/jquery.min.js"></script>
 
