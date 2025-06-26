@@ -52,13 +52,24 @@
 .team-member-card {
   display: flex;
   align-items: center;
-  padding: calc(var(--spacing-unit) * 1.5);
+  padding: calc(var(--spacing-unit) * 1);
   background: transparent;
   transition: transform var(--transition-speed);
   border-radius: var(--border-radius);
   text-decoration: none;
 }
 
+
+/* .team-member-card2 {
+  display: block;
+  align-items: center;
+  padding: calc(var(--spacing-unit) * 1.5);
+  background: transparent;
+  transition: transform var(--transition-speed);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  text-align: center;
+} */
 .team-member-card:hover {
   transform: translateY(-5px);
   background: rgba(16, 123, 95, 0.05);
@@ -82,6 +93,7 @@
   color: var(--secondary-color);
   margin-bottom: calc(var(--spacing-unit) * 0.5);
   font-size: 1.3rem;
+  text-align: center;
 }
 
 .member-title {
@@ -335,13 +347,13 @@
 
 .other-members-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns by default */
+  grid-template-columns: repeat(3, 1fr); /* 2 columns by default */
   gap: calc(var(--spacing-unit) * 1.5);
 }
 
 @media (min-width: 768px) {
   .other-members-grid {
-    grid-template-columns: repeat(3, 1fr); /* 4 columns on larger screens */
+    grid-template-columns: repeat(2, 1fr); /* 4 columns on larger screens */
   }
 }
 
@@ -369,7 +381,7 @@
 }
 
 .other-members-grid .member-title {
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   color: #666;
   text-align: left;
 }
