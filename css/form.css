@@ -1397,5 +1397,74 @@ width: 223px;
 
 /* Grid Related Css Ends Here */
 
+/* ------------------ Divider Field Css Start here -------------------- */
+
+.zf-divider {
+    border-top-color:#b8bbd3 !important;
+    margin: 0 auto;
+}
+
+.zf-small .zf-divider{
+    width:50%;
+}
+.zf-medium .zf-divider{
+    width:75%;
+}
+.zf-large .zf-divider{
+    width:100%;
+}
+
+.zf-divider.line-One{
+	border-top:1px ;
+}
+.zf-divider.line-Two{
+	border-top:2px;
+}
+.zf-divider.line-Three{
+	border-top:3px;
+}
+.zf-divider.line-Four{
+	border-top:4px;
+}
+.zf-divider.line-Five{
+	border-top:5px;
+}
+.zf-divider.line-Six{
+	border-top:6px;
+}
+.zf-divider.line-Seven{
+	border-top:7px;
+}
+.zf-divider.line-Eight{
+	border-top:8px;
+}
+.zf-divider.line-Nine{
+	border-top:9px;
+}
+.zf-divider.line-Ten{
+	border-top: 10px;
+}
+
+.zf-divider.solidType{
+	border-top-style: solid;
+}
+.zf-divider.dashedType{
+	border-top-style: dashed;
+}
+.zf-divider.dottedType{
+	border-top-style: dotted;
+}
+.zf-divider.doubleType{
+	border-top-style: double;
+}
+
+.layout3 .dividerContainer{
+	background: transparent;
+    box-shadow: none;
+	border: none;
+	padding: 12px 0;
+}
+
+/* ------------------ Divider Field Css Ends here -------------------- */
 
 /* New Css */
