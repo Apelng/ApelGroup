@@ -1,48 +1,64 @@
-<!-- popup.html -->
-<div id="popup" class="popup">
-  <span class="close" onclick="closePopup()">&times;</span>
-  <img src="https://res.cloudinary.com/apelng/image/upload/v1760359551/sczmmer_g7fwhj.jpg" alt="Popup Image">
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .popup {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8); /* Semi-transparent black overlay */
+            
+            
+        }
+        
+        .popup img {
+            width: 100%;
+            height: 80%;
+            object-fit: contain;
+            object-position: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Hide the close button as we're using the parent's close button */
+        .close {
+            display: none !important;
+        }
+        
+        @media (max-width: 768px) {
+            .popup img {
+                width: 100%;
+                height: 80%;
+                object-fit: contain;
+                object-position: center;
 
-<script>
-  window.addEventListener('load', () => {
-    document.getElementById("popup").style.display = "flex";
-  });
-  function closePopup() {
-    document.getElementById("popup").style.display = "none";
-  }
-</script>
+            }
 
-<style>
-  .popup {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    justify-content: center;
-    align-items: center;
-  }
-  .popup img {
-    width: 80%;
-    max-width: 500px;
-    border-radius: 10px;
-    animation: fadeIn 0.5s ease;
-  }
-  .close {
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-  }
-</style>
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="popup" class="popup">
+        <img src="https://res.cloudinary.com/apelng/image/upload/v1760364542/Potrait_Disclaim_wsn3hp.jpg" alt="Apel Financial Services">
+    </div>
+</body>
+</html>

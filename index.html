@@ -376,67 +376,57 @@
   }
 }
 
-        #popup-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0,0,0,0.8);
-        }
-        
-        /* Object styling */
-        #popup-object {
-            width: 80%;
-            max-width: 500px;
-            height: auto;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        /* Close button styling */
-        #popup-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            background: rgba(0,0,0,0.5);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
-            z-index: 10000;
-        }
-        
-        #popup-close:hover {
-            background: rgba(0,0,0,0.8);
-            transform: scale(1.1);
-        }
-        
-
-        .company-link h3 {
-            color: white;
-            margin: 0;
-            font-size: 1.2em;
-            transition: opacity 0.3s;
-        }
 
 </style>
-  <div id="popup-container">
-        <span id="popup-close">&times;</span>
-        <object id="popup-object" type="text/html" data="popup.html"></object>
+
+    <!-- Popup Container -->
+    <div id="popup-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;">
+        <span id="popup-close" style="position: fixed; top: 20px; right: 20px; color: white; font-size: 30px; font-weight: bold; cursor: pointer; z-index: 10001; background: rgba(0,0,0,0.5); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; line-height: 1; border: 2px solid white;">&times;</span>
+        <iframe id="popup-iframe" src="popup.html" style="width: 100%; height: 100%; border: none; background: transparent;"></iframe>
     </div>
+
+    <script>
+        // Wait for everything to load
+        document.addEventListener('DOMContentLoaded', function() {
+            const popupContainer = document.getElementById('popup-container');
+            const popupIframe = document.getElementById('popup-iframe');
+            
+            // Show popup after a short delay
+            setTimeout(function() {
+                popupContainer.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                
+                // Add a class to the iframe document to hide its close button
+                try {
+                    const iframeDoc = popupIframe.contentDocument || popupIframe.contentWindow.document;
+                    const style = iframeDoc.createElement('style');
+                    style.textContent = '.close { display: none !important; }';
+                    iframeDoc.head.appendChild(style);
+                } catch (e) {
+                    console.log('Could not access iframe content:', e);
+                }
+            }, 1000);
+            
+            // Close popup function
+            function closePopup() {
+                popupContainer.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Close when clicking the close button
+            document.getElementById('popup-close').addEventListener('click', closePopup);
+            
+            // Close when clicking outside the iframe
+            popupContainer.addEventListener('click', function(e) {
+                if (e.target === this) closePopup();
+            });
+            
+            // Close with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closePopup();
+            });
+        });
+    </script>
 
     <!-- wrapper -->
     <div id="smooth-wrapper" class="mil-wrapper" style="background-color:#fff">
@@ -1496,46 +1486,6 @@ container.addEventListener('wheel', (e) => {
     <script src="js/main.js"></script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const popupContainer = document.getElementById('popup-container');
-            const popupClose = document.getElementById('popup-close');
-            const popupObject = document.getElementById('popup-object');
-            
-            // Show popup when page loads
-            window.addEventListener('load', function() {
-                // Small delay to ensure everything is loaded
-                setTimeout(function() {
-                    popupContainer.style.display = 'flex';
-                }, 1000);
-            });
-            
-            // Close popup when close button is clicked
-            popupClose.addEventListener('click', function() {
-                popupContainer.style.display = 'none';
-            });
-            
-            // Close popup when clicking outside the content
-            popupContainer.addEventListener('click', function(e) {
-                if (e.target === popupContainer) {
-                    popupContainer.style.display = 'none';
-                }
-            });
-            
-            // Listen for messages from the popup iframe (if needed)
-            window.addEventListener('message', function(e) {
-                if (e.data === 'closePopup') {
-                    popupContainer.style.display = 'none';
-                }
-            });
-            
-            // Handle object load errors
-            popupObject.addEventListener('error', function() {
-                console.error('Failed to load popup.html');
-                // You could show a fallback message here if needed
-            });
-        });
-    </script>
 <script>
   if (window.netlifyIdentity) {
     window.netlifyIdentity.on("init", user => {
