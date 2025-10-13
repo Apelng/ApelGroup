@@ -1,0 +1,48 @@
+<!-- popup.html -->
+<div id="popup" class="popup">
+  <span class="close" onclick="closePopup()">&times;</span>
+  <img src="https://res.cloudinary.com/apelng/image/upload/v1760359551/sczmmer_g7fwhj.jpg" alt="Popup Image">
+</div>
+
+<script>
+  window.addEventListener('load', () => {
+    document.getElementById("popup").style.display = "flex";
+  });
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+</script>
+
+<style>
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+  }
+  .popup img {
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    animation: fadeIn 0.5s ease;
+  }
+  .close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>

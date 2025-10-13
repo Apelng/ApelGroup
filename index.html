@@ -33,6 +33,8 @@
 
 </head>
 <body>
+
+
     <style>
         .company-link h3 {
             color: white;
@@ -374,9 +376,67 @@
   }
 }
 
+        #popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.8);
+        }
+        
+        /* Object styling */
+        #popup-object {
+            width: 80%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        /* Close button styling */
+        #popup-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            z-index: 10000;
+        }
+        
+        #popup-close:hover {
+            background: rgba(0,0,0,0.8);
+            transform: scale(1.1);
+        }
+        
+
+        .company-link h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.2em;
+            transition: opacity 0.3s;
+        }
 
 </style>
-  
+  <div id="popup-container">
+        <span id="popup-close">&times;</span>
+        <object id="popup-object" type="text/html" data="popup.html"></object>
+    </div>
 
     <!-- wrapper -->
     <div id="smooth-wrapper" class="mil-wrapper" style="background-color:#fff">
@@ -393,6 +453,7 @@
         <!-- scroll progress end -->
 
         <!-- back to top -->
+
         <div class="progress-wrap active-progress"></div>
 
 
@@ -581,10 +642,9 @@
                     <button></button>
                 </div>
             </div>
-            
-
 
             <!-- banner end -->
+
 
 
 
@@ -1435,6 +1495,47 @@ container.addEventListener('wheel', (e) => {
     <!-- Apel js -->
     <script src="js/main.js"></script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+ <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const popupContainer = document.getElementById('popup-container');
+            const popupClose = document.getElementById('popup-close');
+            const popupObject = document.getElementById('popup-object');
+            
+            // Show popup when page loads
+            window.addEventListener('load', function() {
+                // Small delay to ensure everything is loaded
+                setTimeout(function() {
+                    popupContainer.style.display = 'flex';
+                }, 1000);
+            });
+            
+            // Close popup when close button is clicked
+            popupClose.addEventListener('click', function() {
+                popupContainer.style.display = 'none';
+            });
+            
+            // Close popup when clicking outside the content
+            popupContainer.addEventListener('click', function(e) {
+                if (e.target === popupContainer) {
+                    popupContainer.style.display = 'none';
+                }
+            });
+            
+            // Listen for messages from the popup iframe (if needed)
+            window.addEventListener('message', function(e) {
+                if (e.data === 'closePopup') {
+                    popupContainer.style.display = 'none';
+                }
+            });
+            
+            // Handle object load errors
+            popupObject.addEventListener('error', function() {
+                console.error('Failed to load popup.html');
+                // You could show a fallback message here if needed
+            });
+        });
+    </script>
 <script>
   if (window.netlifyIdentity) {
     window.netlifyIdentity.on("init", user => {
