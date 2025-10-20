@@ -34,7 +34,152 @@
 </head>
 
 <body>
+ 
 
+    <style>
+        /* Gallery Styles */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .gallery.hidden {
+            display: none;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .image-container img {
+            transform: scale(1.05);
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        
+        .plus {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .info {
+            padding: 15px;
+            background: white;
+        }
+        
+        .info h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+        }
+        
+        .info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .gallery-button {
+            padding: 10px 20px;
+            border: 2px solid #107b5f;
+            background: white;
+            color: #107b5f;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-button.active,
+        .gallery-button:hover {
+            background: rgb(13, 81, 82);
+            color: white;
+        }
+        
+        .loading-spinner {
+            width: 100%;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .no-folders, .no-images, .error {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+        
+        .load-more-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 12px 30px;
+            background: #107b5f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        
+        .load-more-btn:hover {
+            background: rgb(13, 81, 82);
+        }
+        
+        .load-more-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        </style>
 
     <!-- wrapper -->
     <div id="smooth-wrapper" class="mil-wrapper">
@@ -165,129 +310,270 @@
 
     </div>
     
-    <body>
-        <div class="button-container">
-            <button id="showGallery1" class="gallery-button active">Customer service week</button>
-            <button id="showGallery2" class="gallery-button">Events</button>
-            <button id="showGallery3" class="gallery-button">Awards & Certifications</button>
-        </div>
-      
+    <!-- Dynamic Gallery Navigation -->
+    <div class="button-container" id="galleryTabs">
+        <!-- Tabs will be dynamically generated here -->
+        <div class="loading-tabs">Loading gallery...</div>
+    </div>
 
-        <div id="gallery1" class="gallery">
-            <div class="gallery-item">
-                <a href="csw24.html">
-                    <div class="image-container">
-                        <img src="img/gallery_page/csw1.jpg" alt="Image 1">
-                        <div class="overlay">
-                            <span class="plus">+</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="info">
-                    <h3>Customer Service week '24</h3>
-                    <p> </p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <a href="csw23.html">
-                    <div class="image-container">
-                        <img src="img/gallery_page/csw100.jpeg" alt="Image 1">
-                        <div class="overlay">
-                            <span class="plus">+</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="info">
-                    <h3>Customer Service week '23</h3>
-                    <p></p>
-                </div>
-            </div>
-            <!-- Add more items for Gallery 1 as needed -->
+    <!-- Gallery Container -->
+    <div id="galleryContainer">
+        <div class="gallery" id="galleryContent">
+            <!-- Images will be loaded here from Cloudinary -->
         </div>
+    </div>
+<!-- 
+CLOUDINARY_URL=cloudinary://357621128938181:VLK_5AaPnUWuH7V5URNgQ7XwhW4@apelng -->
+
+<script>
+    // Cloudinary configuration
+    const cloudinaryConfig = {
+        cloudName: 'apelng',
+        maxResults: 30
+    };
     
-        <div id="gallery2" class="gallery hidden">
-            <div class="gallery-item">
-                <a href="bday-topesmart.html">
-                    <div class="image-container">
-                        <img src="img/gallery_page/birthday/tope1.jpg" alt="Image 2">
-                        <div class="overlay">
-                            <span class="plus">+</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="info">
-                    <h3>Birthday</h3>
-                    <p>Fecilitating with Tope Smart</p>
-                </div>
-            </div>
-            <!-- Add more items for Gallery 2 as needed -->
-        </div>
+    // Function to test Cloudinary access and discover folders
+    async function discoverCloudinaryFolders() {
+        const tabsContainer = document.getElementById('galleryTabs');
+        
+        try {
+            tabsContainer.innerHTML = '<div class="loading-spinner">Discovering Cloudinary folders...</div>';
     
-        <div id="gallery3" class="gallery hidden">
-            <!-- <div class="gallery-item">
-                <a href="tosin.html">
-                    <div class="image-container">
-                        <img src="img/gallery_page/awards_cert/tosin/main.jpg" alt="Image 3">
-                        <div class="overlay">
-                            <span class="plus">+</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="info">
-                    <h3>Tosin</h3>
-                    <p>Award</p>
-                </div>
-            </div> -->
-            <!-- Add more items for Gallery 3 as needed -->
-
-
-            <!-- <div class="gallery-item">
-                <a href="lola.html">
-                    <div class="image-container">
-                        <img src="img/gallery_page/awards_cert/lola/2.jpg" alt="Image 3">
-                        <div class="overlay">
-                            <span class="plus">+</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="info">
-                    <h3>Lola</h3>
-                    <p>Award</p>
-                </div>
-            </div> -->
-
-
-            <!-- <div class="gallery-item">
-                <a href="douye.html">
-                    <div class="image-container">
-                        <img src="img/gallery_page/awards_cert/duoye/1.jpg" alt="Image 3">
-                        <div class="overlay">
-                            <span class="plus">+</span>
-                        </div>
-                    </div>
-                </a>
-                <div class="info">
-                    <h3>boroh</h3>
-                    <p>Award</p>
-                </div>
-            </div> -->
-
+            // Try to get all images first to discover folder structure
+            const searchUrl = `https://res.cloudinary.com/${cloudinaryConfig.cloudName}/image/search.json?expression=1=1&max_results=100`;
             
-            <div class="gallery-item">
-                <a href="apelawards.html">
+            console.log('Searching Cloudinary:', searchUrl);
+            const response = await fetch(searchUrl);
+            
+            if (!response.ok) {
+                throw new Error(`Cloudinary access failed: ${response.status} ${response.statusText}`);
+            }
+            
+            const data = await response.json();
+            
+            if (!data.resources || data.resources.length === 0) {
+                // No images found - show upload instructions
+                return showNoImagesMessage(tabsContainer);
+            }
+            
+            // Extract folders from image public_ids
+            const folders = extractFoldersFromImages(data.resources);
+            
+            if (folders.length === 0) {
+                // Images exist but no folders - show all images
+                return showAllImagesMode(data.resources, tabsContainer);
+            }
+            
+            // Create folder tabs
+            createFolderTabs(folders, data.resources);
+            
+        } catch (error) {
+            console.error('Cloudinary discovery failed:', error);
+            showErrorMessage(tabsContainer, error);
+        }
+    }
+    
+    // Extract folder structure from images
+    function extractFoldersFromImages(images) {
+        const folderMap = new Map();
+        
+        images.forEach(image => {
+            const pathParts = image.public_id.split('/');
+            
+            if (pathParts.length > 1) {
+                // Image is in a folder
+                const folderName = pathParts[0];
+                const displayName = formatFolderName(folderName);
+                
+                if (!folderMap.has(folderName)) {
+                    folderMap.set(folderName, {
+                        name: folderName,
+                        path: folderName,
+                        displayName: displayName,
+                        imageCount: 0
+                    });
+                }
+                folderMap.get(folderName).imageCount++;
+            } else {
+                // Image is in root - create "Root" folder
+                if (!folderMap.has('root')) {
+                    folderMap.set('root', {
+                        name: 'root',
+                        path: '',
+                        displayName: 'All Images',
+                        imageCount: 0
+                    });
+                }
+                folderMap.get('root').imageCount++;
+            }
+        });
+        
+        return Array.from(folderMap.values());
+    }
+    
+    // Show all images when no folders exist
+    function showAllImagesMode(images, tabsContainer) {
+        tabsContainer.innerHTML = '<button class="gallery-button active">All Images</button>';
+        displayImages(images, document.getElementById('galleryContent'));
+    }
+    
+    // Create folder navigation tabs
+    function createFolderTabs(folders, allImages) {
+        const tabsContainer = document.getElementById('galleryTabs');
+        const galleryElement = document.getElementById('galleryContent');
+        
+        tabsContainer.innerHTML = '';
+        
+        folders.forEach((folder, index) => {
+            const button = document.createElement('button');
+            button.className = `gallery-button ${index === 0 ? 'active' : ''}`;
+            button.textContent = `${folder.displayName} (${folder.imageCount})`;
+            button.onclick = () => {
+                // Update active state
+                document.querySelectorAll('#galleryTabs .gallery-button').forEach(btn => 
+                    btn.classList.remove('active')
+                );
+                button.classList.add('active');
+                
+                // Filter images for this folder
+                let folderImages;
+                if (folder.name === 'root') {
+                    folderImages = allImages.filter(img => !img.public_id.includes('/'));
+                } else {
+                    folderImages = allImages.filter(img => img.public_id.startsWith(folder.name + '/'));
+                }
+                
+                displayImages(folderImages, galleryElement);
+            };
+            tabsContainer.appendChild(button);
+        });
+        
+        // Load first folder
+        const firstFolder = folders[0];
+        let firstFolderImages;
+        if (firstFolder.name === 'root') {
+            firstFolderImages = allImages.filter(img => !img.public_id.includes('/'));
+        } else {
+            firstFolderImages = allImages.filter(img => img.public_id.startsWith(firstFolder.name + '/'));
+        }
+        
+        displayImages(firstFolderImages, galleryElement);
+    }
+    
+    // Display images in gallery
+    function displayImages(images, galleryElement) {
+        if (!images || images.length === 0) {
+            galleryElement.innerHTML = '<div class="no-images"><p>No images found in this folder.</p></div>';
+            return;
+        }
+        
+        galleryElement.innerHTML = '';
+        const fragment = document.createDocumentFragment();
+        
+        images.forEach(image => {
+            const imageUrl = `https://res.cloudinary.com/${cloudinaryConfig.cloudName}/image/upload/w_500,h_500,c_fill/${image.public_id}.${image.format}`;
+            const fullImageUrl = `https://res.cloudinary.com/${cloudinaryConfig.cloudName}/image/upload/${image.public_id}.${image.format}`;
+            
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            
+            galleryItem.innerHTML = `
+                <a href="${fullImageUrl}" class="image-popup">
                     <div class="image-container">
-                        <img src="img/gallery_page/awards_cert/apel/main.jpg" alt="Image 3">
+                        <img src="${imageUrl}" 
+                             alt="${formatImageName(image.public_id)}" 
+                             loading="lazy"
+                             onerror="this.onerror=null; this.src='img/placeholder.jpg';">
                         <div class="overlay">
                             <span class="plus">+</span>
                         </div>
                     </div>
                 </a>
                 <div class="info">
-                    <h3>Apel</h3>
-                    <p>Award</p>
+                    <h3>${formatImageName(image.public_id)}</h3>
+                    <p>${new Date(image.created_at).toLocaleDateString()}</p>
                 </div>
+            `;
+            
+            fragment.appendChild(galleryItem);
+        });
+        
+        galleryElement.appendChild(fragment);
+        
+        // Initialize Magnific Popup
+        if (typeof $.fn.magnificPopup !== 'undefined') {
+            $('.image-popup').magnificPopup({
+                type: 'image',
+                gallery: { enabled: true },
+                zoom: { enabled: true, duration: 300 },
+                image: {
+                    titleSrc: function(item) {
+                        return item.el.parent().find('h3').text();
+                    }
+                }
+            });
+        }
+    }
+    
+    // Helper functions
+    function formatFolderName(folderName) {
+        return folderName
+            .replace(/[-_]/g, ' ')
+            .replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+    }
+    
+    function formatImageName(publicId) {
+        let name = publicId.split('/').pop();
+        name = name.replace(/\.[^/.]+$/, "");
+        name = name.replace(/[-_]/g, ' ')
+                  .replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+        return name;
+    }
+    
+    function showNoImagesMessage(tabsContainer) {
+        tabsContainer.innerHTML = `
+            <div class="no-images" style="text-align: center; padding: 2rem;">
+                <h3>No Images Found in Cloudinary</h3>
+                <p>Your Cloudinary account is empty or inaccessible.</p>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
+                    <p><strong>To fix this:</strong></p>
+                    <ol style="text-align: left; max-width: 500px; margin: 0 auto;">
+                        <li>Go to <a href="https://cloudinary.com/console" target="_blank">Cloudinary Console</a></li>
+                        <li>Upload images to your media library</li>
+                        <li>Organize images into folders if desired</li>
+                        <li>Refresh this page</li>
+                    </ol>
+                </div>
+                <p><strong>Cloud Name:</strong> ${cloudinaryConfig.cloudName}</p>
+                <button onclick="discoverCloudinaryFolders()" class="mil-button">Check Again</button>
             </div>
-        </div>
+        `;
+    }
+    
+    function showErrorMessage(tabsContainer, error) {
+        tabsContainer.innerHTML = `
+            <div class="error-message" style="text-align: center; padding: 2rem; color: #e74c3c;">
+                <h3>Cloudinary Connection Failed</h3>
+                <p><strong>Error:</strong> ${error.message}</p>
+                <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
+                    <p><strong>Possible issues:</strong></p>
+                    <ul style="text-align: left; max-width: 500px; margin: 0 auto;">
+                        <li>Cloud name "<strong>${cloudinaryConfig.cloudName}</strong>" is incorrect</li>
+                        <li>No images uploaded to Cloudinary</li>
+                        <li>Cloudinary account issues</li>
+                        <li>Network connectivity problems</li>
+                    </ul>
+                </div>
+                <button onclick="discoverCloudinaryFolders()" class="mil-button">Try Again</button>
+            </div>
+        `;
+    }
+    
+    // Initialize gallery
+    document.addEventListener('DOMContentLoaded', function() {
+        discoverCloudinaryFolders();
+    });
+    </script>
     <!-- wrapper end -->
     <footer class="footer">
                 <div class="footer-content">
