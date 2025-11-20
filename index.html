@@ -376,57 +376,155 @@
   }
 }
 
+ .popup-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
 
+        .popup-container.active {
+            display: flex;
+        }
+
+        .popup-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10001;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .popup-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .popup-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .popup-content img {
+            width: 100%;
+            height: auto;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .popup-content a {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .popup-close {
+                top: 10px;
+                right: 10px;
+                width: 35px;
+                height: 35px;
+                font-size: 25px;
+            }
+
+            .popup-content {
+                max-width: 95%;
+                max-height: 95%;
+            }
+        }
 </style>
 
     <!-- Popup Container -->
-    <div id="popup-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;">
+    <!-- <div id="popup-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;">
         <span id="popup-close" style="position: fixed; top: 20px; right: 20px; color: white; font-size: 30px; font-weight: bold; cursor: pointer; z-index: 10001; background: rgba(0,0,0,0.5); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; line-height: 1; border: 2px solid white;">&times;</span>
         <iframe id="popup-iframe" src="popup.html" style="width: 100%; height: 100%; border: none; background: transparent;"></iframe>
     </div>
+    -->
+ <!-- First Popup -->
+    <div id="popup1" class="popup-container">
+        <span class="popup-close" onclick="closeFirstPopup()">&times;</span>
+        <div class="popup-content">
+            <a href="https://linktr.ee/ApelCapitalRegistrars" target="_blank">
+                <img src="https://res.cloudinary.com/apelng/image/upload/v1760359551/sczmmer_g7fwhj.jpg" alt="Apel Financial Services - First Offer">
+            </a>
+        </div>
+    </div>
 
-    <script>
-        // Wait for everything to load
-        document.addEventListener('DOMContentLoaded', function() {
-            const popupContainer = document.getElementById('popup-container');
-            const popupIframe = document.getElementById('popup-iframe');
-            
-            // Show popup after a short delay
+    <!-- Second Popup -->
+    <div id="popup2" class="popup-container">
+        <span class="popup-close" onclick="closeSecondPopup()">&times;</span>
+        <div class="popup-content">
+            <a href="https://asset.apel.com.ng" target="_blank">
+                <img src="https://res.cloudinary.com/apelng/image/upload/v1762437903/The_initiate_Offer_ss3eez.jpg" alt="Apel Financial Services - Second Offer">
+            </a>
+        </div>
+    </div>
+
+ <script>
+      // Show first popup after 1 second
+        setTimeout(function() {
+            document.getElementById('popup1').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }, 1000);
+
+        // Close first popup and show second
+        function closeFirstPopup() {
+            document.getElementById('popup1').classList.remove('active');
+            // Show second popup immediately after first closes
             setTimeout(function() {
-                popupContainer.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                
-                // Add a class to the iframe document to hide its close button
-                try {
-                    const iframeDoc = popupIframe.contentDocument || popupIframe.contentWindow.document;
-                    const style = iframeDoc.createElement('style');
-                    style.textContent = '.close { display: none !important; }';
-                    iframeDoc.head.appendChild(style);
-                } catch (e) {
-                    console.log('Could not access iframe content:', e);
+                document.getElementById('popup2').classList.add('active');
+            }, 300);
+        }
+
+        // Close second popup
+        function closeSecondPopup() {
+            document.getElementById('popup2').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close popups with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (document.getElementById('popup1').classList.contains('active')) {
+                    closeFirstPopup();
+                } else if (document.getElementById('popup2').classList.contains('active')) {
+                    closeSecondPopup();
                 }
-            }, 1000);
-            
-            // Close popup function
-            function closePopup() {
-                popupContainer.style.display = 'none';
-                document.body.style.overflow = 'auto';
             }
-            
-            // Close when clicking the close button
-            document.getElementById('popup-close').addEventListener('click', closePopup);
-            
-            // Close when clicking outside the iframe
-            popupContainer.addEventListener('click', function(e) {
-                if (e.target === this) closePopup();
-            });
-            
-            // Close with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closePopup();
-            });
         });
-    </script>
+
+        // Close when clicking outside the image
+        document.getElementById('popup1').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeFirstPopup();
+            }
+        });
+
+        document.getElementById('popup2').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSecondPopup();
+            }
+        });
+ </script>
 
     <!-- wrapper -->
     <div id="smooth-wrapper" class="mil-wrapper" style="background-color:#fff">
