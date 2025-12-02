@@ -1,15 +1,9 @@
-require('dotenv').config() // Load .env variables
-const express = require('express');
+// Load environment variables
+if (process.env.NETLIFY_DEV === 'true') {
+    require('dotenv').config({ path: '../../.env' });
+}
+
 const nodemailer = require('nodemailer');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-
-const app = express();
-
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
@@ -100,11 +94,7 @@ const createEmailTemplate = (data) => `
 
 // netlify/functions/send-email.js
 
-
 exports.handler = async (event, context) => {
-  if (process.env.NETLIFY_DEV === 'true') {
-    require('dotenv').config({ path: '../../.env' }) // Adjust path as needed
-  }
      
     // Only allow POST requests
     if (event.httpMethod !== 'POST') {
@@ -155,9 +145,3 @@ exports.handler = async (event, context) => {
         };
     }
 };
-
-
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
