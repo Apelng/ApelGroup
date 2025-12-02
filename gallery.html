@@ -331,51 +331,40 @@ CLOUDINARY_URL=cloudinary://357621128938181:VLK_5AaPnUWuH7V5URNgQ7XwhW4@apelng -
         maxResults: 30
     };
     
-    // Function to discover Cloudinary folders using client-side approach
-    async function discoverCloudinaryFolders() {
-        const tabsContainer = document.getElementById('galleryTabs');
+    // Function to discover Cloudinary folders using serverless function
+async function discoverCloudinaryFolders() {
+    const tabsContainer = document.getElementById('galleryTabs');
+    
+    try {
+        tabsContainer.innerHTML = '<div class="loading-spinner">Loading galleries...</div>';
+
+        // Call your serverless function instead
+        const response = await fetch('/.netlify/functions/get-gallery');
         
-        try {
-            tabsContainer.innerHTML = '<div class="loading-spinner">Discovering Cloudinary folders...</div>';
-    
-            // Use Cloudinary's search API (client-side friendly)
-            const searchUrl = `https://res.cloudinary.com/${cloudinaryConfig.cloudName}/image/list.json`;
-            
-            console.log('Fetching images from Cloudinary...');
-            const response = await fetch(searchUrl);
-            
-            if (!response.ok) {
-                throw new Error(`Cloudinary access failed: ${response.status} ${response.statusText}`);
-            }
-            
-            const data = await response.json();
-            console.log('Cloudinary response:', data);
-            
-            if (!data.resources || data.resources.length === 0) {
-                // No images found - show upload instructions
-                return showNoImagesMessage(tabsContainer);
-            }
-            
-            // Extract folders from image public_ids
-            const folders = extractFoldersFromImages(data.resources);
-            
-            if (folders.length === 0) {
-                // Images exist but no folders - show all images
-                return showAllImagesMode(data.resources, tabsContainer);
-            }
-            
-            // Create folder tabs
-            createFolderTabs(folders, data.resources);
-            
-        } catch (error) {
-            console.error('Cloudinary discovery failed:', error);
-            
-            // Fallback: Use static predefined folders
-            console.log('Using fallback static folders...');
-            useStaticFolders();
+        if (!response.ok) {
+            throw new Error(`Failed to load gallery: ${response.status}`);
         }
+        
+        const data = await response.json();
+        console.log('Gallery data:', data);
+        
+        if (!data.resources || data.resources.length === 0) {
+            return showNoImagesMessage(tabsContainer);
+        }
+        
+        const folders = extractFoldersFromImages(data.resources);
+        
+        if (folders.length === 0) {
+            return showAllImagesMode(data.resources, tabsContainer);
+        }
+        
+        createFolderTabs(folders, data.resources);
+        
+    } catch (error) {
+        console.error('Gallery loading failed:', error);
+        useStaticFolders(); // Fallback to static
     }
-    
+}
     // Static fallback folders structure
     function useStaticFolders() {
         const tabsContainer = document.getElementById('galleryTabs');
@@ -570,9 +559,9 @@ CLOUDINARY_URL=cloudinary://357621128938181:VLK_5AaPnUWuH7V5URNgQ7XwhW4@apelng -
         const fragment = document.createDocumentFragment();
         
         images.forEach(image => {
-            // Use placeholder images for demo - replace with your actual Cloudinary URLs
-            const imageUrl = getPlaceholderImage(image.public_id);
-            const fullImageUrl = getPlaceholderImage(image.public_id, true);
+            // Generate actual Cloudinary URLs
+            const imageUrl = getCloudinaryImageUrl(image.public_id, image.format, false);
+            const fullImageUrl = getCloudinaryImageUrl(image.public_id, image.format, true);
             
             const galleryItem = document.createElement('div');
             galleryItem.className = 'gallery-item';
@@ -615,20 +604,24 @@ CLOUDINARY_URL=cloudinary://357621128938181:VLK_5AaPnUWuH7V5URNgQ7XwhW4@apelng -
         }
     }
     
-    // Helper function to get placeholder images
-    function getPlaceholderImage(publicId, fullSize = false) {
-        const folder = publicId.split('/')[0];
-        const imageName = publicId.split('/').pop();
-        const colors = {
-            'customer-service': '107b5f',
-            'awards': '0d5152', 
-            'parties-events': '107b5f'
-        };
+    // Helper function to generate Cloudinary image URLs
+    function getCloudinaryImageUrl(publicId, format, fullSize = false) {
+        const baseUrl = `https://res.cloudinary.com/${cloudinaryConfig.cloudName}/image/upload`;
         
-        const color = colors[folder] || '107b5f';
-        const size = fullSize ? '800x600' : '500x400';
+        // Extract format from public_id if not provided
+        let imageFormat = format;
+        if (!imageFormat) {
+            const parts = publicId.split('.');
+            imageFormat = parts.length > 1 ? parts.pop() : 'jpg';
+        }
         
-        return `https://via.placeholder.com/${size}/${color}/ffffff?text=${encodeURIComponent(imageName)}`;
+        if (fullSize) {
+            // Full size image for popup - use auto format for best quality
+            return `${baseUrl}/q_auto,f_auto/${publicId}`;
+        } else {
+            // Thumbnail with transformations for gallery grid
+            return `${baseUrl}/w_500,h_400,c_fill,q_auto,f_auto/${publicId}`;
+        }
     }
     
     // Helper functions

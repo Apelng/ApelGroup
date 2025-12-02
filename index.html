@@ -459,16 +459,6 @@
         <iframe id="popup-iframe" src="popup.html" style="width: 100%; height: 100%; border: none; background: transparent;"></iframe>
     </div>
     -->
- <!-- First Popup -->
-    <div id="popup1" class="popup-container">
-        <span class="popup-close" onclick="closeFirstPopup()">&times;</span>
-        <div class="popup-content">
-          
-                <img src="https://res.cloudinary.com/apelng/image/upload/v1760359551/sczmmer_g7fwhj.jpg" alt="Apel Financial Services - First Offer">
-            
-        </div>
-    </div>
-
     <!-- Second Popup -->
     <div id="popup2" class="popup-container">
         <span class="popup-close" onclick="closeSecondPopup()">&times;</span>
@@ -480,20 +470,11 @@
     </div>
 
  <script>
-      // Show first popup after 1 second
+      // Show second popup after 1 second
         setTimeout(function() {
-            document.getElementById('popup1').classList.add('active');
+            document.getElementById('popup2').classList.add('active');
             document.body.style.overflow = 'hidden';
         }, 1000);
-
-        // Close first popup and show second
-        function closeFirstPopup() {
-            document.getElementById('popup1').classList.remove('active');
-            // Show second popup immediately after first closes
-            setTimeout(function() {
-                document.getElementById('popup2').classList.add('active');
-            }, 300);
-        }
 
         // Close second popup
         function closeSecondPopup() {
@@ -501,24 +482,16 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Close popups with Escape key
+        // Close popup with Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                if (document.getElementById('popup1').classList.contains('active')) {
-                    closeFirstPopup();
-                } else if (document.getElementById('popup2').classList.contains('active')) {
+                if (document.getElementById('popup2').classList.contains('active')) {
                     closeSecondPopup();
                 }
             }
         });
 
         // Close when clicking outside the image
-        document.getElementById('popup1').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeFirstPopup();
-            }
-        });
-
         document.getElementById('popup2').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeSecondPopup();
