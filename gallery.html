@@ -322,369 +322,111 @@
             <!-- Images will be loaded here from Cloudinary -->
         </div>
     </div>
-<!-- 
-CLOUDINARY_URL=cloudinary://357621128938181:VLK_5AaPnUWuH7V5URNgQ7XwhW4@apelng -->
-<script>
-    // Cloudinary configuration
-    const cloudinaryConfig = {
-        cloudName: 'apelng',
-        maxResults: 30
-    };
-    
-    // Function to discover Cloudinary folders using serverless function
-async function discoverCloudinaryFolders() {
-    const tabsContainer = document.getElementById('galleryTabs');
-    
-    try {
-        tabsContainer.innerHTML = '<div class="loading-spinner">Loading galleries...</div>';
+<script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+    import { getFirestore, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+    import { ENV } from '/env.js';
 
-        // Call your serverless function instead
-        const response = await fetch('/.netlify/functions/get-gallery');
-        
-        if (!response.ok) {
-            throw new Error(`Failed to load gallery: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('Gallery data:', data);
-        
-        if (!data.resources || data.resources.length === 0) {
-            return showNoImagesMessage(tabsContainer);
-        }
-        
-        const folders = extractFoldersFromImages(data.resources);
-        
-        if (folders.length === 0) {
-            return showAllImagesMode(data.resources, tabsContainer);
-        }
-        
-        createFolderTabs(folders, data.resources);
-        
-    } catch (error) {
-        console.error('Gallery loading failed:', error);
-        useStaticFolders(); // Fallback to static
-    }
-}
-    // Static fallback folders structure
-    function useStaticFolders() {
-        const tabsContainer = document.getElementById('galleryTabs');
-        const galleryElement = document.getElementById('galleryContent');
-        
-        // Define your static folder structure
-        const staticFolders = [
-            {
-                name: 'customer-service',
-                displayName: 'Customer Service Week',
-                imageCount: 3,
-                images: [
-                    {
-                        public_id: 'customer-service/csw-24-1',
-                        format: 'jpg',
-                        created_at: '2024-03-15T10:00:00Z'
-                    },
-                    {
-                        public_id: 'customer-service/csw-24-2', 
-                        format: 'jpg',
-                        created_at: '2024-03-15T11:00:00Z'
-                    },
-                    {
-                        public_id: 'customer-service/csw-24-3',
-                        format: 'jpg',
-                        created_at: '2024-03-15T12:00:00Z'
-                    }
-                ]
-            },
-            {
-                name: 'awards',
-                displayName: 'Awards',
-                imageCount: 2,
-                images: [
-                    {
-                        public_id: 'awards/award-24-1',
-                        format: 'jpg',
-                        created_at: '2024-02-10T10:00:00Z'
-                    },
-                    {
-                        public_id: 'awards/award-24-2',
-                        format: 'jpg',
-                        created_at: '2024-02-10T11:00:00Z'
-                    }
-                ]
-            },
-            {
-                name: 'parties-events',
-                displayName: 'Parties & Events',
-                imageCount: 3,
-                images: [
-                    {
-                        public_id: 'parties-events/party-24-1',
-                        format: 'jpg',
-                        created_at: '2024-01-20T10:00:00Z'
-                    },
-                    {
-                        public_id: 'parties-events/party-24-2',
-                        format: 'jpg',
-                        created_at: '2024-01-20T11:00:00Z'
-                    },
-                    {
-                        public_id: 'parties-events/party-24-3',
-                        format: 'jpg',
-                        created_at: '2024-01-20T12:00:00Z'
-                    }
-                ]
-            }
-        ];
-        
-        // Create tabs for static folders
-        tabsContainer.innerHTML = '';
-        
-        staticFolders.forEach((folder, index) => {
-            const button = document.createElement('button');
-            button.className = `gallery-button ${index === 0 ? 'active' : ''}`;
-            button.textContent = `${folder.displayName} (${folder.imageCount})`;
-            button.onclick = () => {
-                // Update active state
-                document.querySelectorAll('#galleryTabs .gallery-button').forEach(btn => 
-                    btn.classList.remove('active')
-                );
-                button.classList.add('active');
-                
-                // Display folder images
-                displayImages(folder.images, galleryElement);
-            };
-            tabsContainer.appendChild(button);
-        });
-        
-        // Load first folder
-        if (staticFolders.length > 0) {
-            displayImages(staticFolders[0].images, galleryElement);
-        }
-    }
-    
-    // Extract folder structure from images
-    function extractFoldersFromImages(images) {
-        const folderMap = new Map();
-        
-        images.forEach(image => {
-            const pathParts = image.public_id.split('/');
-            
-            if (pathParts.length > 1) {
-                // Image is in a folder
-                const folderName = pathParts[0];
-                const displayName = formatFolderName(folderName);
-                
-                if (!folderMap.has(folderName)) {
-                    folderMap.set(folderName, {
-                        name: folderName,
-                        path: folderName,
-                        displayName: displayName,
-                        imageCount: 0
-                    });
-                }
-                folderMap.get(folderName).imageCount++;
-            } else {
-                // Image is in root - create "Root" folder
-                if (!folderMap.has('root')) {
-                    folderMap.set('root', {
-                        name: 'root',
-                        path: '',
-                        displayName: 'All Images',
-                        imageCount: 0
-                    });
-                }
-                folderMap.get('root').imageCount++;
-            }
-        });
-        
-        return Array.from(folderMap.values());
-    }
-    
-    // Show all images when no folders exist
-    function showAllImagesMode(images, tabsContainer) {
-        tabsContainer.innerHTML = '<button class="gallery-button active">All Images</button>';
-        displayImages(images, document.getElementById('galleryContent'));
-    }
-    
-    // Create folder navigation tabs
-    function createFolderTabs(folders, allImages) {
-        const tabsContainer = document.getElementById('galleryTabs');
-        const galleryElement = document.getElementById('galleryContent');
-        
-        tabsContainer.innerHTML = '';
-        
-        folders.forEach((folder, index) => {
-            const button = document.createElement('button');
-            button.className = `gallery-button ${index === 0 ? 'active' : ''}`;
-            button.textContent = `${folder.displayName} (${folder.imageCount})`;
-            button.onclick = () => {
-                // Update active state
-                document.querySelectorAll('#galleryTabs .gallery-button').forEach(btn => 
-                    btn.classList.remove('active')
-                );
-                button.classList.add('active');
-                
-                // Filter images for this folder
-                let folderImages;
-                if (folder.name === 'root') {
-                    folderImages = allImages.filter(img => !img.public_id.includes('/'));
-                } else {
-                    folderImages = allImages.filter(img => img.public_id.startsWith(folder.name + '/'));
-                }
-                
-                displayImages(folderImages, galleryElement);
-            };
-            tabsContainer.appendChild(button);
-        });
-        
-        // Load first folder
-        const firstFolder = folders[0];
-        let firstFolderImages;
-        if (firstFolder.name === 'root') {
-            firstFolderImages = allImages.filter(img => !img.public_id.includes('/'));
-        } else {
-            firstFolderImages = allImages.filter(img => img.public_id.startsWith(firstFolder.name + '/'));
-        }
-        
-        displayImages(firstFolderImages, galleryElement);
-    }
-    
-    // Display images in gallery
-    function displayImages(images, galleryElement) {
-        if (!images || images.length === 0) {
-            galleryElement.innerHTML = '<div class="no-images"><p>No images found in this folder.</p></div>';
+    const firebaseConfig = {
+        apiKey:            ENV.FIREBASE_API_KEY,
+        authDomain:        ENV.FIREBASE_AUTH_DOMAIN,
+        projectId:         ENV.FIREBASE_PROJECT_ID,
+        storageBucket:     ENV.FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: ENV.FIREBASE_MESSAGING_SENDER_ID,
+        appId:             ENV.FIREBASE_APP_ID,
+    };
+
+    const app  = initializeApp(firebaseConfig);
+    const db   = getFirestore(app);
+    const SITE = 'apel-group';
+
+    const tabsContainer  = document.getElementById('galleryTabs');
+    const galleryContent = document.getElementById('galleryContent');
+
+    tabsContainer.innerHTML = '<div class="loading-spinner">Loading gallery...</div>';
+
+    async function loadGallery() {
+        const q    = query(collection(db, 'sites', SITE, 'gallery'), orderBy('order', 'asc'));
+        const snap = await getDocs(q);
+        const all  = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+        if (all.length === 0) {
+            tabsContainer.innerHTML = '';
+            galleryContent.innerHTML = '<div class="no-images"><p>No gallery images yet.</p></div>';
             return;
         }
-        
-        galleryElement.innerHTML = '';
+
+        // Build category map
+        const categoryMap = new Map();
+        all.forEach(img => {
+            const cat = img.category || 'General';
+            if (!categoryMap.has(cat)) categoryMap.set(cat, []);
+            categoryMap.get(cat).push(img);
+        });
+
+        const categories = Array.from(categoryMap.keys());
+
+        // Render tabs
+        tabsContainer.innerHTML = '';
+        categories.forEach((cat, index) => {
+            const btn = document.createElement('button');
+            btn.className = `gallery-button${index === 0 ? ' active' : ''}`;
+            btn.textContent = `${cat} (${categoryMap.get(cat).length})`;
+            btn.addEventListener('click', () => {
+                tabsContainer.querySelectorAll('.gallery-button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderImages(categoryMap.get(cat));
+            });
+            tabsContainer.appendChild(btn);
+        });
+
+        // Render first category
+        renderImages(categoryMap.get(categories[0]));
+    }
+
+    function renderImages(images) {
+        galleryContent.innerHTML = '';
+
+        if (!images || images.length === 0) {
+            galleryContent.innerHTML = '<div class="no-images"><p>No images in this category.</p></div>';
+            return;
+        }
+
         const fragment = document.createDocumentFragment();
-        
-        images.forEach(image => {
-            // Generate actual Cloudinary URLs
-            const imageUrl = getCloudinaryImageUrl(image.public_id, image.format, false);
-            const fullImageUrl = getCloudinaryImageUrl(image.public_id, image.format, true);
-            
-            const galleryItem = document.createElement('div');
-            galleryItem.className = 'gallery-item';
-            
-            galleryItem.innerHTML = `
-                <a href="${fullImageUrl}" class="image-popup">
+
+        images.forEach(img => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.innerHTML = `
+                <a href="${img.url}" class="image-popup">
                     <div class="image-container">
-                        <img src="${imageUrl}" 
-                             alt="${formatImageName(image.public_id)}" 
-                             loading="lazy"
-                             onerror="this.onerror=null; this.src='img/placeholder.jpg';">
-                        <div class="overlay">
-                            <span class="plus">+</span>
-                        </div>
+                        <img src="${img.url}" alt="${img.title || ''}" loading="lazy"
+                             onerror="this.onerror=null;this.src='img/placeholder.jpg'">
+                        <div class="overlay"><span class="plus">+</span></div>
                     </div>
                 </a>
                 <div class="info">
-                    <h3>${formatImageName(image.public_id)}</h3>
-                    <p>${new Date(image.created_at).toLocaleDateString()}</p>
+                    <h3>${img.title || ''}</h3>
                 </div>
             `;
-            
-            fragment.appendChild(galleryItem);
+            fragment.appendChild(item);
         });
-        
-        galleryElement.appendChild(fragment);
-        
-        // Initialize Magnific Popup
-        if (typeof $.fn.magnificPopup !== 'undefined') {
+
+        galleryContent.appendChild(fragment);
+
+        // Re-init Magnific Popup after each render
+        if (window.jQuery && typeof $.fn.magnificPopup !== 'undefined') {
             $('.image-popup').magnificPopup({
                 type: 'image',
                 gallery: { enabled: true },
                 zoom: { enabled: true, duration: 300 },
-                image: {
-                    titleSrc: function(item) {
-                        return item.el.parent().find('h3').text();
-                    }
-                }
             });
         }
     }
-    
-    // Helper function to generate Cloudinary image URLs
-    function getCloudinaryImageUrl(publicId, format, fullSize = false) {
-        const baseUrl = `https://res.cloudinary.com/${cloudinaryConfig.cloudName}/image/upload`;
-        
-        // Extract format from public_id if not provided
-        let imageFormat = format;
-        if (!imageFormat) {
-            const parts = publicId.split('.');
-            imageFormat = parts.length > 1 ? parts.pop() : 'jpg';
-        }
-        
-        if (fullSize) {
-            // Full size image for popup - use auto format for best quality
-            return `${baseUrl}/q_auto,f_auto/${publicId}`;
-        } else {
-            // Thumbnail with transformations for gallery grid
-            return `${baseUrl}/w_500,h_400,c_fill,q_auto,f_auto/${publicId}`;
-        }
-    }
-    
-    // Helper functions
-    function formatFolderName(folderName) {
-        return folderName
-            .replace(/[-_]/g, ' ')
-            .replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
-    }
-    
-    function formatImageName(publicId) {
-        let name = publicId.split('/').pop();
-        name = name.replace(/\.[^/.]+$/, "");
-        name = name.replace(/[-_]/g, ' ')
-                  .replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
-        return name;
-    }
-    
-    function showNoImagesMessage(tabsContainer) {
-        tabsContainer.innerHTML = `
-            <div class="no-images" style="text-align: center; padding: 2rem;">
-                <h3>No Images Found in Cloudinary</h3>
-                <p>Your Cloudinary account is empty or inaccessible.</p>
-                <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
-                    <p><strong>To fix this:</strong></p>
-                    <ol style="text-align: left; max-width: 500px; margin: 0 auto;">
-                        <li>Go to <a href="https://cloudinary.com/console" target="_blank">Cloudinary Console</a></li>
-                        <li>Upload images to your media library</li>
-                        <li>Organize images into folders if desired</li>
-                        <li>Refresh this page</li>
-                    </ol>
-                </div>
-                <p><strong>Cloud Name:</strong> ${cloudinaryConfig.cloudName}</p>
-                <button onclick="discoverCloudinaryFolders()" class="mil-button">Check Again</button>
-            </div>
-        `;
-    }
-    
-    function showErrorMessage(tabsContainer, error) {
-        tabsContainer.innerHTML = `
-            <div class="error-message" style="text-align: center; padding: 2rem; color: #e74c3c;">
-                <h3>Cloudinary Connection Failed</h3>
-                <p><strong>Error:</strong> ${error.message}</p>
-                <div style="background: #f8f9fa; padding: 1rem; border-radius: 5px; margin: 1rem 0;">
-                    <p><strong>Using static gallery as fallback</strong></p>
-                </div>
-            </div>
-        `;
-    }
-    
-    // Initialize gallery with error handling
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log('Initializing gallery...');
-        try {
-            discoverCloudinaryFolders().catch(error => {
-                console.error('Error initializing gallery:', error);
-                const container = document.getElementById('galleryTabs') || document.getElementById('galleryContent');
-                showErrorMessage(container, error);
-            });
-        } catch (error) {
-            console.error('Unexpected error:', error);
-            const container = document.getElementById('galleryTabs') || document.getElementById('galleryContent');
-            showErrorMessage(container, 'Failed to initialize gallery. Please check the console for details.');
-        }
+
+    loadGallery().catch(err => {
+        console.error('Gallery load error:', err);
+        tabsContainer.innerHTML = '<div class="error" style="color:#c00;padding:1rem">Gallery failed to load. Check browser console.</div>';
     });
 </script>
     <!-- wrapper end -->
@@ -866,40 +608,6 @@ async function discoverCloudinaryFolders() {
                 </div>
             </footer>
 
-    <script>
-  document.getElementById('showGallery1').addEventListener('click', function() {
-    toggleGallery('gallery1', this);
-});
-
-document.getElementById('showGallery2').addEventListener('click', function() {
-    toggleGallery('gallery2', this);
-});
-
-document.getElementById('showGallery3').addEventListener('click', function() {
-    toggleGallery('gallery3', this);
-});
-
-function toggleGallery(galleryId, button) {
-    const galleries = ['gallery1', 'gallery2', 'gallery3'];
-    galleries.forEach(id => {
-        const gallery = document.getElementById(id);
-        const btn = document.getElementById(`showGallery${id.charAt(id.length - 1)}`);
-        
-        if (id === galleryId) {
-            gallery.classList.toggle('hidden'); // Toggle the selected gallery
-            btn.classList.add('active'); // Add active class to the clicked button
-        } else {
-            gallery.classList.add('hidden'); // Hide other galleries
-            btn.classList.remove('active'); // Remove active class from other buttons
-        }
-    });
-}
-
-// Initially show the first gallery
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('gallery1').classList.remove('hidden');
-});
-      </script>
     <!-- jquery js -->
     <script src="js/plugins/jquery.min.js"></script>
 
@@ -947,15 +655,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 </script>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-  import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-
-  const app = initializeApp({ /* your firebase config */ });
-  const db  = getFirestore(app);
-  // e.g. read gallery:
-  const snap = await getDocs(query(collection(db, "sites", "SITE_ID", "gallery"), orderBy("order")));
-  snap.forEach(doc => console.log(doc.data()));
-</script></body>
+</body>
 
 </html>
