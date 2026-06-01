@@ -37,149 +37,223 @@
  
 
     <style>
-        /* Gallery Styles */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        
-        .gallery.hidden {
-            display: none;
-        }
-        
-        .gallery-item {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .image-container {
-            position: relative;
-            overflow: hidden;
-            height: 250px;
-        }
-        
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover .image-container img {
-            transform: scale(1.05);
-        }
-        
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .gallery-item:hover .overlay {
-            opacity: 1;
-        }
-        
-        .plus {
-            color: white;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        
-        .info {
-            padding: 15px;
-            background: white;
-        }
-        
-        .info h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.1rem;
-        }
-        
-        .info p {
-            margin: 0;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
+        /* ── Filter Tabs ── */
         .button-container {
             display: flex;
             justify-content: center;
-            margin: 20px 0;
+            align-items: center;
             gap: 10px;
             flex-wrap: wrap;
+            padding: 36px 20px 28px;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 2px 18px rgba(0,0,0,0.06);
         }
-        
+
         .gallery-button {
-            padding: 10px 20px;
-            border: 2px solid #107b5f;
-            background: white;
-            color: #107b5f;
-            border-radius: 5px;
+            padding: 9px 22px;
+            border: 1.5px solid #dde3e0;
+            background: transparent;
+            color: #555;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: all 0.25s ease;
+            white-space: nowrap;
         }
-        
-        .gallery-button.active,
+
         .gallery-button:hover {
-            background: rgb(13, 81, 82);
-            color: white;
+            border-color: #107b5f;
+            color: #107b5f;
+            background: #f0faf6;
         }
-        
-        .loading-spinner {
+
+        .gallery-button.active {
+            background: #107b5f;
+            border-color: #107b5f;
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(16,123,95,0.35);
+        }
+
+        /* ── Gallery Wrapper ── */
+        #galleryContainer {
+            background: #f5f7f6;
+            padding: 8px 0 60px;
+        }
+
+        /* ── Masonry Grid ── */
+        .gallery {
+            column-count: 3;
+            column-gap: 14px;
+            padding: 28px 36px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) { .gallery { column-count: 2; padding: 20px; } }
+        @media (max-width: 580px)  { .gallery { column-count: 1; padding: 14px; } }
+
+        /* ── Gallery Card ── */
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 14px;
+            border-radius: 14px;
+            overflow: hidden;
+            cursor: pointer;
+            animation: fadeUp 0.5s ease both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            display: block;
+        }
+
+        .image-container img {
             width: 100%;
-            text-align: center;
-            padding: 2rem;
+            height: auto;
+            display: block;
+            transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        
-        .no-folders, .no-images, .error {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
+
+        .gallery-item:hover .image-container img {
+            transform: scale(1.08);
         }
-        
+
+        /* Gradient overlay */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                rgba(0,0,0,0.72) 0%,
+                rgba(0,0,0,0.18) 50%,
+                transparent 100%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 14px 16px 18px;
+        }
+
+        .gallery-item:hover .overlay { opacity: 1; }
+
+        /* Zoom pill top-right */
+        .zoom-pill {
+            align-self: flex-end;
+            width: 34px;
+            height: 34px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #107b5f;
+            font-size: 0.8rem;
+            transform: scale(0.6);
+            opacity: 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .gallery-item:hover .zoom-pill {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        /* Title at bottom of overlay */
+        .overlay-caption {
+            transform: translateY(6px);
+            transition: transform 0.35s ease;
+        }
+
+        .gallery-item:hover .overlay-caption { transform: translateY(0); }
+
+        .overlay-caption h3 {
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 0;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+            line-height: 1.3;
+        }
+
+        /* ── Skeleton loader ── */
+        .skeleton-grid {
+            column-count: 3;
+            column-gap: 14px;
+            padding: 28px 36px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) { .skeleton-grid { column-count: 2; padding: 20px; } }
+        @media (max-width: 580px)  { .skeleton-grid { column-count: 1; padding: 14px; } }
+
+        .skeleton-card {
+            break-inside: avoid;
+            margin-bottom: 14px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: linear-gradient(90deg, #e8ede9 25%, #d8e0da 50%, #e8ede9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.6s infinite;
+        }
+
+        @keyframes shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ── States ── */
+        .loading-spinner,
+        .no-images,
+        .error {
+            text-align: center;
+            padding: 5rem 2rem;
+            color: #888;
+            font-size: 1rem;
+        }
+
+        /* ── Load More ── */
         .load-more-btn {
             display: block;
-            margin: 30px auto;
-            padding: 12px 30px;
+            margin: 10px auto 50px;
+            padding: 13px 38px;
             background: #107b5f;
-            color: white;
+            color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(16,123,95,0.3);
         }
-        
+
         .load-more-btn:hover {
-            background: rgb(13, 81, 82);
+            background: #0d5e49;
+            box-shadow: 0 6px 22px rgba(16,123,95,0.42);
+            transform: translateY(-2px);
         }
-        
+
         .load-more-btn:disabled {
-            background: #ccc;
+            background: #bbb;
+            box-shadow: none;
+            transform: none;
             cursor: not-allowed;
         }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        </style>
+    </style>
 
     <!-- wrapper -->
     <div id="smooth-wrapper" class="mil-wrapper">
@@ -341,16 +415,29 @@
     const tabsContainer  = document.getElementById('galleryTabs');
     const galleryContent = document.getElementById('galleryContent');
 
-    tabsContainer.innerHTML = '<div class="loading-spinner">Loading gallery...</div>';
+    // Show skeleton while loading
+    tabsContainer.innerHTML = '';
+    galleryContent.outerHTML = `
+        <div class="skeleton-grid" id="galleryContent">
+            ${[220,160,300,180,250,140,200,280,170].map(h =>
+                `<div class="skeleton-card" style="height:${h}px"></div>`
+            ).join('')}
+        </div>`;
 
     async function loadGallery() {
         const q    = query(collection(db, 'sites', SITE, 'gallery'), orderBy('order', 'asc'));
         const snap = await getDocs(q);
         const all  = snap.docs.map(d => ({ id: d.id, ...d.data() }));
 
+        // Replace skeleton with real grid
+        document.getElementById('galleryContent').outerHTML =
+            '<div class="gallery" id="galleryContent"></div>';
+
+        const galleryEl = document.getElementById('galleryContent');
+
         if (all.length === 0) {
             tabsContainer.innerHTML = '';
-            galleryContent.innerHTML = '<div class="no-images"><p>No gallery images yet.</p></div>';
+            galleryEl.innerHTML = '<div class="no-images"><p>No gallery images yet.</p></div>';
             return;
         }
 
@@ -378,41 +465,41 @@
             tabsContainer.appendChild(btn);
         });
 
-        // Render first category
         renderImages(categoryMap.get(categories[0]));
     }
 
     function renderImages(images) {
-        galleryContent.innerHTML = '';
+        const galleryEl = document.getElementById('galleryContent');
+        galleryEl.innerHTML = '';
 
         if (!images || images.length === 0) {
-            galleryContent.innerHTML = '<div class="no-images"><p>No images in this category.</p></div>';
+            galleryEl.innerHTML = '<div class="no-images"><p>No images in this category.</p></div>';
             return;
         }
 
         const fragment = document.createDocumentFragment();
 
-        images.forEach(img => {
+        images.forEach((img, i) => {
             const item = document.createElement('div');
             item.className = 'gallery-item';
+            item.style.animationDelay = `${i * 0.05}s`;
             item.innerHTML = `
                 <a href="${img.url}" class="image-popup">
                     <div class="image-container">
                         <img src="${img.url}" alt="${img.title || ''}" loading="lazy"
                              onerror="this.onerror=null;this.src='img/placeholder.jpg'">
-                        <div class="overlay"><span class="plus">+</span></div>
+                        <div class="overlay">
+                            <span class="zoom-pill"><i class="fas fa-expand-alt"></i></span>
+                            ${img.title ? `<div class="overlay-caption"><h3>${img.title}</h3></div>` : '<div></div>'}
+                        </div>
                     </div>
                 </a>
-                <div class="info">
-                    <h3>${img.title || ''}</h3>
-                </div>
             `;
             fragment.appendChild(item);
         });
 
-        galleryContent.appendChild(fragment);
+        galleryEl.appendChild(fragment);
 
-        // Re-init Magnific Popup after each render
         if (window.jQuery && typeof $.fn.magnificPopup !== 'undefined') {
             $('.image-popup').magnificPopup({
                 type: 'image',
@@ -424,7 +511,8 @@
 
     loadGallery().catch(err => {
         console.error('Gallery load error:', err);
-        tabsContainer.innerHTML = '<div class="error" style="color:#c00;padding:1rem">Gallery failed to load. Check browser console.</div>';
+        document.getElementById('galleryContent').innerHTML =
+            '<div class="error" style="color:#c00">Gallery failed to load. Check browser console.</div>';
     });
 </script>
     <!-- wrapper end -->
