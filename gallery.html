@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
     <link rel="stylesheet" href="css/footer.css " type="text/css" media="all">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Gallery template -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="img/gallery2/css/magnific-popup.css">
+    <link rel="stylesheet" href="img/gallery2/css/templatemo-style.css">
 
     <!-- Favicon -->
         <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
@@ -42,136 +46,84 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
-            padding: 32px 20px 24px;
+            padding: 28px 20px 20px;
             background: #fff;
             position: sticky;
             top: 0;
             z-index: 50;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
         }
 
         .gallery-button {
-            padding: 9px 22px;
-            border: 1.5px solid #d0d7d4;
-            background: transparent;
-            color: #555;
-            border-radius: 50px;
+            background-color: #fff;
+            color: #666;
+            font-weight: 400;
+            padding: 6px 20px;
+            display: inline-block;
+            border: 1px solid #ddd;
+            border-radius: 3px;
             cursor: pointer;
-            font-size: 0.875rem;
-            font-weight: 500;
-            transition: all 0.22s ease;
-            white-space: nowrap;
+            font-size: 0.9rem;
+            transition: all 0.3s ease-in-out;
         }
 
-        .gallery-button:hover {
-            border-color: #107b5f;
-            color: #107b5f;
-            background: #f0faf6;
-        }
-
+        .gallery-button:hover,
         .gallery-button.active {
-            background: #107b5f;
-            border-color: #107b5f;
+            background-color: rgb(13, 81, 82);
             color: #fff;
-            box-shadow: 0 4px 12px rgba(16,123,95,0.32);
+            border-color: rgb(13, 81, 82);
         }
 
-        /* ── Gallery section ── */
+        /* ── Gallery wrapper ── */
         #galleryContainer {
-            background: #f4f6f5;
-            padding: 32px 0 70px;
+            padding: 20px 0 60px;
         }
 
-        /* ── Grid ── */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            padding: 0 36px;
-            max-width: 1300px;
+        .iso-box-section {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 15px;
         }
 
-        @media (max-width: 1024px) { .gallery { grid-template-columns: repeat(2,1fr); padding: 0 20px; } }
-        @media (max-width: 580px)  { .gallery { grid-template-columns: 1fr; padding: 0 14px; } }
-
-        /* ── Card ── */
-        .gallery-item {
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            animation: fadeUp 0.45s ease both;
+        .iso-box-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: -8px;
+            margin-right: -8px;
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .image-container {
+        /* ── Each image box ── */
+        .iso-box {
             position: relative;
             overflow: hidden;
-            height: 260px;
+            margin-bottom: 15px;
+            padding-left: 8px;
+            padding-right: 8px;
+            width: 25%;
         }
 
-        .image-container img {
+        @media (max-width: 991px)  { .iso-box { width: 33.333%; } }
+        @media (max-width: 767px)  { .iso-box { width: 50%; } }
+        @media (max-width: 480px)  { .iso-box { width: 100%; } }
+
+        .iso-box a {
+            display: block;
+            overflow: hidden;
+        }
+
+        .iso-box img {
             width: 100%;
-            height: 100%;
+            height: 220px;
             object-fit: cover;
             display: block;
-            transition: transform 0.5s ease;
+            transition: transform 0.4s ease, opacity 0.4s ease;
         }
 
-        .gallery-item:hover .image-container img {
+        .iso-box:hover img {
             transform: scale(1.06);
-        }
-
-        /* Overlay */
-        .overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            align-items: flex-end;
-            padding: 16px;
-        }
-
-        .gallery-item:hover .overlay { opacity: 1; }
-
-        .overlay-caption h3 {
-            color: #fff;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin: 0;
-            line-height: 1.3;
-        }
-
-        /* Zoom icon top-right */
-        .zoom-icon {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 32px;
-            height: 32px;
-            background: rgba(255,255,255,0.92);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #107b5f;
-            font-size: 0.75rem;
-            opacity: 0;
-            transform: scale(0.75);
-            transition: all 0.28s ease;
-        }
-
-        .gallery-item:hover .zoom-icon {
-            opacity: 1;
-            transform: scale(1);
+            opacity: 0.88;
         }
 
         /* ── States ── */
@@ -179,10 +131,10 @@
         .no-images,
         .error {
             text-align: center;
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
             color: #888;
             font-size: 1rem;
-            grid-column: 1 / -1;
+            width: 100%;
         }
     </style>
 
@@ -323,8 +275,10 @@
 
     <!-- Gallery Container -->
     <div id="galleryContainer">
-        <div class="gallery" id="galleryContent">
-            <!-- Images will be loaded here from Cloudinary -->
+        <div class="iso-box-section">
+            <div class="iso-box-wrapper" id="galleryContent">
+                <!-- Images loaded from Firebase -->
+            </div>
         </div>
     </div>
 <script type="module">
@@ -394,20 +348,13 @@
 
         const fragment = document.createDocumentFragment();
 
-        images.forEach((img, i) => {
+        images.forEach(img => {
             const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.style.animationDelay = `${i * 0.05}s`;
+            item.className = 'iso-box';
             item.innerHTML = `
-                <a href="${img.url}" class="image-popup">
-                    <div class="image-container">
-                        <img src="${img.url}" alt="${img.title || ''}" loading="lazy"
-                             onerror="this.onerror=null;this.src='img/placeholder.jpg'">
-                        <div class="overlay">
-                            <div class="zoom-icon"><i class="fas fa-expand-alt"></i></div>
-                            ${img.title ? `<div class="overlay-caption"><h3>${img.title}</h3></div>` : ''}
-                        </div>
-                    </div>
+                <a href="${img.url}">
+                    <img src="${img.url}" alt="${img.title || ''}" loading="lazy"
+                         onerror="this.onerror=null;this.src='img/placeholder.jpg'">
                 </a>
             `;
             fragment.appendChild(item);
@@ -416,10 +363,10 @@
         galleryContent.appendChild(fragment);
 
         if (window.jQuery && typeof $.fn.magnificPopup !== 'undefined') {
-            $('.image-popup').magnificPopup({
+            $('#galleryContent').magnificPopup({
+                delegate: 'a',
                 type: 'image',
                 gallery: { enabled: true },
-                zoom: { enabled: true, duration: 300 },
             });
         }
     }
@@ -626,6 +573,9 @@
     <script src="js/plugins/magnific-popup.js"></script>
     <!-- Apel js -->
     <script src="js/main.js"></script>
+    <!-- Gallery scripts -->
+    <script src="img/gallery2/js/imagesloaded.pkgd.min.js"></script>
+    <script src="img/gallery2/js/jquery.magnific-popup.min.js"></script>
    <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
