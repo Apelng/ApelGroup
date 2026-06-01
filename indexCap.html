@@ -592,6 +592,15 @@
     });
   }
 </script>
-</body>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+  import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+  const app = initializeApp({ /* your firebase config */ });
+  const db  = getFirestore(app);
+  // e.g. read gallery:
+  const snap = await getDocs(query(collection(db, "sites", "SITE_ID", "gallery"), orderBy("order")));
+  snap.forEach(doc => console.log(doc.data()));
+</script></body>
 
 </html>
