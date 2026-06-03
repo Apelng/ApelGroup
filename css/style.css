@@ -4084,7 +4084,7 @@ box-shadow: none;
   overflow: hidden;
   overflow: hidden;
     max-height: 80vh; /* Limit the height of the container */
-    flex-wrap: wrap; /
+    flex-wrap: wrap;
 }
 
 .about-image {
