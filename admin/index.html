@@ -1,33 +1,628 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>ApelGroup Editor</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/netlify-cms@^2.0.0/dist/cms.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apel Gallery Admin</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Geist:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --bg:       #0f0f0f;
+      --surface:  #181818;
+      --surface2: #222;
+      --border:   #2e2e2e;
+      --text:     #edeae3;
+      --muted:    #807970;
+      --accent:   #107b5f;
+      --accent-h: #0d6450;
+      --danger:   #c0392b;
+      --radius:   8px;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Geist', sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 20px;
+      color: var(--text);
+    }
+    .topbar-logo span { color: var(--accent); }
+    .topbar-actions { display: flex; gap: 10px; }
+
+    /* ── LOGIN ── */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 58px);
+    }
+    .login-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 380px;
+    }
+    .login-box h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 26px;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+
+    /* ── LAYOUT ── */
+    #adminScreen {
+      display: none;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 2rem;
+      gap: 2rem;
+      grid-template-columns: 360px 1fr;
+    }
+    #adminScreen.visible {
+      display: grid;
+    }
+
+    /* ── FORM PANEL ── */
+    .form-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem;
+      position: sticky;
+      top: 74px;
+      align-self: start;
+    }
+    .form-panel h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 20px;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+    }
+
+    /* ── FORM FIELDS ── */
+    .field { margin-bottom: 1rem; }
+    .field label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'Geist', sans-serif;
+      font-size: 13.5px;
+      padding: 9px 12px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus { border-color: var(--accent); }
+    .field textarea { resize: vertical; min-height: 80px; }
+    .field select option { background: var(--surface2); }
+
+    /* Image preview */
+    .img-preview {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 10px;
+      display: none;
+    }
+    .img-preview.visible { display: block; }
+
+    .upload-btn {
+      width: 100%;
+      padding: 10px;
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius);
+      background: var(--surface2);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 13px;
+      transition: border-color 0.2s, color 0.2s;
+      text-align: center;
+    }
+    .upload-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 18px;
+      border-radius: var(--radius);
+      border: none;
+      font-family: 'Geist', sans-serif;
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; width: 100%; justify-content: center; }
+    .btn-primary:hover { background: var(--accent-h); }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 100%;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .btn-ghost:hover { border-color: var(--muted); color: var(--text); }
+    .btn-danger { background: rgba(192,57,43,0.12); color: var(--danger); border: 1px solid rgba(192,57,43,0.2); padding: 6px 10px; font-size: 12px; }
+    .btn-danger:hover { background: rgba(192,57,43,0.22); }
+    .btn-sm { padding: 5px 12px; font-size: 12px; }
+    .btn-edit { background: rgba(16,123,95,0.12); color: var(--accent); border: 1px solid rgba(16,123,95,0.2); padding: 6px 10px; font-size: 12px; }
+    .btn-edit:hover { background: rgba(16,123,95,0.22); }
+
+    /* ── GALLERY LIST PANEL ── */
+    .list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .list-header h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 20px;
+    }
+    .list-header .list-meta { font-size: 12px; color: var(--muted); }
+
+    /* Year group */
+    .year-group { margin-bottom: 2rem; }
+    .year-label {
+      font-family: 'Instrument Serif', serif;
+      font-size: 32px;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Photo cards */
+    .photo-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .photo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .photo-card:hover { border-color: var(--accent); }
+    .photo-card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-card-info { padding: 10px 12px; }
+    .photo-card-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 3px;
+    }
+    .photo-card-meta { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+    .photo-card-desc {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .photo-card-actions { display: flex; gap: 6px; }
+    .photo-tag {
+      display: inline-block;
+      font-size: 9.5px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: rgba(16,123,95,0.12);
+      color: var(--accent);
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 13px;
+      color: var(--text);
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+    #toast.success { border-color: var(--accent); }
+    #toast.error   { border-color: var(--danger); color: var(--danger); }
+
+    /* ── MISC ── */
+    .loader { text-align: center; padding: 4rem; color: var(--muted); }
+    .empty  { text-align: center; padding: 3rem; color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 900px) {
+      #adminScreen { grid-template-columns: 1fr; }
+      .form-panel { position: static; }
+    }
+  </style>
 </head>
 <body>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-<!-- <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo">Apel <span>Gallery</span> Admin</div>
+  <div class="topbar-actions">
+    <button class="btn btn-ghost" id="logoutBtn" style="width:auto;display:none">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <h2>Admin Login</h2>
+    <div class="field">
+      <label>Email</label>
+      <input type="email" id="loginEmail" placeholder="admin@apel.com.ng">
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="loginPassword" placeholder="••••••••">
+    </div>
+    <button class="btn btn-primary" id="loginBtn" style="margin-top:6px">
+      <i class="fas fa-lock"></i> Sign In
+    </button>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="adminScreen">
+
+  <!-- LEFT: Add/Edit form -->
+  <div class="form-panel">
+    <h3 id="formTitle">Add Photo</h3>
+
+    <img class="img-preview" id="imgPreview" src="" alt="preview">
+    <button class="upload-btn" id="uploadBtn">
+      <i class="fas fa-cloud-upload-alt"></i> Upload Image
+    </button>
+    <input type="hidden" id="fieldUrl">
+
+    <div class="field" style="margin-top:1rem">
+      <label>Title</label>
+      <input type="text" id="fieldTitle" placeholder="Photo title">
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <textarea id="fieldDesc" placeholder="Short description shown in the gallery panel…"></textarea>
+    </div>
+    <div class="field">
+      <label>Category (Tab name)</label>
+      <input type="text" id="fieldCategory" placeholder="e.g. Customer Service Week">
+    </div>
+    <div class="field">
+      <label>Year</label>
+      <input type="number" id="fieldYear" placeholder="2025" min="2000" max="2099">
+    </div>
+    <div class="field">
+      <label>Date label</label>
+      <input type="text" id="fieldDate" placeholder="e.g. Oct 15">
+    </div>
+    <div class="field">
+      <label>Order (lower = first)</label>
+      <input type="number" id="fieldOrder" placeholder="1" min="0">
+    </div>
+
+    <button class="btn btn-primary" id="saveBtn">
+      <i class="fas fa-save"></i> Save Photo
+    </button>
+    <button class="btn btn-ghost" id="cancelBtn">Cancel</button>
+  </div>
+
+  <!-- RIGHT: Photo list -->
+  <div class="list-panel">
+    <div class="list-header">
+      <h3>Gallery Photos</h3>
+      <span class="list-meta" id="listMeta"></span>
+    </div>
+    <div id="galleryList"><div class="loader">Loading…</div></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script type="module">
+  import { initializeApp }            from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
+                                       from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
+  import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy }
+                                       from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+
+  const firebaseConfig = {
+    apiKey:            '__FIREBASE_API_KEY__',
+    authDomain:        '__FIREBASE_AUTH_DOMAIN__',
+    projectId:         '__FIREBASE_PROJECT_ID__',
+    storageBucket:     '__FIREBASE_STORAGE_BUCKET__',
+    messagingSenderId: '__FIREBASE_MESSAGING_SENDER_ID__',
+    appId:             '__FIREBASE_APP_ID__',
+  };
+
+  const CLOUDINARY_CLOUD  = '__CLOUDINARY_CLOUD_NAME__';
+  const CLOUDINARY_PRESET = '__CLOUDINARY_UPLOAD_PRESET__';
+  const SITE = 'apel-group';
+
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db   = getFirestore(app);
+
+  // ── DOM refs ──
+  const loginScreen  = document.getElementById('loginScreen');
+  const adminScreen  = document.getElementById('adminScreen');
+  const logoutBtn    = document.getElementById('logoutBtn');
+  const loginBtn     = document.getElementById('loginBtn');
+  const loginEmail   = document.getElementById('loginEmail');
+  const loginPwd     = document.getElementById('loginPassword');
+  const formTitle    = document.getElementById('formTitle');
+  const imgPreview   = document.getElementById('imgPreview');
+  const uploadBtn    = document.getElementById('uploadBtn');
+  const fieldUrl     = document.getElementById('fieldUrl');
+  const fieldTitle   = document.getElementById('fieldTitle');
+  const fieldDesc    = document.getElementById('fieldDesc');
+  const fieldCat     = document.getElementById('fieldCategory');
+  const fieldYear    = document.getElementById('fieldYear');
+  const fieldDate    = document.getElementById('fieldDate');
+  const fieldOrder   = document.getElementById('fieldOrder');
+  const saveBtn      = document.getElementById('saveBtn');
+  const cancelBtn    = document.getElementById('cancelBtn');
+  const galleryList  = document.getElementById('galleryList');
+  const listMeta     = document.getElementById('listMeta');
+
+  let editingId = null;
+  let allPhotos = [];
+
+  // ── Toast ────────────────────────────────────────────────────
+  function toast(msg, type = 'success') {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.className = 'show ' + type;
+    setTimeout(() => { el.className = ''; }, 3000);
+  }
+
+  // ── Auth ─────────────────────────────────────────────────────
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      loginScreen.style.display = 'none';
+      adminScreen.classList.add('visible');
+      logoutBtn.style.display   = 'flex';
+      fetchPhotos();
+    } else {
+      loginScreen.style.display = 'flex';
+      adminScreen.classList.remove('visible');
+      logoutBtn.style.display   = 'none';
+    }
+  });
+
+  loginBtn.addEventListener('click', async () => {
+    loginBtn.textContent = 'Signing in…';
+    try {
+      await signInWithEmailAndPassword(auth, loginEmail.value.trim(), loginPwd.value);
+    } catch(e) {
+      toast('Login failed: ' + e.message, 'error');
+      loginBtn.innerHTML = '<i class="fas fa-lock"></i> Sign In';
+    }
+  });
+
+  logoutBtn.addEventListener('click', () => signOut(auth));
+
+  // ── Cloudinary upload ────────────────────────────────────────
+  uploadBtn.addEventListener('click', () => {
+    const widget = window.cloudinary.createUploadWidget(
+      { cloudName: CLOUDINARY_CLOUD, uploadPreset: CLOUDINARY_PRESET, multiple: false, folder: 'gallery' },
+      (err, result) => {
+        if (result.event === 'success') {
+          fieldUrl.value = result.info.secure_url;
+          imgPreview.src = result.info.secure_url;
+          imgPreview.classList.add('visible');
+        }
       }
+    );
+    widget.open();
+  });
+
+  // ── Fetch & render ───────────────────────────────────────────
+  async function fetchPhotos() {
+    galleryList.innerHTML = '<div class="loader">Loading…</div>';
+    const snap  = await getDocs(query(collection(db, 'sites', SITE, 'gallery'), orderBy('order', 'asc')));
+    allPhotos   = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    listMeta.textContent = allPhotos.length + ' photos';
+    renderList();
+  }
+
+  function renderList() {
+    if (!allPhotos.length) {
+      galleryList.innerHTML = '<div class="empty">No photos yet. Add one using the form.</div>';
+      return;
+    }
+
+    // Group by year desc
+    const yearMap = new Map();
+    allPhotos.forEach(p => {
+      const y = String(p.year || 'Uncategorised');
+      if (!yearMap.has(y)) yearMap.set(y, []);
+      yearMap.get(y).push(p);
+    });
+    const years = [...yearMap.keys()].sort((a, b) => b - a);
+
+    galleryList.innerHTML = '';
+    years.forEach(year => {
+      const group = document.createElement('div');
+      group.className = 'year-group';
+      group.innerHTML = `<div class="year-label">${year}</div>`;
+
+      const cards = document.createElement('div');
+      cards.className = 'photo-cards';
+
+      yearMap.get(year).forEach(photo => {
+        const card = document.createElement('div');
+        card.className = 'photo-card';
+        card.innerHTML = `
+          <img src="${photo.url || ''}" alt="${photo.title || ''}"
+               onerror="this.onerror=null;this.style.background='#222'">
+          <div class="photo-card-info">
+            ${photo.category ? `<div class="photo-tag">${photo.category}</div>` : ''}
+            <div class="photo-card-title">${photo.title || '(no title)'}</div>
+            <div class="photo-card-meta">${photo.date || ''} · order ${photo.order ?? '—'}</div>
+            ${photo.desc ? `<div class="photo-card-desc">${photo.desc}</div>` : ''}
+            <div class="photo-card-actions">
+              <button class="btn btn-edit" data-id="${photo.id}"><i class="fas fa-pen"></i> Edit</button>
+              <button class="btn btn-danger" data-id="${photo.id}"><i class="fas fa-trash"></i> Delete</button>
+            </div>
+          </div>`;
+        cards.appendChild(card);
+      });
+
+      group.appendChild(cards);
+      galleryList.appendChild(group);
+    });
+
+    // Wire edit/delete
+    galleryList.querySelectorAll('.btn-edit').forEach(btn => {
+      btn.addEventListener('click', () => startEdit(btn.dataset.id));
+    });
+    galleryList.querySelectorAll('.btn-danger').forEach(btn => {
+      btn.addEventListener('click', () => deletePhoto(btn.dataset.id));
     });
   }
-</script> -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-  import { getFirestore, collection, getDocs, orderBy, query } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-  const app = initializeApp({ /* your firebase config */ });
-  const db  = getFirestore(app);
-  // e.g. read gallery:
-  const snap = await getDocs(query(collection(db, "sites", "SITE_ID", "gallery"), orderBy("order")));
-  snap.forEach(doc => console.log(doc.data()));
-</script></body>
+  // ── Edit ─────────────────────────────────────────────────────
+  function startEdit(id) {
+    const p = allPhotos.find(x => x.id === id);
+    if (!p) return;
+    editingId       = id;
+    formTitle.textContent = 'Edit Photo';
+    fieldUrl.value  = p.url    || '';
+    fieldTitle.value= p.title  || '';
+    fieldDesc.value = p.desc   || '';
+    fieldCat.value  = p.category|| '';
+    fieldYear.value = p.year   || '';
+    fieldDate.value = p.date   || '';
+    fieldOrder.value= p.order  != null ? p.order : '';
+    imgPreview.src  = p.url    || '';
+    imgPreview.classList.toggle('visible', !!p.url);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function resetForm() {
+    editingId = null;
+    formTitle.textContent = 'Add Photo';
+    [fieldUrl, fieldTitle, fieldDesc, fieldCat, fieldYear, fieldDate, fieldOrder].forEach(f => f.value = '');
+    imgPreview.src = '';
+    imgPreview.classList.remove('visible');
+  }
+
+  cancelBtn.addEventListener('click', resetForm);
+
+  // ── Save ─────────────────────────────────────────────────────
+  saveBtn.addEventListener('click', async () => {
+    if (!fieldUrl.value) { toast('Please upload an image first.', 'error'); return; }
+    if (!fieldTitle.value.trim()) { toast('Title is required.', 'error'); return; }
+
+    const data = {
+      url:      fieldUrl.value,
+      title:    fieldTitle.value.trim(),
+      desc:     fieldDesc.value.trim(),
+      category: fieldCat.value.trim(),
+      year:     fieldYear.value ? Number(fieldYear.value) : null,
+      date:     fieldDate.value.trim(),
+      order:    fieldOrder.value !== '' ? Number(fieldOrder.value) : 999,
+    };
+
+    saveBtn.textContent = 'Saving…';
+    try {
+      if (editingId) {
+        await updateDoc(doc(db, 'sites', SITE, 'gallery', editingId), data);
+        toast('Photo updated!');
+      } else {
+        await addDoc(collection(db, 'sites', SITE, 'gallery'), data);
+        toast('Photo added!');
+      }
+      resetForm();
+      fetchPhotos();
+    } catch(e) {
+      toast('Save failed: ' + e.message, 'error');
+    }
+    saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Photo';
+  });
+
+  // ── Delete ────────────────────────────────────────────────────
+  async function deletePhoto(id) {
+    if (!confirm('Delete this photo?')) return;
+    try {
+      await deleteDoc(doc(db, 'sites', SITE, 'gallery', id));
+      toast('Deleted.');
+      fetchPhotos();
+    } catch(e) {
+      toast('Delete failed: ' + e.message, 'error');
+    }
+  }
+</script>
+
+<!-- Cloudinary upload widget -->
+<script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+</body>
 </html>
