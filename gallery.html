@@ -41,141 +41,84 @@
  
 
     <style>
-        /* ── Filter Tabs ── */
-        .button-container {
+        /* ── Filter tabs ── */
+        #galleryTabs {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 8px;
             flex-wrap: wrap;
-            padding: 28px 20px 20px;
+            gap: 8px;
+            padding: 30px 20px 22px;
             background: #fff;
             position: sticky;
             top: 0;
             z-index: 50;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
 
         .gallery-button {
-            background-color: #fff;
-            color: #666;
-            font-weight: 400;
-            padding: 6px 20px;
-            display: inline-block;
-            border: 1px solid #ddd;
-            border-radius: 3px;
+            padding: 7px 20px;
+            border: 1px solid #ccc;
+            background: #fff;
+            color: #555;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease-in-out;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
         }
 
         .gallery-button:hover,
         .gallery-button.active {
-            background-color: rgb(13, 81, 82);
+            background: rgb(13,81,82);
+            border-color: rgb(13,81,82);
             color: #fff;
-            border-color: rgb(13, 81, 82);
         }
 
-        /* ── Gallery wrapper ── */
+        /* ── Gallery section ── */
         #galleryContainer {
-            padding: 20px 0 60px;
+            padding: 28px 0 70px;
+            background: #f6f7f6;
         }
 
-        .iso-box-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        .iso-box-wrapper {
+        /* ── Image grid ── */
+        .gal-grid {
             display: flex;
             flex-wrap: wrap;
-            margin-left: -8px;
-            margin-right: -8px;
+            margin: 0 auto;
+            max-width: 1260px;
+            padding: 0 12px;
+            gap: 12px;
         }
 
-        /* ── Each image box ── */
-        .iso-box {
-            position: relative;
+        .gal-item {
+            width: calc(25% - 9px);
             overflow: hidden;
-            margin-bottom: 15px;
-            padding-left: 8px;
-            padding-right: 8px;
-            width: 25%;
+            border-radius: 6px;
         }
 
-        @media (max-width: 991px)  { .iso-box { width: 33.333%; } }
-        @media (max-width: 767px)  { .iso-box { width: 50%; } }
-        @media (max-width: 480px)  { .iso-box { width: 100%; } }
+        @media (max-width: 991px)  { .gal-item { width: calc(33.333% - 8px); } }
+        @media (max-width: 640px)  { .gal-item { width: calc(50% - 6px); } }
+        @media (max-width: 400px)  { .gal-item { width: 100%; } }
 
-        .iso-box a {
-            display: block;
-            overflow: hidden;
-        }
+        .gal-item a { display: block; overflow: hidden; }
 
-        .iso-box img {
+        .gal-item img {
             width: 100%;
-            height: 220px;
+            height: 210px;
             object-fit: cover;
             display: block;
-            transition: transform 0.4s ease, opacity 0.4s ease;
+            transition: transform 0.35s ease;
         }
 
-        .iso-box:hover img {
-            transform: scale(1.06);
-            opacity: 0.88;
-        }
+        .gal-item:hover img { transform: scale(1.05); }
 
         /* ── States ── */
-        .loading-spinner,
-        .no-images,
-        .error {
+        .gal-status {
+            width: 100%;
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 4rem 1rem;
             color: #888;
             font-size: 1rem;
-            width: 100%;
         }
-
-        /* Year album cards */
-        .year-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .year-card {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            background: white;
-        }
-        .year-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.15); }
-        .year-card__thumb { position: relative; height: 160px; overflow: hidden; }
-        .year-card__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-        .year-card:hover .year-card__thumb img { transform: scale(1.07); }
-        .year-card__overlay {
-            position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
-            display: flex; align-items: flex-end; padding: 14px;
-        }
-        .year-card__year { font-size: 2rem; font-weight: 800; color: white; line-height: 1; text-shadow: 0 2px 8px rgba(0,0,0,0.4); }
-        .year-card__info { padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; }
-        .year-card__count { font-size: 0.8rem; color: #666; }
-        .year-card__arrow { font-size: 1.1rem; color: #107b5f; font-weight: bold; }
-
-        /* Back button */
-        .back-btn {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 8px 18px; border: 2px solid #107b5f;
-            background: white; color: #107b5f; border-radius: 8px;
-            cursor: pointer; font-size: 0.85rem; font-weight: 600;
-            margin: 16px 20px 4px; transition: all 0.2s ease;
-        }
-        .back-btn:hover { background: #107b5f; color: white; }
-        .year-heading { font-size: 1.4rem; font-weight: 800; color: #1a1a2e; padding: 4px 20px 0; }
     </style>
 
     <!-- wrapper -->
@@ -310,213 +253,111 @@
 
     </div>
     
-    <!-- Dynamic Gallery Navigation -->
-    <div class="button-container" id="galleryTabs">
-        <!-- Tabs will be dynamically generated here -->
-        <div class="loading-tabs">Loading gallery...</div>
+    <!-- Category Tabs -->
+    <div id="galleryTabs">
+        <div class="gal-status">Loading gallery…</div>
     </div>
 
-    <!-- Gallery Container -->
+    <!-- Gallery Grid -->
     <div id="galleryContainer">
-        <div class="iso-box-section">
-            <div class="iso-box-wrapper" id="galleryContent">
-                <!-- Images loaded from Firebase -->
-            </div>
-        </div>
+        <div class="gal-grid" id="galleryContent"></div>
     </div>
+
 <script type="module">
     import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
     import { getFirestore, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
     const firebaseConfig = {
-        apiKey:            'AIzaSyDLoY1NqbQebgzcMiQlWUGXdjsJV6fmCJk',
-        authDomain:        'apel-website-de6aa.firebaseapp.com',
-        projectId:         'apel-website-de6aa',
-        storageBucket:     'apel-website-de6aa.firebasestorage.app',
-        messagingSenderId: '834884416615',
-        appId:             '1:834884416615:web:312448749347f7fa0b10c2',
+        apiKey:            '__FIREBASE_API_KEY__',
+        authDomain:        '__FIREBASE_AUTH_DOMAIN__',
+        projectId:         '__FIREBASE_PROJECT_ID__',
+        storageBucket:     '__FIREBASE_STORAGE_BUCKET__',
+        messagingSenderId: '__FIREBASE_MESSAGING_SENDER_ID__',
+        appId:             '__FIREBASE_APP_ID__',
     };
 
     const app  = initializeApp(firebaseConfig);
     const db   = getFirestore(app);
     const SITE = 'apel-group';
 
-    const tabsContainer  = document.getElementById('galleryTabs');
-    const galleryContent = document.getElementById('galleryContent');
+    const tabs    = document.getElementById('galleryTabs');
+    const content = document.getElementById('galleryContent');
 
-    // ── State ──────────────────────────────────────────────────────────────────
-    let allImages       = [];
-    let activeCategory  = null;   // null = all categories
-    let activeYear      = null;   // null = show year albums; string = show images
-
-    // ── Boot ───────────────────────────────────────────────────────────────────
-    tabsContainer.innerHTML = '<div class="loading-spinner">Loading gallery…</div>';
+    let allImages = [];
 
     async function loadGallery() {
         const snap = await getDocs(query(collection(db, 'sites', SITE, 'gallery'), orderBy('order', 'asc')));
         allImages  = snap.docs.map(d => ({ id: d.id, ...d.data() }));
 
         if (!allImages.length) {
-            tabsContainer.innerHTML = '';
-            galleryContent.innerHTML = '<div class="no-images"><p>No gallery images yet.</p></div>';
+            tabs.innerHTML = '';
+            content.innerHTML = '<div class="gal-status">No gallery images yet.</div>';
             return;
         }
-        render();
+
+        buildTabs();
+        showCategory(null);
     }
 
-    // ── Render dispatcher ──────────────────────────────────────────────────────
-    function render() {
-        buildCategoryTabs();
-        if (activeYear) renderImageGrid(); else renderYearAlbums();
-    }
+    function buildTabs() {
+        const cats = [...new Set(allImages.map(i => i.category).filter(Boolean))].sort();
+        tabs.innerHTML = '';
 
-    // ── Category tabs ──────────────────────────────────────────────────────────
-    function buildCategoryTabs() {
-        const pool       = allImages;
-        const categories = [...new Set(pool.map(i => i.category).filter(Boolean))].sort();
-
-        tabsContainer.innerHTML = '';
-
-        const makeTab = (label, isCat) => {
+        const makeBtn = (label, cat) => {
             const btn = document.createElement('button');
-            btn.className = 'gallery-button' + (isCat ? ' active' : '');
+            btn.className = 'gallery-button';
             btn.textContent = label;
+            btn.addEventListener('click', () => {
+                tabs.querySelectorAll('.gallery-button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                showCategory(cat);
+            });
             return btn;
         };
 
-        const allBtn = makeTab('All', activeCategory === null);
-        allBtn.addEventListener('click', () => {
-            activeCategory = null; activeYear = null; render();
-        });
-        tabsContainer.appendChild(allBtn);
+        const allBtn = makeBtn('All', null);
+        allBtn.classList.add('active');
+        tabs.appendChild(allBtn);
 
-        categories.forEach(cat => {
-            const btn = makeTab(cat, activeCategory === cat);
-            btn.addEventListener('click', () => {
-                activeCategory = cat; activeYear = null; render();
-            });
-            tabsContainer.appendChild(btn);
-        });
+        cats.forEach(cat => tabs.appendChild(makeBtn(cat, cat)));
     }
 
-    // ── Year albums grid ───────────────────────────────────────────────────────
-    function renderYearAlbums() {
-        const pool = activeCategory
-            ? allImages.filter(i => i.category === activeCategory)
-            : allImages;
+    function showCategory(cat) {
+        const images = cat ? allImages.filter(i => i.category === cat) : allImages;
 
-        // Group by year, derive year from field or createdAt
-        const yearMap = new Map();
-        pool.forEach(img => {
-            const y = img.year || (img.createdAt?.toDate
-                ? img.createdAt.toDate().getFullYear()
-                : new Date().getFullYear());
-            if (!yearMap.has(String(y))) yearMap.set(String(y), []);
-            yearMap.get(String(y)).push(img);
-        });
-
-        const years = [...yearMap.keys()].sort((a, b) => b - a);
-
-        galleryContent.innerHTML = '';
-
-        if (!years.length) {
-            galleryContent.innerHTML = '<div class="no-images"><p>No images found.</p></div>';
-            return;
-        }
-
-        const grid = document.createElement('div');
-        grid.className = 'year-grid';
-
-        years.forEach(year => {
-            const imgs      = yearMap.get(year);
-            const thumbnail = imgs[0]?.url || '';
-
-            const card = document.createElement('div');
-            card.className = 'year-card';
-            card.innerHTML = `
-                <div class="year-card__thumb">
-                    <img src="${thumbnail}" alt="${year}" loading="lazy"
-                         onerror="this.onerror=null;this.src='img/placeholder.jpg'">
-                    <div class="year-card__overlay">
-                        <span class="year-card__year">${year}</span>
-                    </div>
-                </div>
-                <div class="year-card__info">
-                    <span class="year-card__count">${imgs.length} photo${imgs.length !== 1 ? 's' : ''}</span>
-                    <span class="year-card__arrow">→</span>
-                </div>
-            `;
-            card.addEventListener('click', () => { activeYear = year; render(); });
-            grid.appendChild(card);
-        });
-
-        galleryContent.appendChild(grid);
-    }
-
-    // ── Full image grid (after selecting a year) ───────────────────────────────
-    function renderImageGrid() {
-        const images = allImages.filter(i => {
-            const imgYear = String(i.year || (i.createdAt?.toDate
-                ? i.createdAt.toDate().getFullYear()
-                : new Date().getFullYear()));
-            const catOk  = !activeCategory || i.category === activeCategory;
-            return catOk && imgYear === activeYear;
-        });
-
-        galleryContent.innerHTML = '';
-
-        // Back button
-        const back = document.createElement('button');
-        back.className = 'back-btn';
-        back.innerHTML = '← Back to years';
-        back.addEventListener('click', () => { activeYear = null; render(); });
-        galleryContent.appendChild(back);
-
-        // Heading
-        const heading = document.createElement('p');
-        heading.className = 'year-heading';
-        heading.textContent = activeYear + (activeCategory ? ` · ${activeCategory}` : '');
-        galleryContent.appendChild(heading);
+        content.innerHTML = '';
 
         if (!images.length) {
-            galleryContent.insertAdjacentHTML('beforeend', '<div class="no-images"><p>No images for this selection.</p></div>');
+            content.innerHTML = '<div class="gal-status">No images in this category.</div>';
             return;
         }
 
-        const grid = document.createElement('div');
-        grid.className = 'gallery';
-
+        const frag = document.createDocumentFragment();
         images.forEach(img => {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.innerHTML = `
-                <a href="${img.url}" class="image-popup">
-                    <div class="image-container">
-                        <img src="${img.url}" alt="${img.title || ''}" loading="lazy"
-                             onerror="this.onerror=null;this.src='img/placeholder.jpg'">
-                        <div class="overlay"><span class="plus">+</span></div>
-                    </div>
-                </a>
-                <div class="info"><h3>${img.title || ''}</h3></div>
-            `;
-            grid.appendChild(item);
+            const div = document.createElement('div');
+            div.className = 'gal-item';
+            div.innerHTML = `
+                <a href="${img.url}">
+                    <img src="${img.url}" alt="${img.title || ''}" loading="lazy"
+                         onerror="this.onerror=null;this.src='img/placeholder.jpg'">
+                </a>`;
+            frag.appendChild(div);
         });
-
-        galleryContent.appendChild(grid);
+        content.appendChild(frag);
 
         if (window.jQuery && typeof $.fn.magnificPopup !== 'undefined') {
-            $('.image-popup').magnificPopup({
+            $('#galleryContent').magnificPopup({
+                delegate: 'a',
                 type: 'image',
                 gallery: { enabled: true },
-                zoom: { enabled: true, duration: 300 },
             });
         }
     }
 
     loadGallery().catch(err => {
-        console.error('Gallery load error:', err);
-        tabsContainer.innerHTML = '';
-        galleryContent.innerHTML = '<div class="error">Gallery failed to load. Check browser console.</div>';
+        console.error(err);
+        tabs.innerHTML = '';
+        content.innerHTML = '<div class="gal-status" style="color:#c00">Gallery failed to load.</div>';
     });
 </script>
     <!-- wrapper end -->
