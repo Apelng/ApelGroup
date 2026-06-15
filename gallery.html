@@ -117,122 +117,18 @@
         to   { opacity:1; transform:translateY(0); }
       }
 
-      /* ── VIEW 1 : Year card grid ── */
-      .year-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 18px;
-      }
-
-      .year-card {
-        position: relative;
-        border-radius: 14px;
-        overflow: hidden;
-        cursor: pointer;
-        background: #fff;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-        transition: transform 0.32s cubic-bezier(0.22,1,0.36,1), box-shadow 0.32s;
-        animation: galFadeUp 0.45s ease both;
-      }
-      .year-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 32px rgba(0,0,0,0.13);
-      }
-      .yc-thumb {
-        width: 100%;
-        aspect-ratio: 4/3;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.45s ease;
-      }
-      .year-card:hover .yc-thumb { transform: scale(1.05); }
-      .yc-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
-        transition: opacity 0.3s;
-      }
-      .yc-info {
-        position: absolute;
-        bottom: 0; left: 0; right: 0;
-        padding: 20px 18px 16px;
-        z-index: 2;
-      }
-      .yc-year {
-        font-family: 'Instrument Serif', serif;
-        font-size: 48px;
-        color: #fff;
-        line-height: 1;
-        letter-spacing: -1.5px;
-      }
-      .yc-meta {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-top: 5px;
-      }
-      .yc-count-label { font-size: 12px; color: rgba(255,255,255,0.65); }
-      .yc-arrow {
-        font-size: 13px;
-        color: #5dccaa;
-        opacity: 0;
-        transform: translateX(-5px);
-        transition: opacity 0.25s, transform 0.25s;
-      }
-      .year-card:hover .yc-arrow { opacity:1; transform:translateX(0); }
-
-      /* ── VIEW 2 : Photo grid page ── */
-      #galPhotoView { display: none; }
-      #galPhotoView.active { display: block; }
-      #galYearView.hidden { display: none; }
-
-      .gal-back-bar {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-bottom: 1.75rem;
-        flex-wrap: wrap;
-      }
-      .gal-back-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 18px;
-        border: 1.5px solid #107b5f;
-        background: #fff;
-        color: #107b5f;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 13px;
-        font-weight: 600;
-        font-family: 'Geist', sans-serif;
-        transition: background 0.2s, color 0.2s;
-      }
-      .gal-back-btn:hover { background: #107b5f; color: #fff; }
-      .gal-view-heading {
-        font-family: 'Instrument Serif', serif;
-        font-size: 2rem;
-        color: #1a1a1a;
-      }
-      .gal-view-sub {
-        font-size: 13px;
-        color: #9aaba4;
-        margin-left: 4px;
-      }
-
-      /* Photo grid */
+      /* ── Photo grid ── */
       .photo-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
+        gap: 14px;
       }
       @media (max-width: 1024px) { .photo-grid { grid-template-columns: repeat(3,1fr); } }
       @media (max-width: 680px)  { .photo-grid { grid-template-columns: repeat(2,1fr); } }
       @media (max-width: 420px)  { .photo-grid { grid-template-columns: 1fr; } }
 
       .photo-card {
-        background: #fff;
-        border-radius: 12px;
+        border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 2px 8px rgba(0,0,0,0.07);
         transition: transform 0.28s ease, box-shadow 0.28s ease;
@@ -240,12 +136,9 @@
       }
       .photo-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+        box-shadow: 0 10px 26px rgba(0,0,0,0.12);
       }
-      .photo-card-link {
-        display: block;
-        overflow: hidden;
-      }
+      .photo-card-link { display: block; overflow: hidden; }
       .photo-card-img {
         width: 100%;
         aspect-ratio: 4/3;
@@ -255,34 +148,6 @@
         cursor: zoom-in;
       }
       .photo-card:hover .photo-card-img { transform: scale(1.05); }
-      .photo-card-body { padding: 12px 14px 14px; }
-      .photo-card-title {
-        font-weight: 600;
-        font-size: 14px;
-        color: #1a1a1a;
-        margin-bottom: 4px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .photo-card-date { font-size: 11.5px; color: #9aaba4; margin-bottom: 6px; }
-      .photo-card-desc {
-        font-size: 12.5px;
-        color: #5a6b65;
-        line-height: 1.6;
-      }
-      .photo-card-tag {
-        display: inline-block;
-        margin-top: 8px;
-        font-size: 10px;
-        padding: 2px 9px;
-        border-radius: 20px;
-        background: rgba(16,123,95,0.1);
-        color: #107b5f;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.4px;
-      }
 
       /* ── States ── */
       .gal-status {
@@ -290,12 +155,12 @@
         padding: 5rem 1rem;
         color: #9aaba4;
         font-size: 1rem;
+        grid-column: 1 / -1;
       }
 
       @media (max-width: 640px) {
         .gal-main { padding: 1.5rem 1rem 3rem; }
         .gal-topbar-inner { padding: 0 1rem; }
-        .yc-year { font-size: 36px; }
       }
     </style>
 
@@ -442,26 +307,9 @@
       </div>
 
       <div class="gal-main">
-
-        <!-- VIEW 1: Year cards -->
-        <div id="galYearView">
-          <div class="year-grid" id="galGrid">
-            <div class="gal-status">Loading gallery…</div>
-          </div>
+        <div class="photo-grid" id="galGrid">
+          <div class="gal-status">Loading gallery…</div>
         </div>
-
-        <!-- VIEW 2: Photo grid for a selected year -->
-        <div id="galPhotoView">
-          <div class="gal-back-bar">
-            <button class="gal-back-btn" id="galBackBtn">← Back</button>
-            <div>
-              <span class="gal-view-heading" id="galViewHeading"></span>
-              <span class="gal-view-sub" id="galViewSub"></span>
-            </div>
-          </div>
-          <div class="photo-grid" id="galPhotoGrid"></div>
-        </div>
-
       </div>
 
     </div><!-- /.gal-section -->
@@ -471,120 +319,55 @@
     import { getFirestore, collection, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
     const firebaseConfig = {
-        apiKey:            '__FIREBASE_API_KEY__',
-        authDomain:        '__FIREBASE_AUTH_DOMAIN__',
-        projectId:         '__FIREBASE_PROJECT_ID__',
-        storageBucket:     '__FIREBASE_STORAGE_BUCKET__',
-        messagingSenderId: '__FIREBASE_MESSAGING_SENDER_ID__',
-        appId:             '__FIREBASE_APP_ID__',
+        apiKey:            'AIzaSyDLoY1NqbQebgzcMiQlWUGXdjsJV6fmCJk',
+        authDomain:        'apel-website-de6aa.firebaseapp.com',
+        projectId:         'apel-website-de6aa',
+        storageBucket:     'apel-website-de6aa.firebasestorage.app',
+        messagingSenderId: '834884416615',
+        appId:             '1:834884416615:web:312448749347f7fa0b10c2',
     };
 
     const app  = initializeApp(firebaseConfig);
     const db   = getFirestore(app);
     const SITE = 'apel-group';
 
-    const galTabs       = document.getElementById('galTabs');
-    const galCount      = document.getElementById('galCount');
-    const galGrid       = document.getElementById('galGrid');
-    const galYearView   = document.getElementById('galYearView');
-    const galPhotoView  = document.getElementById('galPhotoView');
-    const galPhotoGrid  = document.getElementById('galPhotoGrid');
-    const galBackBtn    = document.getElementById('galBackBtn');
-    const galViewHeading= document.getElementById('galViewHeading');
-    const galViewSub    = document.getElementById('galViewSub');
+    const galTabs  = document.getElementById('galTabs');
+    const galCount = document.getElementById('galCount');
+    const galGrid  = document.getElementById('galGrid');
 
     let allImages = [];
     let activeTab = null;
 
-    // ── Back button: return to year grid ─────────────────────────
-    galBackBtn.addEventListener('click', () => {
-        galPhotoView.classList.remove('active');
-        galYearView.classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    // ── Render flat photo grid ────────────────────────────────────
+    function renderPhotos() {
+        const pool = activeTab ? allImages.filter(i => i.category === activeTab) : allImages;
+        galCount.textContent = pool.length + ' photo' + (pool.length !== 1 ? 's' : '');
+        galGrid.innerHTML = '';
 
-    // ── Open a year: switch to photo grid view ────────────────────
-    function openYear(year, images) {
-        galViewHeading.textContent = year;
-        galViewSub.textContent = `· ${activeTab || 'All'} · ${images.length} photo${images.length !== 1 ? 's' : ''}`;
+        if (!pool.length) {
+            galGrid.innerHTML = '<div class="gal-status">No images found.</div>';
+            return;
+        }
 
-        galPhotoGrid.innerHTML = '';
-        images.forEach((img, i) => {
+        pool.forEach((img, i) => {
             const card = document.createElement('div');
             card.className = 'photo-card';
-            card.style.animationDelay = `${i * 0.04}s`;
+            card.style.animationDelay = `${i * 0.03}s`;
             card.innerHTML = `
                 <a class="photo-card-link image-popup" href="${img.url}">
-                    <img class="photo-card-img" src="${img.url}" alt="${img.title || ''}" loading="lazy"
+                    <img class="photo-card-img" src="${img.url}" alt="" loading="lazy"
                          onerror="this.onerror=null;this.src='img/placeholder.jpg'">
-                </a>
-                <div class="photo-card-body">
-                    ${img.title  ? `<div class="photo-card-title">${img.title}</div>` : ''}
-                    ${img.date   ? `<div class="photo-card-date">${img.date} ${year}</div>` : ''}
-                    ${img.desc   ? `<div class="photo-card-desc">${img.desc}</div>` : ''}
-                    ${img.category ? `<div class="photo-card-tag">${img.category}</div>` : ''}
-                </div>`;
-            galPhotoGrid.appendChild(card);
+                </a>`;
+            galGrid.appendChild(card);
         });
 
-        galYearView.classList.add('hidden');
-        galPhotoView.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-
-        // Wire Magnific Popup for full-size view
         if (window.jQuery && typeof $.fn.magnificPopup !== 'undefined') {
-            $('#galPhotoGrid .image-popup').magnificPopup({
+            $('#galGrid .image-popup').magnificPopup({
                 type: 'image',
                 gallery: { enabled: true },
                 zoom: { enabled: true, duration: 300 },
             });
         }
-    }
-
-    // ── Render year cards ─────────────────────────────────────────
-    function renderYearCards() {
-        const pool = activeTab ? allImages.filter(i => i.category === activeTab) : allImages;
-        galCount.textContent = pool.length + ' photo' + (pool.length !== 1 ? 's' : '');
-
-        const yearMap = new Map();
-        pool.forEach(img => {
-            const y = String(img.year || new Date().getFullYear());
-            if (!yearMap.has(y)) yearMap.set(y, []);
-            yearMap.get(y).push(img);
-        });
-
-        const years = [...yearMap.keys()].sort((a, b) => b - a);
-        galGrid.innerHTML = '';
-
-        if (!years.length) {
-            galGrid.innerHTML = '<div class="gal-status">No images found.</div>';
-            return;
-        }
-
-        years.forEach((year, i) => {
-            const imgs  = yearMap.get(year);
-            const cover = imgs[0];
-            const card  = document.createElement('div');
-            card.className = 'year-card';
-            card.style.animationDelay = `${i * 0.07}s`;
-            card.innerHTML = `
-                <img class="yc-thumb" src="${cover.url}" alt="${year}"
-                     onerror="this.onerror=null;this.src='img/placeholder.jpg'">
-                <div class="yc-overlay"></div>
-                <div class="yc-info">
-                    <div class="yc-year">${year}</div>
-                    <div class="yc-meta">
-                        <span class="yc-count-label">${imgs.length} photo${imgs.length !== 1 ? 's' : ''}</span>
-                        <span class="yc-arrow">→</span>
-                    </div>
-                </div>`;
-            card.addEventListener('click', () => openYear(year, imgs));
-            galGrid.appendChild(card);
-        });
-
-        // Reset to year view
-        galPhotoView.classList.remove('active');
-        galYearView.classList.remove('hidden');
     }
 
     // ── Build tabs ────────────────────────────────────────────────
@@ -600,7 +383,7 @@
                 galTabs.querySelectorAll('.gal-tab').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 activeTab = cat;
-                renderYearCards();
+                renderPhotos();
             });
             return btn;
         };
@@ -619,7 +402,7 @@
             return;
         }
         buildTabs();
-        renderYearCards();
+        renderPhotos();
     }
 
     loadGallery().catch(err => {
@@ -823,9 +606,6 @@
     <script src="js/plugins/magnific-popup.js"></script>
     <!-- Apel js -->
     <script src="js/main.js"></script>
-    <!-- Gallery scripts -->
-    <script src="img/gallery2/js/imagesloaded.pkgd.min.js"></script>
-    <script src="img/gallery2/js/jquery.magnific-popup.min.js"></script>
    <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
