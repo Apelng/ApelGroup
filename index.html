@@ -453,51 +453,59 @@
         }
 </style>
 
-    <!-- Popup Container -->
-    <!-- <div id="popup-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;">
-        <span id="popup-close" style="position: fixed; top: 20px; right: 20px; color: white; font-size: 30px; font-weight: bold; cursor: pointer; z-index: 10001; background: rgba(0,0,0,0.5); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; line-height: 1; border: 2px solid white;">&times;</span>
-        <iframe id="popup-iframe" src="popup.html" style="width: 100%; height: 100%; border: none; background: transparent;"></iframe>
-    </div>
-    -->
-    <!-- Second Popup -->
+    <!-- Popup (managed via admin.apel.com.ng → Apel Group → Popups) -->
     <div id="popup2" class="popup-container">
-        <span class="popup-close" onclick="closeSecondPopup()">&times;</span>
+        <span class="popup-close" onclick="closePopup()">&times;</span>
         <div class="popup-content">
-            <a href="https://mutualfund.apel.com.ng" target="_blank">
-                <img src="https://res.cloudinary.com/apelng/image/upload/v1780139645/Intro_BalanceFund.jpg_gfkvgs.jpg" alt="Apel Financial Services - Second Offer">
+            <a id="popup-link" href="#" target="_blank">
+                <img id="popup-img" src="" alt="Apel">
             </a>
         </div>
     </div>
 
- <script>
-      // Show second popup after 1 second
-        setTimeout(function() {
-            document.getElementById('popup2').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }, 1000);
+    <script type="module">
+        import { initializeApp }    from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
+        import { getFirestore, collection, query, where, getDocs }
+                                    from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 
-        // Close second popup
-        function closeSecondPopup() {
+        const app = initializeApp({
+            apiKey:            'AIzaSyDLoY1NqbQebgzcMiQlWUGXdjsJV6fmCJk',
+            authDomain:        'apel-website-de6aa.firebaseapp.com',
+            projectId:         'apel-website-de6aa',
+            storageBucket:     'apel-website-de6aa.firebasestorage.app',
+            messagingSenderId: '834884416615',
+            appId:             '1:834884416615:web:312448749347f7fa0b10c2',
+        });
+        const db = getFirestore(app);
+
+        const snap = await getDocs(
+            query(collection(db, 'sites', 'apel-group', 'popups'), where('active', '==', true))
+        );
+
+        if (!snap.empty) {
+            const popup = snap.docs[0].data();
+            document.getElementById('popup-img').src   = popup.imageUrl  || '';
+            document.getElementById('popup-link').href = popup.linkUrl   || '#';
+            const delay = (popup.delay ?? 1) * 1000;
+            setTimeout(() => {
+                document.getElementById('popup2').classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }, delay);
+        }
+    </script>
+
+    <script>
+        function closePopup() {
             document.getElementById('popup2').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-
-        // Close popup with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                if (document.getElementById('popup2').classList.contains('active')) {
-                    closeSecondPopup();
-                }
-            }
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closePopup();
         });
-
-        // Close when clicking outside the image
         document.getElementById('popup2').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeSecondPopup();
-            }
+            if (e.target === this) closePopup();
         });
- </script>
+    </script>
 
     <!-- wrapper -->
     <div id="smooth-wrapper" class="mil-wrapper" style="background-color:#fff">
