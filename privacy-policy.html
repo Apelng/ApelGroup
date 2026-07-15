@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Apel - Data Privacy Policy</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="author" content="bslthemes" />
+
+    <link rel="stylesheet" href="fonts/css/switzer.css" type="text/css" media="all">
+    <link rel="stylesheet" href="fonts/css/font-awesome.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/plugins/bootstrap-grid.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/plugins/swiper.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/plugins/magnific-popup.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/footer.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+
+    <style>
+      /* ── Page layout ── */
+      .pp-page {
+        background: #f8faf9;
+        font-family: 'Switzer', sans-serif;
+      }
+
+      .pp-wrap {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 60px 28px 100px;
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        gap: 56px;
+        align-items: start;
+      }
+
+      /* ── Company badges row ── */
+      .pp-companies {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      .pp-company-badge {
+        background: #fff;
+        border: 1px solid #d6e4e0;
+        border-radius: 6px;
+        padding: 7px 16px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #0d5152;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+      }
+
+      /* ── Sticky TOC ── */
+      .pp-toc {
+        position: sticky;
+        top: 100px;
+        background: #fff;
+        border: 1px solid #e0ebe7;
+        border-radius: 12px;
+        padding: 24px 20px;
+        font-size: 0.8rem;
+      }
+      .pp-toc-title {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: #9aaba4;
+        margin: 0 0 14px;
+      }
+      .pp-toc ol {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        counter-reset: toc;
+      }
+      .pp-toc ol li {
+        counter-increment: toc;
+        margin-bottom: 9px;
+        line-height: 1.4;
+      }
+      .pp-toc ol li a {
+        color: #3a5450;
+        text-decoration: none;
+        display: flex;
+        gap: 8px;
+        transition: color 0.2s;
+      }
+      .pp-toc ol li a::before {
+        content: counter(toc) ".";
+        color: #107b5f;
+        font-weight: 700;
+        flex-shrink: 0;
+        min-width: 18px;
+      }
+      .pp-toc ol li a:hover { color: #107b5f; }
+
+      /* ── Content ── */
+      .pp-content {
+        background: #fff;
+        border-radius: 14px;
+        border: 1px solid #e0ebe7;
+        padding: 52px 56px;
+      }
+
+      .pp-doc-header {
+        border-bottom: 2px solid #e8f0ec;
+        padding-bottom: 32px;
+        margin-bottom: 40px;
+      }
+      .pp-doc-label {
+        display: inline-block;
+        background: #e8f5f0;
+        color: #107b5f;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        padding: 5px 12px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+      }
+      .pp-doc-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #0b2a2b;
+        margin: 0 0 12px;
+        line-height: 1.2;
+      }
+      .pp-doc-sub {
+        font-size: 0.85rem;
+        color: #6b8a84;
+        margin: 0;
+      }
+
+      /* Sections */
+      .pp-section {
+        margin-bottom: 44px;
+        scroll-margin-top: 110px;
+      }
+      .pp-section-heading {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+      .pp-section-num {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: #e8f5f0;
+        color: #107b5f;
+        font-size: 0.78rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .pp-section-title {
+        font-size: 1.08rem;
+        font-weight: 700;
+        color: #0b2a2b;
+        margin: 0;
+      }
+
+      .pp-content p {
+        color: #3d5450;
+        font-size: 0.9rem;
+        line-height: 1.8;
+        margin: 0 0 14px;
+      }
+      .pp-content ol, .pp-content ul {
+        color: #3d5450;
+        font-size: 0.9rem;
+        line-height: 1.8;
+        padding-left: 22px;
+        margin: 0 0 14px;
+      }
+      .pp-content ol li, .pp-content ul li {
+        margin-bottom: 9px;
+      }
+      .pp-content ol { list-style: decimal; }
+      .pp-content ul { list-style: disc; }
+
+      .pp-sub-list {
+        list-style: lower-alpha !important;
+        margin-top: 10px !important;
+      }
+
+      .pp-contact-box {
+        background: #f0f8f5;
+        border-left: 4px solid #107b5f;
+        border-radius: 0 8px 8px 0;
+        padding: 18px 22px;
+        margin: 16px 0 20px;
+        font-size: 0.875rem;
+        color: #2a4a46;
+        line-height: 1.7;
+      }
+      .pp-contact-box strong { color: #0b2a2b; }
+
+      .pp-approved {
+        margin-top: 48px;
+        padding-top: 28px;
+        border-top: 1px solid #e0ebe7;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .pp-approved-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #e8f5f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .pp-approved-icon i { color: #107b5f; font-size: 16px; }
+      .pp-approved-text { font-size: 0.82rem; color: #6b8a84; }
+      .pp-approved-text strong { color: #0b2a2b; display: block; font-size: 0.9rem; }
+
+      /* ── Responsive ── */
+      @media (max-width: 900px) {
+        .pp-wrap { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px 80px; }
+        .pp-toc { position: static; }
+        .pp-content { padding: 32px 24px; }
+        .pp-doc-title { font-size: 1.5rem; }
+      }
+      @media (max-width: 560px) {
+        .pp-content { padding: 24px 18px; }
+        .pp-companies { gap: 8px; }
+        .pp-company-badge { font-size: 0.68rem; padding: 6px 12px; }
+      }
+    </style>
+</head>
+
+<body>
+
+    <div id="smooth-wrapper" class="mil-wrapper">
+
+        <!-- preloader -->
+        <div class="mil-preloader">
+            <div class="mil-load"></div>
+            <p class="h2 mil-mb-30"><span class="mil-lightpreloader mil-counter" data-number="100">100</span><span class="mil-lightpreloader">%</span></p>
+        </div>
+
+        <!-- scroll progress -->
+        <div class="mil-progress-track"><div class="mil-progress"></div></div>
+        <div class="progress-wrap active-progress"></div>
+
+        <!-- nav -->
+        <div class="mil-top-panel mil-dark-2">
+            <div class="container">
+                <a href="index.html" class="mil-logo">
+                    <img src="img/favicon.png" alt="Apel" width="73" height="73">
+                </a>
+                <nav class="mil-top-menu">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="mil-has-children">
+                            <a>About Us</a>
+                            <ul>
+                                <li><a href="about.html">About Apel</a></li>
+                                <li><a href="our_team.html">Our Team</a></li>
+                                <li><a href="about.html#ourCompanies">Our Companies</a></li>
+                            </ul>
+                        </li>
+                        <li class="mil-has-children">
+                            <a>Our Business</a>
+                            <ul>
+                                <li><a href="https://asset.apel.com.ng" target="_blank">Equities Trading</a></li>
+                                <li><a href="https://asset.apel.com.ng" target="_blank">Corporate Finance</a></li>
+                                <li><a href="https://trust.apel.com.ng" target="_blank">Trusteeship</a></li>
+                                <li><a href="https://wealth.apel.com.ng" target="_blank">Fund Management</a></li>
+                                <li><a href="https://registrars.apel.com.ng" target="_blank">Registrarship</a></li>
+                            </ul>
+                        </li>
+                        <li class="mil-has-children">
+                            <a>Resources</a>
+                            <ul>
+                                <li><a href="gallery.html">Photo Gallery</a></li>
+                                <li><a href="market-activities.html">Market Activities</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </nav>
+                <div class="mil-menu-buttons">
+                    <div class="mil-menu-btn"><span></span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="smooth-content">
+
+            <!-- Hero banner -->
+            <div class="mil-banner mil-banner-inner mil-dissolve">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-xl-8">
+                            <div class="mil-banner-text mil-text-center">
+                                <div class="mil-text-m mil-mb-20">Legal</div>
+                                <h1 class="mil-mb-60">Data Privacy Policy</h1>
+                                <ul class="mil-breadcrumbs mil-center">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="pp-page">
+              <div class="pp-wrap">
+
+                <!-- Company badges -->
+                <div class="pp-companies">
+                  <span class="pp-company-badge">Apel Asset Limited</span>
+                  <span class="pp-company-badge">Apel Capital &amp; Trust Limited</span>
+                  <span class="pp-company-badge">Apel Capital Registrars Limited</span>
+                  <span class="pp-company-badge">Apel Wealth Management Limited</span>
+                </div>
+
+                <!-- TOC -->
+                <aside class="pp-toc">
+                  <p class="pp-toc-title">Contents</p>
+                  <ol>
+                    <li><a href="#s1">About this Policy</a></li>
+                    <li><a href="#s2">Who are we?</a></li>
+                    <li><a href="#s3">Collecting Personal Information</a></li>
+                    <li><a href="#s4">Using Personal Information</a></li>
+                    <li><a href="#s5">Disclosing Personal Information</a></li>
+                    <li><a href="#s6">International Data Transfers</a></li>
+                    <li><a href="#s7">Retaining Personal Information</a></li>
+                    <li><a href="#s8">Security of Personal Information</a></li>
+                    <li><a href="#s9">Amendments</a></li>
+                    <li><a href="#s10">Third Party Websites</a></li>
+                    <li><a href="#s11">Updating Information</a></li>
+                    <li><a href="#s12">Cookies</a></li>
+                    <li><a href="#s13">Your Rights</a></li>
+                  </ol>
+                </aside>
+
+                <!-- Main document -->
+                <article class="pp-content">
+
+                  <div class="pp-doc-header">
+                    <span class="pp-doc-label">Website &amp; Portals</span>
+                    <h1 class="pp-doc-title">Data Privacy Policy</h1>
+                    <p class="pp-doc-sub">Apel Group &nbsp;·&nbsp; Last reviewed 2025</p>
+                  </div>
+
+                  <!-- 1 -->
+                  <section class="pp-section" id="s1">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">1</div>
+                      <h2 class="pp-section-title">About this Policy</h2>
+                    </div>
+                    <p>This policy explains when and why we collect personal information about our website visitors, how we use it and how we keep it secure and clients' rights in relation to it.</p>
+                    <p>We may collect, use and store clients' personal data, as described in this Data Privacy Policy and as described when we collect data.</p>
+                    <p>We reserve the right to amend this Data Privacy Policy from time to time without prior notice. We may be required to amend this Data Privacy Policy due to regulations. For any significant changes clients may be notified but are advised to check our website for the latest Privacy Policy.</p>
+                    <p>We will always comply with the Nigeria Data Protection Regulation (NDPR) when dealing with clients' personal data. For the purposes of the NDPR, we will be the "controller" of all personal data we hold about clients and anyone.</p>
+                    <p>Consenting to our use of cookies in accordance with the terms of this policy when clients first visit our website permits us to use cookies every time clients visit our website.</p>
+                  </section>
+
+                  <!-- 2 -->
+                  <section class="pp-section" id="s2">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">2</div>
+                      <h2 class="pp-section-title">Who are we?</h2>
+                    </div>
+                    <p>We are Apel comprising of four companies: Apel Asset Limited, Apel Capital and Trust Limited, Apel Wealth Management Limited and Apel Capital Registrars Limited.</p>
+                    <div class="pp-contact-box">
+                      <strong>Contact us at:</strong>
+                      No. 6 Alhaji Bashorun Street, off Norman Williams, South-West Ikoyi, Lagos<br>
+                      <strong>Tel:</strong> <a href="tel:+2349048844011">+234 9048844011</a><br>
+                      <strong>Email:</strong> <a href="mailto:info@apel.com.ng">info@apel.com.ng</a>
+                    </div>
+                  </section>
+
+                  <!-- 3 -->
+                  <section class="pp-section" id="s3">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">3</div>
+                      <h2 class="pp-section-title">Collecting Personal Information</h2>
+                    </div>
+                    <p>The following types of personal information may be collected, stored, and used:</p>
+                    <ol>
+                      <li>Information about your computer including IP address, geographical location, browser type and version, and operating system.</li>
+                      <li>Information about visits to and use of this website including the referral source, length of visit, page views, and website navigation paths.</li>
+                      <li>Information, such as email address, that is entered when registering on our website.</li>
+                      <li>Information that is entered when clients create a profile on our website — for example, name, profile pictures, gender, birthday, relationship status, interests and hobbies, educational details, and employment details.</li>
+                      <li>Information, such as name and email address, that clients enter in order to set up subscriptions to our emails and/or newsletters.</li>
+                      <li>Information that clients enter while using the services on our website.</li>
+                      <li>Information that is generated while using our website, including when, how often, and under what circumstances clients use it.</li>
+                      <li>Information relating to enquiries, complaints and feedback clients make through our website, which includes name, address, telephone number, email address, and credit card details.</li>
+                      <li>Information that clients post to our website with the intention of publishing it on the internet, which includes username, profile pictures, and the content of posts.</li>
+                      <li>Information contained in any communications that clients send to us by email or through our website, including its communication content and meta-data.</li>
+                      <li>Any other personal information that clients may send to us.</li>
+                    </ol>
+                    <p>Before anyone discloses to us the personal information of another person, they must obtain that person's consent to both the disclosure and the processing of that personal information in accordance with this policy.</p>
+                  </section>
+
+                  <!-- 4 -->
+                  <section class="pp-section" id="s4">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">4</div>
+                      <h2 class="pp-section-title">Using Personal Information</h2>
+                    </div>
+                    <p>Personal information submitted to us through our website will be used for the purposes specified in this policy or on the relevant pages of the website. We may use personal information for the following:</p>
+                    <ol>
+                      <li>Administering our website and business.</li>
+                      <li>Personalizing our website for clients.</li>
+                      <li>Enabling clients' use of the services available on our website.</li>
+                      <li>Processing withdrawal applications on retirement savings account (RSA).</li>
+                      <li>Updating clients' profile on our database if need be.</li>
+                      <li>Sending statements, invoices, and payment reminders to clients, and collecting payments from clients.</li>
+                      <li>Sending non-marketing commercial communications.</li>
+                      <li>Sending email notifications that clients have specifically requested.</li>
+                      <li>Sending our email newsletter, if clients or anyone have requested it. Clients can inform us at any time if they no longer require the newsletter.</li>
+                      <li>Sending marketing communications relating to our business or the businesses of carefully-selected third parties which we think may be of interest, by post or, where clients have specifically agreed to this, by email or similar technology.</li>
+                      <li>Providing third parties with statistical information about our users (but those third parties will not be able to identify any individual user from that information).</li>
+                      <li>Dealing with inquiries and complaints made by or about clients relating to our website.</li>
+                      <li>Keeping our website secure and preventing fraud.</li>
+                      <li>Verifying compliance with the terms and conditions governing the use of our website.</li>
+                    </ol>
+                    <p>We will not, without your express consent, supply clients' personal information to any third party for their or any other third party's direct marketing.</p>
+                  </section>
+
+                  <!-- 5 -->
+                  <section class="pp-section" id="s5">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">5</div>
+                      <h2 class="pp-section-title">Disclosing Personal Information</h2>
+                    </div>
+                    <p>We may disclose clients' personal information to any of our employees, officers, insurers, professional advisers, agents, suppliers, or subcontractors as reasonably necessary for the purposes set out in this policy.</p>
+                    <p>We may disclose clients' personal information to any member of our group of companies as reasonably necessary for the purposes set out in this policy.</p>
+                    <p>We may disclose personal information:</p>
+                    <ol>
+                      <li>To the extent that we are required to do so by law.</li>
+                      <li>In connection with any ongoing or prospective legal proceedings.</li>
+                      <li>In order to establish, exercise, or defend our legal rights (including providing information to others for the purposes of fraud prevention and reducing credit risk).</li>
+                      <li>To the purchaser (or prospective purchaser) of any business or asset that we are (or are contemplating) selling.</li>
+                      <li>To any person who we reasonably believe may apply to a court or other competent authority for disclosure of that personal information where, in our reasonable opinion, such court or authority would be reasonably likely to order disclosure of that personal information.</li>
+                    </ol>
+                    <p>Except as provided in this policy, we will not provide personal information to third parties.</p>
+                  </section>
+
+                  <!-- 6 -->
+                  <section class="pp-section" id="s6">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">6</div>
+                      <h2 class="pp-section-title">International Data Transfers</h2>
+                    </div>
+                    <ol>
+                      <li>Information that we collect may be stored, processed in, and transferred between any of the countries in which we operate or carry out transactions in order to enable us to use the information in accordance with this policy.</li>
+                      <li>Information that we collect may be transferred to countries which do not have data protection laws equivalent to those in force in Nigeria, including the United States of America, United Kingdom, United Arab Emirates, Russia, Japan, China, and India.</li>
+                      <li>Personal information that clients publish on our website may be available, via the internet, around the world. We cannot prevent the use or misuse of such information by others.</li>
+                      <li>Clients expressly agree to the transfers of personal information described in this Section 6.</li>
+                    </ol>
+                  </section>
+
+                  <!-- 7 -->
+                  <section class="pp-section" id="s7">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">7</div>
+                      <h2 class="pp-section-title">Retaining Personal Information</h2>
+                    </div>
+                    <ol>
+                      <li>This section sets out our data retention policies and procedure, which are designed to help ensure that we comply with our legal obligations regarding the retention and deletion of personal information.</li>
+                      <li>Personal information that we process for any purpose or purposes shall not be kept for longer than is necessary for that purpose or those purposes.</li>
+                      <li>Without prejudice to the above, we will usually delete personal data based on our data retention policy.</li>
+                      <li>Notwithstanding the other provisions of this section, we will retain documents (including electronic documents) containing personal data:
+                        <ol class="pp-sub-list">
+                          <li>To the extent that we are required to do so by law.</li>
+                          <li>If we believe that the documents may be relevant to any ongoing or prospective legal proceedings.</li>
+                          <li>In order to establish, exercise, or defend our legal rights (including providing information to others for the purposes of fraud prevention and reducing credit risk).</li>
+                        </ol>
+                      </li>
+                    </ol>
+                  </section>
+
+                  <!-- 8 -->
+                  <section class="pp-section" id="s8">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">8</div>
+                      <h2 class="pp-section-title">Security of Personal Information</h2>
+                    </div>
+                    <ol>
+                      <li>We will take reasonable technical and organizational precautions to prevent the loss, misuse, or alteration of clients' personal information.</li>
+                      <li>We will store all the personal information clients provide on our secure (password- and firewall-protected) servers.</li>
+                      <li>All electronic financial transactions entered into through our website will be protected by encryption technology.</li>
+                      <li>Clients acknowledge that the transmission of information over the internet is inherently insecure, and we cannot guarantee the security of data sent over the internet.</li>
+                      <li>Clients are responsible for keeping the password they use for accessing our website confidential; we will not ask clients for their password (except when clients log in to our website).</li>
+                    </ol>
+                  </section>
+
+                  <!-- 9 -->
+                  <section class="pp-section" id="s9">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">9</div>
+                      <h2 class="pp-section-title">Amendments</h2>
+                    </div>
+                    <p>We may update this policy from time to time by publishing a new version on our website. Clients should check this page occasionally to ensure they understand any changes to this policy. We may notify clients of changes to this policy by email or through the private messaging system on our website.</p>
+                  </section>
+
+                  <!-- 10 -->
+                  <section class="pp-section" id="s10">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">10</div>
+                      <h2 class="pp-section-title">Third Party Websites</h2>
+                    </div>
+                    <p>Our website includes hyper-links to, and details of, third party websites. We have no control over, and are not responsible for, the privacy policies and practices of third parties.</p>
+                  </section>
+
+                  <!-- 11 -->
+                  <section class="pp-section" id="s11">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">11</div>
+                      <h2 class="pp-section-title">Updating Information</h2>
+                    </div>
+                    <p>Clients would inform us if the personal information that we hold about them needs to be corrected or updated.</p>
+                  </section>
+
+                  <!-- 12 -->
+                  <section class="pp-section" id="s12">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">12</div>
+                      <h2 class="pp-section-title">Cookies</h2>
+                    </div>
+                    <p>Our website uses cookies. A cookie is a file containing an identifier (a string of letters and numbers) that is sent by a web server to a web browser and is stored by the browser. The identifier is then sent back to the server each time the browser requests a page from the server.</p>
+                    <p>Cookies may be either "persistent" cookies or "session" cookies: a persistent cookie will be stored by a web browser and will remain valid until its set expiry date, unless deleted by the user before the expiry date; a session cookie will expire at the end of the user session, when the web browser is closed.</p>
+                    <p>Cookies do not typically contain any information that personally identifies a user, but personal information that we store about clients may be linked to the information stored in and obtained from cookies.</p>
+
+                    <p><strong>1. Cookies we use:</strong></p>
+                    <ol class="pp-sub-list">
+                      <li>We use Google Analytics and Adwords on our website to recognize a computer when a user visits the website, track users as they navigate the website, improve the website's usability, analyze the use of the website, administer the website, prevent fraud, improve security, and personalize the website for each user.</li>
+                    </ol>
+
+                    <p><strong>2. Blocking cookies</strong> — most browsers allow you to refuse to accept cookies:</p>
+                    <ol class="pp-sub-list">
+                      <li>In Internet Explorer, clients can block cookies using the cookie handling override settings available by clicking "Tools," "Internet Options," "Privacy," and then "Advanced."</li>
+                      <li>In Firefox, clients can block all cookies by clicking "Tools," "Options," "Privacy," selecting "Use custom settings for history" from the drop-down menu, and unticking "Accept cookies from sites."</li>
+                      <li>In Chrome, clients can block all cookies by accessing the "Customize and control" menu, and clicking "Settings," "Show advanced settings," and "Content settings," then selecting "Block sites from setting any data" under the "Cookies" heading.</li>
+                    </ol>
+                    <p>Blocking all cookies will have a negative impact upon the usability of many websites.</p>
+
+                    <p><strong>3. Deleting cookies</strong> — clients can delete cookies already stored on their computer:</p>
+                    <ol class="pp-sub-list">
+                      <li>In Internet Explorer, clients must manually delete cookie files.</li>
+                      <li>In Firefox, clients can delete cookies by clicking "Tools," "Options," and "Privacy," then selecting "Use custom settings for history," clicking "Show Cookies," and then clicking "Remove All Cookies."</li>
+                      <li>In Chrome, clients can delete all cookies by accessing the "Customize and control" menu, clicking "Settings," "Show advanced settings," and "Clear browsing data," then selecting "Delete cookies and other site and plug-in data" before clicking "Clear browsing data."</li>
+                    </ol>
+                    <p>Deleting cookies will have a negative impact on the usability of many websites.</p>
+                  </section>
+
+                  <!-- 13 -->
+                  <section class="pp-section" id="s13">
+                    <div class="pp-section-heading">
+                      <div class="pp-section-num">13</div>
+                      <h2 class="pp-section-title">Your Rights</h2>
+                    </div>
+                    <p>Clients may instruct us to provide them with any personal information we hold about them; provision of such information will be subject to the following:</p>
+                    <ol>
+                      <li>The payment of an administrative fee where applicable; and the supply of appropriate evidence of your identity — we will usually accept a photocopy of their International Passport, Driver's Licence, National ID Card, or INEC Registration Card plus an original copy of a utility bill showing your current address.</li>
+                      <li>The right to access personal data.</li>
+                      <li>The right to be provided with information about how personal data is processed.</li>
+                      <li>The right to have personal data corrected.</li>
+                      <li>The right to have personal data erased in certain circumstances.</li>
+                      <li>The right to object to or restrict how personal data is processed.</li>
+                      <li>The right to have personal data transferred to clients or to another business in certain circumstances.</li>
+                    </ol>
+                    <p>We may withhold personal information that clients request to the extent permitted by law. Clients may instruct us at any time not to process their personal information for marketing purposes.</p>
+                    <p>For more details, please address any questions, comments and requests regarding our data processing practices to our Data Protection Officer:</p>
+                    <div class="pp-contact-box">
+                      <strong>Data Protection Officer</strong><br>
+                      Email: <a href="mailto:compliance@apel.ng">compliance@apel.ng</a>
+                    </div>
+                  </section>
+
+                  <!-- Approved by -->
+                  <div class="pp-approved">
+                    <div class="pp-approved-icon"><i class="fa fa-check"></i></div>
+                    <div class="pp-approved-text">
+                      <strong>Peter Aletor</strong>
+                      Approved &amp; authorised on behalf of Apel Group
+                    </div>
+                  </div>
+
+                </article>
+              </div>
+            </div>
+
+            <div id="site-footer"></div>
+
+        </div><!-- /#smooth-content -->
+    </div><!-- /#smooth-wrapper -->
+
+    <script src="js/plugins/jquery.min.js"></script>
+    <script src="js/plugins/swiper.min.js"></script>
+    <script src="js/plugins/gsap.min.js"></script>
+    <script src="js/plugins/ScrollSmoother.min.js"></script>
+    <script src="js/plugins/ScrollTrigger.min.js"></script>
+    <script src="js/plugins/ScrollTo.min.js"></script>
+    <script src="js/plugins/magnific-popup.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/footer.js"></script>
+
+    <script type="text/javascript">
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5c34b81b361b3372892f058b/1ii228sma';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+      })();
+    </script>
+
+    <!-- Smooth scroll to anchor links -->
+    <script>
+      document.querySelectorAll('.pp-toc a[href^="#"]').forEach(function(a) {
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          var target = document.querySelector(this.getAttribute('href'));
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    </script>
+
+</body>
+</html>

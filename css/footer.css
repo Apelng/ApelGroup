@@ -111,7 +111,7 @@ address {
   font-size: 0.82rem;
   color: rgba(255,255,255,0.68);
 }
-.footer-contact-item i { width: 14px; opacity: 0.6; }
+.footer-contact-item i { width: 14px; color: #fff !important; }
 .footer-contact-item a {
   color: rgba(255,255,255,0.68);
   text-decoration: none;
@@ -177,10 +177,10 @@ address {
 }
 
 .footer-trustmark img {
-  height: 78px;
+  height: 140px;
   width: auto;
   object-fit: contain;
-  opacity: 0.88;
+  opacity: 0.95;
   display: block;
 }
 
@@ -194,36 +194,32 @@ address {
 .footer-social {
   display: flex;
   justify-content: center;
-  gap: 9px;
+  gap: 10px;
   margin-bottom: 16px;
 }
 
 .footer-social-icon {
   display: inline-flex;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.09);
+  background: rgba(255,255,255,0.14);
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.72);
   text-decoration: none;
-  font-size: 13px;
-  transition: background 0.22s, color 0.22s;
-  border: 1px solid rgba(255,255,255,0.12);
+  font-size: 14px;
+  transition: background 0.22s;
+  border: 1px solid rgba(255,255,255,0.22);
 }
-.footer-social-icon:hover {
-  background: #8abf42;
-  border-color: #8abf42;
-  color: #fff;
-}
+.footer-social-icon i { color: #fff !important; }
+.footer-social-icon:hover { background: #8abf42; border-color: #8abf42; }
 
 .footer-legal {
   font-size: 0.73rem;
-  color: rgba(255,255,255,0.38);
+  color: #fff !important;
   line-height: 1.65;
 }
-.footer-legal p { margin: 3px 0; }
+.footer-legal p { margin: 3px 0; color: #fff !important; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1060px) {
