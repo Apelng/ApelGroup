@@ -4,3 +4,26 @@
 
 [functions]
   directory = "netlify/functions"
+
+# ---------------------------------------------------------------------------
+# Security response headers
+# Applied by Netlify's edge to every response. Fixes the Acunetix findings:
+#   - "Content Security Policy (CSP) not implemented"
+#   - "Clickjacking: X-Frame-Options header missing"
+# ---------------------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://www.gstatic.com https://apis.google.com https://identity.netlify.com https://embed.tawk.to https://*.tawk.to https://upload-widget.cloudinary.com https://widget.cloudinary.com https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://*.tawk.to; font-src 'self' data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.gstatic.com https://*.tawk.to; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://api.cloudinary.com https://identity.netlify.com https://*.apel.com.ng https://*.tawk.to wss://*.tawk.to; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://www.google.com https://identity.netlify.com https://*.tawk.to https://upload-widget.cloudinary.com https://widget.cloudinary.com; worker-src 'self' blob:; manifest-src 'self'"
+
+# Long-cache the hashed static assets, but never the HTML
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
