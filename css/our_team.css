@@ -78,8 +78,9 @@
 .member-image {
   width: var(--image-size);
   height: var(--image-size);
-  border-radius: 50%;
+  border-radius: 100%;
   object-fit: cover;
+  object-position: top center;
   margin-right: calc(var(--spacing-unit) * 2);
   border: 1px solid var(--primary-color);
   padding: 3px;
@@ -128,6 +129,7 @@
   margin-bottom: var(--spacing-unit);
   border: 4px solid var(--primary-color);
   padding: 4px;
+  object-position: center top;
 }
 
 
@@ -281,6 +283,7 @@
 
 .profile-header .member-title {
   font-size: 0.9rem;
+  text-align: left;
   color: var(--primary-color);
 }
 
