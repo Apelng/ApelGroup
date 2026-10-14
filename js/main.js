@@ -227,18 +227,9 @@ $(function () {
         }
     });
 
+    // One handler for both nav variants (index uses .mil-top-menu-index until scrolled)
     $('.mil-menu-btn').on('click', function () {
-        $('.mil-menu-btn , .mil-top-menu').toggleClass('mil-active');
-    });
-
-
-
-
-
-
-    
-    $('.mil-menu-btn').on('click', function () {
-        $('.mil-menu-btn , .mil-top-menu-index').toggleClass('mil-active');
+        $('.mil-menu-btn , .mil-top-menu , .mil-top-menu-index').toggleClass('mil-active');
     });
     /***************************
 

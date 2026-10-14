@@ -26,7 +26,7 @@
         <div class="footer-company-links">
           <a href="https://apel.com.ng">Home</a>
           <a href="https://asset.apel.com.ng">Apel Asset Limited</a>
-          <a href="https://trust.apel.com.ng">Apel Capital &amp; Trust Limited</a>
+          <a href="https://trust.apel.com.ng">Apel Trustees Limited</a>
           <a href="https://registrars.apel.com.ng/">Apel Registrars & Corporate Services</a>
           <a href="https://wealth.apel.com.ng">Apel Wealth Management Limited</a>
         </div>
@@ -100,7 +100,7 @@
         </div>
         <div class="footer-legal">
           <p>APEL is registered and regulated by the Securities and Exchange Commission, Nigeria.</p>
-          <p>&copy; 2025 All rights reserved &nbsp;|&nbsp; Member of NASD &nbsp;|&nbsp; Trading License Holder of The Nigerian Exchange</p>
+          <p>&copy; 2026 All rights reserved &nbsp;|&nbsp; Member of NASD &nbsp;|&nbsp; Trading License Holder of The Nigerian Exchange</p>
         </div>
       </div>
     </div><!-- /.footer-bottom -->
